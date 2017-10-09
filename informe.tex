@@ -1,0 +1,64 @@
+%\documentclass[11pt]{article}
+\documentclass[11pt,a4paper]{tesis}
+\usepackage[margin=1in]{geometry}          
+\usepackage{graphicx}
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{setspace}\onehalfspacing
+\usepackage[loose,nice]{units} %replace "nice" by "ugly" for units in upright fractions
+ 
+ \begin{document}
+\tableofcontents
+\chapter{Introduction}
+	\section{Problem description and motivation}
+	\section{Objectives}
+	\section{Basis}
+		\subsection{Paper Franco-Ferrer 2014}
+		\subsection{Federico Landini's work in GMMs and feature extraction}
+\chapter{Method}
+	\section{Binary classification problem applied to pronunciation scoring}
+	\section{Support Vector Machines}
+		\subsection{Strategy: How does it work?}
+		\subsection{C parameter}
+		\subsection{Balancing class weights}
+		\subsection{Feature combination. Bayessian approach}
+	\section{Features}
+		\subsection{MFCC}
+		\subsection{Supervectors from GMM adaption}
+		\subsection{Legendre polynomials}
+			\subsection{Ridge regression and regularization}
+		\subsection{Feature normalization}
+	\section{Performance measures}
+		\subsection{LLR}
+		\subsection{ROC Curve}
+		\subsection{Equal error rate}
+\chapter{Experimental Design}
+	\section{Speech Corpora}
+		\subsection{Waveforms}
+		\subsection{Alignments}
+		\subsection{Labels}
+	\section{Model training}
+		\subsection{SVM from supervectors}
+			\subsubsection{Feature normalization}
+			\subsubsection{Balancing class weights}
+			\subsubsection{Finding C parameter}
+		\subsection{SVM from legendre coefficients}
+			\subsubsection{Normalizing time axis}
+			\subsubsection{Appending time durations}
+			\subsubsection{Is duration by itself a good feature?}
+			\subsubsection{Regularization: Finding best $\lambda$}
+			\subsubsection{Best degree}
+		\subsection{SVM from both sources}
+			\subsubsection{Finding best proportion}
+
+\chapter{Results}
+	\section{Results on Development Set}
+		\subsection{Results for SVM using supervectors}
+		\subsection{Results for SVM using Legendre Coefficients}
+		\subsection{Results for SVM using both sources}
+	\section{Results on Held-out Data}
+		\subsection{Results for SVM using supervectors}
+		\subsection{Results for SVM using Legendre Coefficients}
+		\subsection{Results for SVM using both sources}
+\chapter{Conclusions}
+ 
+\end{document}
