@@ -5,32 +5,46 @@
 \usepackage{amsthm, amsmath, amssymb}
 \usepackage{setspace}\onehalfspacing
 \usepackage[loose,nice]{units} %replace "nice" by "ugly" for units in upright fractions
- 
+
+\usepackage{hyperref}
+
  \begin{document}
 \tableofcontents
 \chapter{Introduction}
 	\section{Problem description and motivation}
 	\section{Objectives}
-	\section{Basis}
-		\subsection{Paper Franco-Ferrer 2014}
-		\subsection{Federico Landini's work in GMMs and feature extraction}
+	\section{Previous work}
 \chapter{Method}
 	\section{Binary classification problem applied to pronunciation scoring}
+		\input{files/method/binary_classification_problem}
 	\section{Support Vector Machines}
-		\subsection{Strategy: How does it work?}
+		\input{files/method/svm.tex}
+		\subsection{Cost function}
+			\input{files/method/cost_function.tex}
 		\subsection{C parameter}
+			\input{files/method/c_parameter.tex}
 		\subsection{Balancing class weights}
-		\subsection{Feature combination. Bayessian approach}
+			\input{files/method/balancing_class_weights.tex}
+		\subsection{Features scaling}
+			\input{files/method/feature_scaling.tex}
+		\subsection{Feature combination}
+			\input{files/method/feature_combination.tex}
 	\section{Features}
 		\subsection{MFCC}
+			\input{files/method/mfcc.tex}
 		\subsection{Supervectors from GMM adaption}
+			\input{files/method/gmm.tex}
 		\subsection{Legendre polynomials}
-			\subsection{Ridge regression and regularization}
-		\subsection{Feature normalization}
+			\input{files/method/legendre_polynomials.tex}
+			\subsubsection{Motivation}
+				\input{files/method/legendre_polynomials_motivation.tex}
+			\subsubsection{Regularization}
+				\input{files/method/regularization.tex}
 	\section{Performance measures}
-		\subsection{LLR}
 		\subsection{ROC Curve}
+			\input{files/method/roc_curve.tex}
 		\subsection{Equal error rate}
+			\input{files/method/eer.tex}
 \chapter{Experimental Design}
 	\section{Speech Corpora}
 		\subsection{Waveforms}
@@ -38,7 +52,6 @@
 		\subsection{Labels}
 	\section{Model training}
 		\subsection{SVM from supervectors}
-			\subsubsection{Feature normalization}
 			\subsubsection{Balancing class weights}
 			\subsubsection{Finding C parameter}
 		\subsection{SVM from legendre coefficients}
