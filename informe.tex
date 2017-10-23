@@ -47,31 +47,40 @@
 			\input{files/method/eer.tex}
 \chapter{Experimental Design}
 	\section{Speech Corpora}
+		\subsection{General description}
+			\input{files/experimental_design/features_general_description.tex}
 		\subsection{Waveforms}
+			\input{files/experimental_design/waveforms.tex}
 		\subsection{Alignments}
+			\input{files/experimental_design/alignments.tex}
 		\subsection{Labels}
+			\input{files/experimental_design/labels.tex}
 	\section{Model training}
 		\subsection{SVM from supervectors}
-			\subsubsection{Balancing class weights}
-			\subsubsection{Finding C parameter}
+			\subsubsection{Experiment steps}
+				\input{files/experimental_design/supervectors_experiment_steps.tex}
+			\subsubsection{Tunning classifier}
+				\input{files/experimental_design/supervectors_tunning_classifier.tex}
 		\subsection{SVM from legendre coefficients}
-			\subsubsection{Normalizing time axis}
-			\subsubsection{Appending time durations}
-			\subsubsection{Is duration by itself a good feature?}
-			\subsubsection{Regularization: Finding best $\lambda$}
-			\subsubsection{Best degree}
+			\subsubsection{Experiment steps}
+				\input{files/experimental_design/legendre_experiment_steps.tex}
+			\subsubsection{Tunning classifier}
+				\input{files/experimental_design/legendre_tunning_features.tex}
 		\subsection{SVM from both sources}
 			\subsubsection{Finding best proportion}
 
 \chapter{Results}
-	\section{Results on Development Set}
-		\subsection{Results for SVM using supervectors}
-		\subsection{Results for SVM using Legendre Coefficients}
-		\subsection{Results for SVM using both sources}
-	\section{Results on Held-out Data}
-		\subsection{Results for SVM using supervectors}
-		\subsection{Results for SVM using Legendre Coefficients}
-		\subsection{Results for SVM using both sources}
+	\section{Development Set}
+		\subsection{Results for Supervectors}
+			\input{files/results/development_supervectors.tex}
+		\subsection{Results for Legendre Coefficients}
+			\input{files/results/development_legendre.tex}
+		\subsection{Results for both sources}
+			\input{files/results/development_both_sources.tex}
+	\section{Held-out Data}
+		\subsection{Results for Supervectors}
+		\subsection{Results for Legendre Coefficients}
+		\subsection{Results for both sources}
 \chapter{Conclusions}
  
 \end{document}
