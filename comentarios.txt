@@ -1,0 +1,3 @@
+* Phonemes frecueny appearence in Spanishjko
+
+* No initialization when training GMM. Neither EM nor KMeans
