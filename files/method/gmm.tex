@@ -1,6 +1,40 @@
-\begin{itemize}
-	\item Definition and explanation of GMM
-	\item Log Likelihood Ratio method to asses pronunciation
-	\item GMM adaptation method
-	\item Generating supervectors from adapted GMMs
-\end{itemize}
+\subsubsection{Definition and explanation of GMM}
+	Given a particular phoneme, Normal Distributions are used to model the distribution of each class (correct 
+	 and mispronounced), where the space of the random variable consists in the MFCCs extracted from each instance. 
+
+	Instead of using a single Gaussian for each class, a Mixture is used because it allows
+	a much richer representation of a density model. The optimal number of Gaussians used for each
+	mixture is assumed to be proportional to the number of instances used to train the model.
+	Because of the differences in the number of instances for each phoneme, and also for each 
+	class given a particular phoneme, each mixture is composed of a different number of gaussians.
+
+\subsubsection{Log Likelihood Ratio method to asses pronunciation}
+	The core idea is based on the fact that the pattern of features of mispronounced instances are most likely to be found in the Gaussian Mixture of the incorrect instances than in the mixture of the
+	correct ones. Of course, the opposite scenario occurs when considering the well pronounced
+	instances.
+
+	Given a sample, its class is predicted by calculating
+	the log likelihood ratio between the chances of the instances of being mispronounced and
+	the chances of being correct. An instance is considered as incorrect by the system whenever
+	the LLR is above 0, and in the other way as correct when the LLR is below 0.
+
+\subsubsection{GMM adaptation method}
+	Given a particular phoneme, the Gaussian Mixture Model for each class is computed by adaptation.
+	An intial GMM is trained with all the instances, and it will be used as basis for the next steps. This kind of model trained with all the instances and intended to be the basis of future
+	adaptation is named \textit{Universal Background Model} (UBM).
+	From there, two GMMs are created by adapting both weights and means of the base Gaussians according to a \textit{relevance factor} parameter and the number of features used in the adaptation. The more instances are used in the process, the more confidence will be perceived 
+	over the new values thus allowing a more aggressive adaptation.
+
+\subsubsection{Generating supervectors from adapted GMMs}
+	In the next experiments, the adaptation technique is used again but for a different purpose.
+	The task consist in generating input features for a \textit{SVM} classifier. In order to do that,
+	the first step is training an \textit{UBM} for a particular phoneme with all the 
+	instances, both positives and negatives. After that, for each instance a GMM is obtained
+	by adapting the UBM to the new MFCCs. Usually, the parameters adaptation comprises a trade off
+	between the previous means and weights and the new values obtained. In this case,
+	the most aggressive strategy is used, because the previous values are not being taken into
+	account.
+
+	The final step in the process is the supervector generation, that is obtained by a concatenation
+	of all the means of the adapted gmm and their respectives weights.
+	

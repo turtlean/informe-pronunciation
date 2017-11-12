@@ -8,7 +8,7 @@
 
 \usepackage{hyperref}
 
- \begin{document}
+\begin{document}
 \tableofcontents
 \chapter{Introduction}
 	\section{Problem description and motivation}
@@ -47,27 +47,19 @@
 			\input{files/method/eer.tex}
 \chapter{Experimental Design}
 	\section{Speech Corpora}
-		\subsection{General description}
+		\subsection{General description - Feature extraction}
 			\input{files/experimental_design/features_general_description.tex}
-		\subsection{Waveforms}
-			\input{files/experimental_design/waveforms.tex}
-		\subsection{Alignments}
+		\subsection{Alignments (phonetic-temporal)}
 			\input{files/experimental_design/alignments.tex}
-		\subsection{Labels}
+		\subsection{Labels (pronunciation)}
 			\input{files/experimental_design/labels.tex}
 	\section{Model training}
 		\subsection{SVM from supervectors}
 			\subsubsection{Experiment steps}
 				\input{files/experimental_design/supervectors_experiment_steps.tex}
-			\subsubsection{Tunning classifier}
-				\input{files/experimental_design/supervectors_tunning_classifier.tex}
 		\subsection{SVM from legendre coefficients}
 			\subsubsection{Experiment steps}
 				\input{files/experimental_design/legendre_experiment_steps.tex}
-			\subsubsection{Tunning classifier}
-				\input{files/experimental_design/legendre_tunning_features.tex}
-		\subsection{SVM from both sources}
-			\subsubsection{Finding best proportion}
 
 \chapter{Results}
 	\section{Development Set}

@@ -1,0 +1,11 @@
+Feedback sobre Method, Experimental Design y results (23/10):
+	- Experimental Design
+		- Remover sección Waveforms. Armar una gran sección Feature Extraction.
+		- Alignments. Labels. No entrar en detalle respecto a la estructura de los archivos
+		- Alignments (phonetic-temporal) (?)
+		- Labels (pronunciation) (?)
+		- Model training: Falta sección explicando lo que hizo Fede, que uso como baseline. Agradecerle a Fede por la implementación. Que no quede como que lo hice yo. Pedirle ayuda a Fede si hace falta.
+			- SVM from supervectors / SVM from Legendre: Reemplazar la parte de Tunning classifier por un único párrafo
+			- Remover SVM from both sources. No hace falta una sección acá porque ya lo explico en métodos
+	- Results:
+		- Faltan los resultados comparando con el baseline basado en GMM
