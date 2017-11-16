@@ -55,7 +55,7 @@
 \maketitle
 \begin{minipage}[t]{\textwidth}
     \begin{minipage}[t]{.55 \textwidth}
-        \includegraphics{caratula/logo_uba.jpg}
+        \includegraphics{logo_uba.jpg}
     \end{minipage}%%
 \end{minipage}%
 \end{titlepage}
@@ -72,6 +72,24 @@
 
 \section{Motivación}
 
+El aprendizaje de una lengua extranjera es un proceso complejo que involucra muchos 
+aspectos, entre los cuales se encuentra la pronunciación.
+
+La Dra. Ferrer trabaja un proyecto de desarrollo de un sistema ACAI (Asistencia
+Computarizada para el Aprendizaje de Idiomas), para niños argentinos en en proceso de
+aprendizaje del idioma Inglés.
+
+Si bien actualmente es posible obtener estimaciones confiables de la calidad
+de pronunciación a nivel párrafo y oración, cuando la meta es generar puntajes 
+para unidades más pequeñas como palabras y específicamente fonos, los sistemas del
+estado del arte están lejos de alcanzar su máximo rendimiento.
+
+Generar buenos sistemas de puntaje a nivel fono es un aspecto clave en el marco del
+proyecto ya que muchos niños que recién comienzan a estudiar no están en condiciones
+de enunciar párrafos u oraciones largas. Al mismo tiempo, identificar errores a este
+nivel permite al estudiante focalizar sus esfuerzos en corregir aspectos concretos
+y específicos.
+
 %----------------------------------------------------------------------------------------
 %	PROPUESTA DE TESIS SECTION
 %----------------------------------------------------------------------------------------
@@ -80,8 +98,8 @@
 
 En este trabajo se continuará con la exploración de soluciones al problema de calificación
 de la pronunciación en el marco del proyecto dirigido por la Dra. Ferrer. Nuevamente 
-los modelos se entrenarán a partir de pronunciaciones de personas no nativas,
-ya que se han logrado buenos resultados al adoptar esta estrategia.
+la unidad central de análisis será el fono y los modelos se entrenarán 
+a partir de pronunciaciones de personas no nativas, ya que se han logrado buenos resultados al adoptar esta estrategia. 
 
 Replicando y posteriormente utilizando como baseline los sistemas referentes de los trabajos
 previos, se desarrollarán clasificadores basados en features dinámicos, no habiéndose 
@@ -96,7 +114,7 @@ probado este tipo de features con anterioridad.
 El objetivo es analizar la incorporación de features dinámicos a los sistemas, capturando
 de esta manera las dependencias temporales de las muestras.
 
-Independientemente de si los resultados de los clasificadores mejoran o empeoran, los
+Independientemente de si los resultados de los clasificadores mejoren o empeoren, los
 experimentos permitirán saber si los features utilizados previamente y los introducidos
 en este trabajo proveen información complementaria, lo cual puede ser de gran utilidad
 para planificar futuras estrategias.
