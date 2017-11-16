@@ -1,0 +1,119 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Contract
+% LaTeX Template
+% Version 1.0 (December 8 2014)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Brandon Fryslie
+% With extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Note:
+% If you are using Apple OS X, go into structure.tex and uncomment the font
+% specifications for OS X and comment out the default specifications - this will
+% drastically increase how good the document looks. You will now need to
+% compile with XeLaTeX.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt]{article} % The default font size is 12pt on A4 paper, change to 'usletter' for US Letter paper and adjust margins in structure.tex
+% \usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{graphicx}
+
+\input{structure.tex} % Input the structure.tex file which specifies the document layout and style
+
+\title{	
+\normalfont \normalsize 
+\textsc{Universidad de Buenos Aires \\ Facultad de Ciencias Exactas y Naturales \\ Departamento de Computaci\'on} \\ [25pt] % Your university, school and/or department name(s)
+\huge Título tema de tesis\\ % The assignment title
+\date{\today}
+\vspace{20px}
+}
+
+\author{
+	Alumno: Leandro Matayoshi \\ 
+	Libreta Universitaria: 79/11 \\ 
+	Correo electr\'onico: leandro.matayoshi@gmail.com \\ 
+	Directora: Dra. Luciana Ferrer
+	\vspace{10px}
+} 
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage}
+\maketitle
+\begin{minipage}[t]{\textwidth}
+    \begin{minipage}[t]{.55 \textwidth}
+        \includegraphics{caratula/logo_uba.jpg}
+    \end{minipage}%%
+\end{minipage}%
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	RESUMEN SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Resumen}
+
+%----------------------------------------------------------------------------------------
+%	MOTIVACIÓN SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Motivación}
+
+%----------------------------------------------------------------------------------------
+%	PROPUESTA DE TESIS SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Propuesta de tesis}
+
+En este trabajo se continuará con la exploración de soluciones al problema de calificación
+de la pronunciación en el marco del proyecto dirigido por la Dra. Ferrer. Nuevamente 
+los modelos se entrenarán a partir de pronunciaciones de personas no nativas,
+ya que se han logrado buenos resultados al adoptar esta estrategia.
+
+Replicando y posteriormente utilizando como baseline los sistemas referentes de los trabajos
+previos, se desarrollarán clasificadores basados en features dinámicos, no habiéndose 
+probado este tipo de features con anterioridad.
+
+%----------------------------------------------------------------------------------------
+%	OBJETIVO SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Objetivo}
+
+El objetivo es analizar la incorporación de features dinámicos a los sistemas, capturando
+de esta manera las dependencias temporales de las muestras.
+
+Independientemente de si los resultados de los clasificadores mejoran o empeoran, los
+experimentos permitirán saber si los features utilizados previamente y los introducidos
+en este trabajo proveen información complementaria, lo cual puede ser de gran utilidad
+para planificar futuras estrategias.
+
+%----------------------------------------------------------------------------------------
+%	PLAN DE TRABAJO SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Plan de trabajo}
+
+\begin{enumerate}
+	\item Revisi\'on de la implementaci\'on actual del sistema para calificación de la pronunciación y lectura de la literatura relacionada
+	\item Replicaci\'on de experimentos baseline, cuyos features asumen independencia temporal
+	\item Exploraci\'on de nuevos sistemas basados en features din\'amicas
+	\item Evaluaci\'on de complementariedad de features mediante la fusi\'on de baselines con los nuevos sistemas
+	\item An\'alisis de resultados y propuesta de mejoras
+\end{enumerate}
+
+
+\end{document}
