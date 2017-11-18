@@ -3,4 +3,13 @@
 *.out
 *.toc
 *.pdf
-informe.synctex.gz
+*.pdf
+*.fls
+*.run.xml
+*.fdb_latexmk
+*.blg
+*.bcf
+*.bbl
+*.synctex.gz
+*.DS_Store
+*.ipynb_checkpoints
