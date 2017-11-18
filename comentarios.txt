@@ -4,3 +4,5 @@
 
 * https://tex.stackexchange.com/questions/323515/how-do-i-run-biber-on-texshop. Configurando biber
 en TexShop
+
+* \printbibliography en TexShop: https://tex.stackexchange.com/a/351793

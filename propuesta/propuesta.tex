@@ -1,3 +1,4 @@
+% !TEX TS–program = pdflatexmk
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Contract
 % LaTeX Template
@@ -23,15 +24,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,12pt]{article} % The default font size is 12pt on A4 paper, change to 'usletter' for US Letter paper and adjust margins in structure.tex
-% \usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
 \usepackage[pdftex]{graphicx}
+% \usepackage{biblatex}
+\usepackage[
+backend=biber,
+sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
 
 \input{structure.tex} % Input the structure.tex file which specifies the document layout and style
 
 \title{	
 \normalfont \normalsize 
 \textsc{Universidad de Buenos Aires \\ Facultad de Ciencias Exactas y Naturales \\ Departamento de Computaci\'on} \\ [25pt] % Your university, school and/or department name(s)
-\huge Título tema de tesis\\ % The assignment title
+\huge Análisis de features dinámicas para sistemas de calificación de pronunciación
+de lengua extranjera\\ % The assignment title
 \date{\today}
 \vspace{20px}
 }
@@ -66,6 +74,28 @@
 
 \section{Resumen}
 
+Ejemplo de cita al paper de Franco Ferrer \cite{franco_ferrer_main_paper} 
+
+La evolución de la tecnología durante estos últimos años ha permitido el desarrollo
+de herramientas automáticas que asisten al estudiante durante el aprendizaje de una
+lengua extranjera, siendo Duolingo uno de los ejemplos más conocidos de este tipo.
+
+La pronunciación es un aspecto importante a tener en cuenta durante la enseñanza. En la
+actualidad, es posible evaluar de forma acertada la pronunciación 
+a nivel párrafo u oración, disminuyendo la precisión al 
+realizar el análisis para unidades de tiempo más cortas (palabras y fonos). Una correcta 
+calificación le permitirá al estudiante conocer acerca de sus potenciales errores 
+sobre fonos específicos, de forma tal que pueda trabajar en ellos para corregirlos.
+
+El proyecto dirigido por la Dra. Ferrer, cuyo fin es el desarrollo de un sistema de 
+asistencia computarizada para el aprendizaje de inglés de niños Argentinos, constituye
+un marco ideal para explorar variantes que permitan mejorar los sistemas de
+calificación de pronunciación a nivel fono.
+
+El objetivo principal de la tesis será evaluar la utilización de features que modelan
+las dependencias temporales durante la pronunciación de un fono ya que pueden contener
+información no utilizada hasta el momento.
+
 %----------------------------------------------------------------------------------------
 %	MOTIVACIÓN SECTION
 %----------------------------------------------------------------------------------------
@@ -75,18 +105,22 @@
 El aprendizaje de una lengua extranjera es un proceso complejo que involucra muchos 
 aspectos, entre los cuales se encuentra la pronunciación.
 
-La Dra. Ferrer trabaja un proyecto de desarrollo de un sistema ACAI (Asistencia
-Computarizada para el Aprendizaje de Idiomas), para niños argentinos en en proceso de
-aprendizaje del idioma Inglés.
+La Dra. Ferrer trabaja en un proyecto cuyo objetivo es desrrollar un sistema ACAI 
+(Asistencia Computarizada para el Aprendizaje de Idiomas), para niños argentinos 
+en proceso de aprendizaje del idioma Inglés. El proyecto cuenta con 3 tres
+etapas principales: Recolección de las grabaciones de los infantes y construcción de
+la base de datos, el desarrollo de un sistema de reconocimiento automático del habla
+para generar los alineamientos temporales y finalmente el desarrollo del sistema
+automático de puntuación. La tesis se focalizará en este último punto.
 
 Si bien actualmente es posible obtener estimaciones confiables de la calidad
 de pronunciación a nivel párrafo y oración, cuando la meta es generar puntajes 
 para unidades más pequeñas como palabras y específicamente fonos, los sistemas del
 estado del arte están lejos de alcanzar su máximo rendimiento.
 
-Generar buenos sistemas de puntaje a nivel fono es un aspecto clave en el marco del
+La generación de buenos sistemas de puntaje a nivel fono es un aspecto clave en el marco del
 proyecto ya que muchos niños que recién comienzan a estudiar no están en condiciones
-de enunciar párrafos u oraciones largas. Al mismo tiempo, identificar errores a este
+de enunciar párrafos u oraciones largas. En suma, identificar errores a este
 nivel permite al estudiante focalizar sus esfuerzos en corregir aspectos concretos
 y específicos.
 
@@ -111,13 +145,16 @@ probado este tipo de features con anterioridad.
 
 \section{Objetivo}
 
-El objetivo es analizar la incorporación de features dinámicos a los sistemas, capturando
-de esta manera las dependencias temporales de las muestras.
+El objetivo es analizar la incorporación de features dinámicos que permiten capturar
+las dependencias temporales durante la pronunciación de cada fono.
+Los sistemas previos han utilizado en su mayoría características espectrales estándar
+en la literatura del procesamiento del habla: \textit{Mel Frecuency Cepstral 
+Coefficients}.
 
 Independientemente de si los resultados de los clasificadores mejoren o empeoren, los
 experimentos permitirán saber si los features utilizados previamente y los introducidos
 en este trabajo proveen información complementaria, lo cual puede ser de gran utilidad
-para planificar futuras estrategias.
+para futuras implementaciones.
 
 %----------------------------------------------------------------------------------------
 %	PLAN DE TRABAJO SECTION
@@ -133,5 +170,7 @@ para planificar futuras estrategias.
 	\item An\'alisis de resultados y propuesta de mejoras
 \end{enumerate}
 
+\newpage
+\printbibliography
 
 \end{document}
