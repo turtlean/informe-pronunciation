@@ -29,7 +29,7 @@
 % \usepackage{biblatex}
 \usepackage[
 backend=biber,
-sorting=ynt
+sorting=none
 ]{biblatex}
 \addbibresource{references.bib}
 
@@ -38,8 +38,8 @@ sorting=ynt
 \title{	
 \normalfont \normalsize 
 \textsc{Universidad de Buenos Aires \\ Facultad de Ciencias Exactas y Naturales \\ Departamento de Computaci\'on} \\ [25pt] % Your university, school and/or department name(s)
-\huge Análisis de features dinámicas para sistemas de calificación de pronunciación
-de lengua extranjera\\ % The assignment title
+\huge Sistema de calificación de pronunciación a nivel fono para aprendizaje de idiomas
+\\ % The assignment title
 \date{\today}
 \vspace{20px}
 }
@@ -61,9 +61,10 @@ de lengua extranjera\\ % The assignment title
 
 \begin{titlepage}
 \maketitle
+\vspace{20px}
 \begin{minipage}[t]{\textwidth}
-    \begin{minipage}[t]{.55 \textwidth}
-        \includegraphics{logo_uba.jpg}
+    \begin{minipage}[t]{0.55 \textwidth}
+        \includegraphics[scale=0.85]{logo_uba.jpg}
     \end{minipage}%%
 \end{minipage}%
 \end{titlepage}
@@ -74,27 +75,27 @@ de lengua extranjera\\ % The assignment title
 
 \section{Resumen}
 
-Ejemplo de cita al paper de Franco Ferrer \cite{franco_ferrer_main_paper} 
-
 La evolución de la tecnología durante estos últimos años ha permitido el desarrollo
-de herramientas automáticas que asisten al estudiante durante el aprendizaje de una
-lengua extranjera, siendo Duolingo uno de los ejemplos más conocidos de este tipo.
+de herramientas automáticas que asisten al estudiante durante el aprendizaje de 
+segundos idiomas, siendo Duolingo uno de los ejemplos más conocidos de este tipo.
 
-La pronunciación es un aspecto importante a tener en cuenta durante la enseñanza. En la
+La pronunciación es un aspecto importante a tener en cuenta durante la enseñanza
+de una lengua extranjera. En la
 actualidad, es posible evaluar de forma acertada la pronunciación 
 a nivel párrafo u oración, disminuyendo la precisión al 
-realizar el análisis para unidades de tiempo más cortas (palabras y fonos). Una correcta 
-calificación le permitirá al estudiante conocer acerca de sus potenciales errores 
-sobre fonos específicos, de forma tal que pueda trabajar en ellos para corregirlos.
+realizarse el análisis para unidades de tiempo más cortas (palabras y fonos). 
 
-El proyecto dirigido por la Dra. Ferrer, cuyo fin es el desarrollo de un sistema de 
-asistencia computarizada para el aprendizaje de inglés de niños Argentinos, constituye
-un marco ideal para explorar variantes que permitan mejorar los sistemas de
-calificación de pronunciación a nivel fono.
+El presente trabajo se enmarca dentro de un proyecto más grande dirigido por la Dra. Ferrer,
+cuyo fin es el desarrollo de un sistema de asistencia computarizada para el 
+aprendizaje de Inglés de niños Argentinos. Este contexto constituye
+un escenario ideal para explorar variantes en el desarrollo de sistemas de calificación
+de pronunciación a nivel fono, ya que los niños que están dando sus primeros
+pasos en el Inglés no tienen la experiencia necesaria para pronunciar párrafos u oraciones
+largas.
 
-El objetivo principal de la tesis será evaluar la utilización de features que modelan
-las dependencias temporales durante la pronunciación de un fono ya que pueden contener
-información no utilizada hasta el momento.
+El objetivo de la tesis es la exploración de nuevas soluciones al problema de calificación
+de pronunciación de fonos en segundos idiomas. Para ello, se tomará como punto de partida
+el trabajo previo desarrollado por Franco, Ferrer and Bratt 2014 \cite{franco_ferrer_main_paper}.
 
 %----------------------------------------------------------------------------------------
 %	MOTIVACIÓN SECTION
@@ -105,24 +106,24 @@ información no utilizada hasta el momento.
 El aprendizaje de una lengua extranjera es un proceso complejo que involucra muchos 
 aspectos, entre los cuales se encuentra la pronunciación.
 
-La Dra. Ferrer trabaja en un proyecto cuyo objetivo es desrrollar un sistema ACAI 
+La Dra. Ferrer trabaja en un proyecto cuyo objetivo es desarrollar un sistema ACAI 
 (Asistencia Computarizada para el Aprendizaje de Idiomas), para niños argentinos 
 en proceso de aprendizaje del idioma Inglés. El proyecto cuenta con 3 tres
 etapas principales: Recolección de las grabaciones de los infantes y construcción de
 la base de datos, el desarrollo de un sistema de reconocimiento automático del habla
 para generar los alineamientos temporales y finalmente el desarrollo del sistema
-automático de puntuación. La tesis se focalizará en este último punto.
+automático de puntuación a nivel fono. La tesis se centrará en este último punto.
 
 Si bien actualmente es posible obtener estimaciones confiables de la calidad
 de pronunciación a nivel párrafo y oración, cuando la meta es generar puntajes 
 para unidades más pequeñas como palabras y específicamente fonos, los sistemas del
 estado del arte están lejos de alcanzar su máximo rendimiento.
 
-La generación de buenos sistemas de puntaje a nivel fono es un aspecto clave en el marco del
-proyecto ya que muchos niños que recién comienzan a estudiar no están en condiciones
-de enunciar párrafos u oraciones largas. En suma, identificar errores a este
-nivel permite al estudiante focalizar sus esfuerzos en corregir aspectos concretos
-y específicos.
+La generación de buenos sistemas de puntaje a nivel fono es un aspecto clave en el 
+desarrollo del sistema ACAI ya que muchos niños que recién comienzan a estudiar 
+no están en condiciones de enunciar párrafos u oraciones largas. En suma, identificar 
+errores a este nivel permitirá al estudiante focalizar sus esfuerzos en corregir 
+aspectos concretos y específicos.
 
 %----------------------------------------------------------------------------------------
 %	PROPUESTA DE TESIS SECTION
@@ -130,14 +131,33 @@ y específicos.
 
 \section{Propuesta de tesis}
 
-En este trabajo se continuará con la exploración de soluciones al problema de calificación
-de la pronunciación en el marco del proyecto dirigido por la Dra. Ferrer. Nuevamente 
-la unidad central de análisis será el fono y los modelos se entrenarán 
-a partir de pronunciaciones de personas no nativas, ya que se han logrado buenos resultados al adoptar esta estrategia. 
+La calificación de pronunciación a nivel fono es un área del procesamiento del habla
+que no ha sido tan estudiada en comparación con otras. Sin embargo existen
+trabajos previos en donde se ha estudiado este tema. 
+Entre ellos se destaca Franco, Ferrer and Bratt 2014 \cite{franco_ferrer_main_paper}, 
+en donde se analizan 
+dos tipos de modelos como posibles soluciones: generativos, mediante \textit{Gaussian 
+Mixture Models} y discriminativos mediante SVM (\textit{Support Vector Machines}). 
+A pesar de ser diferentes, ambas estrategias producen buenos resultados.
 
-Replicando y posteriormente utilizando como baseline los sistemas referentes de los trabajos
-previos, se desarrollarán clasificadores basados en features dinámicos, no habiéndose 
-probado este tipo de features con anterioridad.
+La tarea de desarrollar un sistema ACAI para niños Argentinos en proceso de 
+aprendizaje de Inglés ha renovado el interés por las investigaciones llevadas
+a cabo en el trabajo de Franco, Ferrer y Bratt 2014 ya que comparten el problema
+original: la calificación de pronunciación de fonos en segundos idiomas. Por este motivo
+recientemente se ha comenzado una nueva implementación con el objetivo de retomar
+los experimentos para los modelos generativos propuestos por el trabajo y explorar 
+variantes en búsqueda de mejoras.
+
+Este es el marco en el cual la presente tesis tienen lugar, la cual paralelamente
+tomará como punto de partida el modelo discriminativo propuesto en el paper (cuya
+implementación no se ha replicado aún) sobre el cual se analizarán 
+alternativas no probadas en dicho trabajo. 
+Entre ellas se destaca la utilización de features dinámicos que modelen las dependencias
+temporales presentes en cada muestra. Esto representa una gran diferencia 
+respecto al modelo de referencia, el cual utiliza features provenientes de un proceso
+de adaptación de mezclas de Gaussianas entrenandas a partir de características
+espectrales estándar en la literatura del habla (\textit{Mel Frecuency Cepstral
+Coefficients}).
 
 %----------------------------------------------------------------------------------------
 %	OBJETIVO SECTION
@@ -145,26 +165,28 @@ probado este tipo de features con anterioridad.
 
 \section{Objetivo}
 
-El objetivo es analizar la incorporación de features dinámicos que permiten capturar
-las dependencias temporales durante la pronunciación de cada fono.
-Los sistemas previos han utilizado en su mayoría características espectrales estándar
-en la literatura del procesamiento del habla: \textit{Mel Frecuency Cepstral 
-Coefficients}.
+El objetivo de la tesis es la exploración de soluciones alternativas al problema de calificación
+de pronunciación de fonos en segundos idiomas.
 
-Independientemente de si los resultados de los clasificadores mejoren o empeoren, los
-experimentos permitirán saber si los features utilizados previamente y los introducidos
-en este trabajo proveen información complementaria, lo cual puede ser de gran utilidad
-para futuras implementaciones.
-
+Uno de los puntos en donde se pondrá énfasis es en la utilización de features dinámicas para 
+modelar las dependencias temporales.
+Independientemente de si los clasificadores propuestos proveen mejor o peor rendimiento
+que los existentes, los experimentos permitirán saber si los features utilizados 
+previamente y los introducidos en este trabajo aportan información complementaria, 
+lo cual puede ser de gran utilidad para futuras implementaciones.
+	
 %----------------------------------------------------------------------------------------
 %	PLAN DE TRABAJO SECTION
 %----------------------------------------------------------------------------------------
 
 \section{Plan de trabajo}
 
+La tesis estará guiada por los siguientes pasos:
 \begin{enumerate}
-	\item Revisi\'on de la implementaci\'on actual del sistema para calificación de la pronunciación y lectura de la literatura relacionada
-	\item Replicaci\'on de experimentos baseline, cuyos features asumen independencia temporal
+	\item Lectura de bibliografía relevante
+	\item Replicación de experimentos principales del paper Franco, Ferrer and Bratt 2014 
+	\cite{franco_ferrer_main_paper}, utilizando la implementación existente para los modelos
+	generativos y agregando el código necesario para el modelo discriminativo. Los mismos servirán como referencia (baselines) para los experimentos posteriores.
 	\item Exploraci\'on de nuevos sistemas basados en features din\'amicas
 	\item Evaluaci\'on de complementariedad de features mediante la fusi\'on de baselines con los nuevos sistemas
 	\item An\'alisis de resultados y propuesta de mejoras
