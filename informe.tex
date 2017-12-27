@@ -5,15 +5,22 @@
 \usepackage{amsthm, amsmath, amssymb}
 \usepackage{setspace}\onehalfspacing
 \usepackage[loose,nice]{units} %replace "nice" by "ugly" for units in upright fractions
+\usepackage[
+backend=biber,
+maxbibnames=99,
+sorting=none
+]{biblatex}
+\addbibresource{references_informe.bib}
 
 \usepackage{hyperref}
 
 \begin{document}
 \tableofcontents
 \chapter{Introduction}
-	\section{Problem description and motivation}
-	\section{Objectives}
+	\section{Problem description and Motivation}
+		\input{files/intro/problem_description_motivation.tex}
 	\section{Previous work}
+		\input{files/intro/previous_work.tex}
 \chapter{Method}
 	\section{Binary classification problem}
 		\input{files/method/binary_classification_problem}
@@ -74,5 +81,7 @@
 		\subsection{Results for SVM using Legendre Coefficients}
 		\subsection{Results for both sources}
 \chapter{Conclusions}
+
+\printbibliography
  
 \end{document}

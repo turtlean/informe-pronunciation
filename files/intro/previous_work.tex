@@ -1,0 +1,57 @@
+There are many works in the area of pronunciation assessment and describing all of them would
+be a time consuming task. For that reason, only some of the works related to 
+pronunciation assessment at phone level will be reviewed.
+
+Study of pronunciation quality has been a topic of study since early works. An initial approach
+(\cite{pronunciation_scoring_instruction}\cite{pronunciation_scoring_phone_segments_instruction}) 
+is based on \textit{Hidden Markov Models} (HMMs) to obtain 
+spectral matches and compute pronunciation scores. Phonetic time alignments for
+non-native utterances are generated from an HMM-based speech recognition system trained
+with native instances as first step. From these phonetic segmentations two 
+probabilistic mesasures based on HMMs are computed as scores: log-likelihood and 
+log-posterior probabilities.
+
+For each phone segment the log-likelihood score \^{l} is computed as:
+\begin{equation}
+\hat{l} = \frac{1}{d} \sum_{t=t_{0}}^{t_{0}+d-1} log \ p(y_{t}|q_{i})
+\end{equation}
+where $p(y_{t}|q_{i})$ is the likelihood of the current frame with observation vector $y_{t}$
+given the phone class $q_{i}$, $d$ is the duration in frames of the phone segment 
+and $t_{0}$ is the starting frame index of the phone segment. Time normalization allows to 
+eliminate the dependency of the pronunciation score on the duration of the phone.
+
+Alternatively, in order to compute log-posterior scores, a frame-based posterior probability
+$P(q_{i}|y_{t})$ is computed for each frame belonging to a segment.
+\begin{equation}
+P(q_{i}|y_{t}) = \frac{p(y_{t}|q_{i})P(q_{i})}{\sum\limits_{j=1}^{M} p(y_{t}|q_{j})P(q_{j})}
+\end{equation}
+The sum over $j$ runs over a set of context-independent models for all phone classes. $P(q_{i})$
+represents the prior probability of the phone class $q_{i}$. Finally, the posterior score $\hat{\rho}$ for the phone segment is defined as:
+\begin{equation}
+\hat{\rho} = \frac{1}{d}\sum_{t=t_{0}}^{t_{0}+d-1} log \ P(q_{i}|y_{t})
+\end{equation}
+
+A second group of papers introduce L1-L2 strategies. In \cite{detection_mispronunciation_instruction}
+speech is modeled with networks of phone HMMs where each phone in the network can optionally
+be pronounced either natively or not. Native phone models are initialized using a subset of
+the native training speech data. Nonnative phone models are initialized using the subset of 
+the nonnative data that was scored low by the human raters. A similar strategy is presented
+in \cite{detection_phone_level_mispronunciation_learning}. A phonetically labeled nonnative
+database is used to train two different \textit{Gaussian mixture models} (GMMs) for each phone
+class: one model is trained with the "correct" native-like pronunciations of a phone, while the
+other model is trained with the "mispronounced" or nonnative pronunciations of the same phone.
+In the evaluation phase, for each phone segment $q_{i}$, a length-normalized log-likelihood ratio
+$LLR(q_{i})$ score is computed for the phone segment by using the "mispronounced" and "corret"
+pronunciation models $\lambda_{M}$ and $\lambda_{C}$ respectively:
+\begin{equation}
+LLR(q_{i}) = \frac{1}{d}\sum_{t=t_{0}}^{t_{0}+d-1} [log \ p(y_{t}|q_{i}, \lambda_{M}) - log \ p(y_{t}|q_{i}, \lambda_{C})]
+\end{equation}
+The normalization by $d$ allows definition of unique thresholds for the LLR for each phone class, 
+independent of the length of the segments.
+
+A recent work \cite{main} explores another method that also uses log-likelihood ratio based on 
+GMMs (equation 1.4), except that the models for each class ("correct" and 
+"mispronounced") are obtained by adaptation. In the same work, a discriminative system based
+on \textit{Support Vector Machines} (SVM) is developed producing good results. Both systems
+previously described are used as baselines in the work here presented so a detailed explanation
+will be provided in next sections.
