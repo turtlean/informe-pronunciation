@@ -40,11 +40,30 @@ and in the free recognition phase the phoneme sequence most likely to be spoken 
 However, log-posterior probabilites are computed at segment level in GOP scores, instead of 
 frame level.
 
-In \cite{detection_mispronunciation_dutch_vowel}, log-posteriors are also used in an attempt
-to discriminate between good and mispronounced vowels in Dutch, although in this case they
-are used as input features of a \textit{Support Vector Machine} (SVM) classifier. Other kind
-of features are also used in this paper and compared to log-posteriors, such as
-MFCCs and phonetic ones.
+So far, aforementioned methods are based on confidence measures obtained from HMM recognition. 
+However, other types of classifiers are explored in many works, specially after
+the 1990s. \textit{Support Vector Machines} (SVMs) are a good example of this.
+In \cite{detection_mispronunciation_dutch_vowel}, SVMs are trained with different types of
+features to discriminate between good and mispronounced vowels in Dutch, including log-posteriors
+obtained from HMMs, MFCCs and phonetic features. In \cite{landmark_svm}, a landmark based 
+SVM is introduced. Landmark theory relies on the fact that humans can perceive distinctive
+features using only spectral features extracted from the time frame including and adjacent to
+a landmark (sudden signal change). A particular SVM for each phoneme is trained. Vowel SVMs are 
+trained using one or more frames from the vowel center. Frames from both onset and offset
+(prevocalic and postvocalic position) are selected and used in the training of consonant
+SVMs.
+
+A different strategy for discrimination of Dutch velar fricative /x/ versus the velar plosive
+/k/ is studied in \cite{lda_weigelt}. Latent Discriminant Analysis (LDA) over two different sets
+of features are explored and compared with previous approaches: Aforementioned GOP scores and
+Weigelt algorithm. The last one is based on three measures that can be easily obtained:
+log root-mean-square (rms) energy, the derivative of log rms energy (\textit{Rate of Rise} or
+ROR) and zero-crossing rate. Weigelt algorithm discriminate plosives from fricatives by using
+ROR values, found on the fact that the release of the burst of the plosives causes an abrupt
+rise in amplitude and therefore yielding higher values compared with fricatives.
+In LDA weights are assigned to each features to find the linear combination of features
+which best separates the classes. Selecting most relevant ones is an
+advantage compared to other classifiers.
 
 A second group of papers introduce L1-L2 strategies. In \cite{detection_mispronunciation_instruction}
 speech is modeled with networks of phone HMMs where each phone in the network can optionally
