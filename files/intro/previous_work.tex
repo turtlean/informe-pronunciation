@@ -42,10 +42,18 @@ frame level.
 
 So far, aforementioned methods are based on confidence measures obtained from HMM recognition. 
 However, other types of classifiers are explored in many works, specially after
-the 1990s. \textit{Support Vector Machines} (SVMs) are a good example of this.
+the 1990s. \textit{Support Vector Machines} (SVMs) are a preferred choice 
+due to their excellent generalization capability and suitability for 2-class classification
+problems. 
 In \cite{detection_mispronunciation_dutch_vowel}, SVMs are trained with different types of
 features to discriminate between good and mispronounced vowels in Dutch, including log-posteriors
-obtained from HMMs, MFCCs and phonetic features. In \cite{landmark_svm}, a landmark based 
+obtained from HMMs, MFCCs and other phonetic features. \cite{svm_space_models} use 
+log-likelihood ratios between all the acoustic models and the model corresponding to the given
+phone as features vectors. It also introduces \textit{Pronunciation Space Models} (PSMs), 
+built from an unsupervised method, where
+each phone is modeled with several parallel acoustic models to represent pronunciation 
+variations of that phone at different proficiency levels.
+In \cite{landmark_svm}\cite{landmark_svm_2}, a landmark based 
 SVM is introduced. Landmark theory relies on the fact that humans can perceive distinctive
 features using only spectral features extracted from the time frame including and adjacent to
 a landmark (sudden signal change). A particular SVM for each phoneme is trained. Vowel SVMs are 
@@ -90,3 +98,5 @@ a discriminative system based
 on \textit{Support Vector Machines} (SVM) is developed producing good results. Both systems
 previously described are used as baselines in the work here presented so a detailed explanation
 will be provided in next sections.
+
+%SVM-based classifier is built for each phone because the feature vectors are also phone-dependent.
