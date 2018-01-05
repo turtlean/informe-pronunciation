@@ -45,7 +45,23 @@ Finally, the posterior score $\hat{\rho}$ for the phone segment is defined as:
 \hat{\rho} = \frac{1}{d}\sum_{t=t_{0}}^{t_{0}+d-1} log \ P(q_{i}|y_{t})
 \end{equation}
 
-In \cite{detection_mispronunciation_instruction}
+A very similar approach to log-posterior probabilities named \textit{Goodness of Pronunciation}
+(GOP) is used in some works: \cite{gop_1} \cite{gop_2} \cite{gop_3}. The quality of 
+pronunciation for any phone $p$ is defined to be the duration normalised log of the posterior
+probability that the speaker uttered phone $p$ given the corresponding acoustic segment
+$O^{(p)}$.
+
+\begin{equation}
+GOP(p) = \left| log \ \left(\frac{p(O^{(p)}|q)P(p))}{\sum_{q \in Q}p(O^{(p)}|q)P(q))}\right) \right| \Biggm/ NF(p)
+\end{equation}
+
+The difference between GOP scores and log-posterior score technique previously mentioned 
+lies in that in GOP, likelihood for both numerator and every phone in the denominator is
+computed at segment level as a sum of log-likelihood per frame over the 
+duration of $O^{(p)}$, while in equation (1.2) log-posterior probabilities are computed
+at the frame level and averaged over the segment's length.
+
+A different technique is explored in \cite{detection_mispronunciation_instruction}, where
 speech is modeled with networks of phone HMMs where each phone in the network can optionally
 be pronounced either natively or not. Native phone models are initialized using a subset of
 the native training speech data while nonnative models are initialized using the subset of 
@@ -53,21 +69,6 @@ the nonnative data that was scored low by the human raters. A mispronunciation s
 sentence is then computed as a ratio between the number of nonnative phones to the total 
 number of phones in the sentence.
 
-\textbf{GOP SCORE EXPLANATION}
-
-A very similar approach to log-posterior probabilities named \textit{Goodness of Pronunciation}
-(GOP) is used in some works: \cite{gop_1} \cite{gop_2} \cite{gop_3}. 
-
-\begin{equation}
-GOP(p) = \left| log \ \left(\frac{p(O^{(p)}|q)P(p))}{\sum_{q \in Q}p(O^{(p)}|q)P(q))}\right) \right| 
-\end{equation}
-%The algorithm calculates the 
-%likelihood ratio that a phone realization corresponds to the phoneme that should have been
-%spoken. The speaker's speech is subjected to both a forced and a free speech recognition phase.
-%During forced recognition a known orthographic transcription of the speech signal is used
-%and in the free recognition phase the phoneme sequence most likely to be spoken is calculated.
-%However, log-posterior probabilites are computed at segment level in GOP scores, instead of 
-%frame level.
 
 So far, aforementioned methods are based on confidence measures obtained from HMM recognition. 
 However, other types of classifiers are explored in many works, specially after
