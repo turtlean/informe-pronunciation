@@ -1,15 +1,18 @@
-There are many works in the area of pronunciation assessment and describing all of them would
-be a time consuming task. For that reason, only some of the works related to 
-pronunciation assessment at phone level will be reviewed. \underline{Most of them are itended
-for L2 language learners}
+In this section we will be reviewing representative works related to pronunciation assessment
+at phone level. This selection is done in order to focus on most closely related researches to
+the work currenty done in this thesis.
 
-An initial approach
-(\cite{pronunciation_scoring_instruction}\cite{pronunciation_scoring_phone_segments_instruction}) 
-is based on \textit{Hidden Markov Models} (HMMs) to obtain 
-spectral matches and compute pronunciation scores. Phonetic time alignments for
+One of the most simple ways of scoring a phone pronunciation found in the literature 
+is using segment duration scores (\cite{pronunciation_scoring_instruction}\cite{pronunciation_scoring_phone_segments_instruction}). In the beginning, a discrete duration 
+distribution is generated for each phone from alignments generated for the native 
+training data. After that, nonnative uttances from L2 learners are evaluated by measuring the 
+normalized phone duration in frames, to compensate for rate of speech. 
+In the same works, other two methods that use \textit{Hidden Markov Models} (HMMs) to obtain 
+spectral matches and compute pronunciation scores are tested. 
+As first step, phonetic time alignments for
 non-native utterances are generated from an HMM-based speech recognition system trained
-with native instances as first step. To generate the alignments for the student's
-speech the text read by the student must be known. This is achieved by eliciting speech in a
+with native instances. In order to do that, the text pronounced by the student 
+must be known. This is achieved by eliciting speech in a
 constrained way, such as reading a predifined text.
 From these phonetic segmentations two 
 probabilistic mesasures based on HMMs are computed as scores: log-likelihood and 
@@ -36,17 +39,20 @@ Likelihood in the numerator is computed through a forced recognition phase by us
 ortographic transcription of the speech signal. On the other hand, 
 the sum over $j$ runs over a set of context-independent models for all phone classes. $P(q_{i})$
 represents the prior probability of the phone class $q_{i}$. 
-%The speaker's speech is subjected to both a forced and a free speech recognition phase.
-%During forced recognition a known orthographic transcription of the speech signal is used
-%and in the free recognition phase the phoneme sequence most likely to be spoken is calculated.
 
 Finally, the posterior score $\hat{\rho}$ for the phone segment is defined as:
 \begin{equation}
 \hat{\rho} = \frac{1}{d}\sum_{t=t_{0}}^{t_{0}+d-1} log \ P(q_{i}|y_{t})
 \end{equation}
 
+To test each method, a database of nonnative read speech is transcribed and scored for 
+pronunciation quality by expert human raters. Log-posterior probabilities achieves the
+highest correlation with human ratings, outperforming log-likelihood and normalized duration
+scores.
+
 A very similar approach to log-posterior probabilities named \textit{Goodness of Pronunciation}
-(GOP) is used in some works: \cite{gop_1} \cite{gop_2} \cite{gop_3}. The quality of 
+(GOP) was developed at the same time as log-posteriors and
+is used in some works: \cite{gop_1} \cite{gop_2} \cite{gop_3}. The quality of 
 pronunciation for any phone $p$ is defined to be the duration normalised log of the posterior
 probability that the speaker uttered phone $p$ given the corresponding acoustic segment
 $O^{(p)}$.
@@ -69,16 +75,30 @@ the nonnative data that was scored low by the human raters. A mispronunciation s
 sentence is then computed as a ratio between the number of nonnative phones to the total 
 number of phones in the sentence.
 
+So far, most of the aforementioned methods are based on confidence measures 
+obtained from Automatic Speech Recognition (ASR) systems. 
+Scores measure how closely the utterance of the speaker matches the recognizer's
+acoustic model. Mismatches result in low confidence scores, which provide a profile of the 
+speakers' production erorrs. Nevertheless, the accuracy of assessment based on the
+confidence scores is not always high. Moreover, since the measure is calculated in a similar
+way for all phonemes, it is difficult to specialize the measure for the specific 
+phonemes with which L2 learners make frequent errors. In addition,
+ASR systems based on HMMs are both time-consuming to train and extremely vulnerable to
+acoustic interference and variation in speaking style, and the conventional methods for
+enhancing ASR performance often require enormous amounts of data collection and annotation,
+as well as extensive training on representative material.
 
-So far, aforementioned methods are based on confidence measures obtained from HMM recognition. 
-However, other types of classifiers are explored in many works, specially after
+For those reasons, other types of classifiers are explored in many works, specially after
 the 1990s. \textit{Support Vector Machines} (SVMs) are a preferred choice 
 due to their excellent generalization capability and suitability for 2-class classification
 problems. 
 In \cite{detection_mispronunciation_dutch_vowel}, SVMs are trained with different types of
 features to discriminate between good and mispronounced vowels in Dutch, including log-posteriors
-obtained from HMMs, MFCCs and other phonetic features. 
-On the other hand, features for \cite{svm_space_models} are based solely on
+based scores obtained from HMMs, MFCCs and a set of 
+phonetic features (first three formants, pitch, intensity). The results show that the best 
+results are obtained by using MFCCs, then confidence measures based scores and finally phonetic
+features, though substantial improvements can be obtained by combining them.
+In a different work \cite{svm_space_models}, features are based solely on
 log-likelihood ratios between all the acoustic models and the model corresponding to the given
 phone. It also introduces \textit{Pronunciation Space Models} (PSMs), 
 built from an unsupervised method, where
