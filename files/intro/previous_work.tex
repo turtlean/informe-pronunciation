@@ -1,6 +1,6 @@
-In this section we will be reviewing representative works related to pronunciation assessment
+In this section we will be reviewing representative works in pronunciation assessment
 at phone level. This selection is done in order to focus on most closely related researches to
-the work currenty done in this thesis.
+the topic studied in this thesis.
 
 One of the most simple ways of scoring a phone pronunciation found in the literature 
 is using segment duration scores (\cite{pronunciation_scoring_instruction}\cite{pronunciation_scoring_phone_segments_instruction}). In the beginning, a discrete duration 
@@ -62,7 +62,7 @@ GOP(p) = \left| log \ \left(\frac{p(O^{(p)}|q)P(p))}{\sum_{q \in Q}p(O^{(p)}|q)P
 \end{equation}
 
 The difference between GOP scores and log-posterior score technique previously mentioned 
-lies in that in GOP, likelihood for both numerator and every phone in the denominator is
+is that in GOP, likelihood for both numerator and every phone in the denominator is
 computed at segment level as a sum of log-likelihood per frame over the 
 duration of $O^{(p)}$, while in equation (1.2) log-posterior probabilities are computed
 at the frame level and averaged over the segment's length.
@@ -91,11 +91,13 @@ as well as extensive training on representative material.
 For those reasons, other types of classifiers are explored in many works, specially after
 the 1990s. \textit{Support Vector Machines} (SVMs) are a preferred choice 
 due to their excellent generalization capability and suitability for 2-class classification
-problems. 
+problems. Moreover, in contrast to the confidence model, which does not explain what the
+incorrect phonemes are like, SVM can provide the acoustic characteristics of the incorrect phone.
+
 In \cite{detection_mispronunciation_dutch_vowel}, SVMs are trained with different types of
 features to discriminate between good and mispronounced vowels in Dutch, including log-posteriors
 based scores obtained from HMMs, MFCCs and a set of 
-phonetic features (first three formants, pitch, intensity). The results show that the best 
+phonetic features (first three formants, pitch and intensity). The results show that the best 
 results are obtained by using MFCCs, then confidence measures based scores and finally phonetic
 features, though substantial improvements can be obtained by combining them.
 In a different work \cite{svm_space_models}, features are based solely on
@@ -103,26 +105,34 @@ log-likelihood ratios between all the acoustic models and the model correspondin
 phone. It also introduces \textit{Pronunciation Space Models} (PSMs), 
 built from an unsupervised method, where
 each phone is modeled with several parallel acoustic models to represent pronunciation 
-variations of that phone at different proficiency levels.
-In \cite{landmark_svm}\cite{landmark_svm_2}, a landmark based 
-SVM is introduced. Landmark theory relies on the fact that humans can perceive distinctive
+variations of that phone at different proficiency levels. Experiments are carried out on the 
+Mandarin mispronunciation detection task for native Chinese speakers with various dialect accents.
+SVM based on log-likelihood ratio features outperforms GOP scores (used as baseline), and some
+imporvements are obtained when adding PSMs.
+Finally, in \cite{landmark_svm}\cite{landmark_svm_2} a landmark based 
+SVM is introduced and compared with a confidence scoring method over 10 phonemes where 
+L2 English learners, whose native language is Korean, make frequent errors. 
+Landmark theory relies on the fact that humans can perceive distinctive
 features using only spectral features extracted from the time frame including and adjacent to
 a landmark (sudden signal change). A particular SVM for each phoneme is trained. Vowel SVMs are 
 trained using one or more frames from the vowel center. Frames from both onset and offset
 (prevocalic and postvocalic position) are selected and used in the training of consonant
-SVMs.
+SVMs. Confidence score method shows a similar performance to SVM, though by combining 
+the two scores, statistically significant improvement are achieved for almost all phonemes.
 
 A different strategy for discrimination of Dutch velar fricative /x/ versus the velar plosive
 /k/ is studied in \cite{lda_weigelt}. Latent Discriminant Analysis (LDA) over two different sets
 of features are explored and compared with previous approaches: Aforementioned GOP scores and
-Weigelt algorithm. The last one is based on three measures that can be easily obtained:
+Weigelt. This last algorithm is based on three measures that can be easily obtained:
 log root-mean-square (rms) energy, the derivative of log rms energy (\textit{Rate of Rise} or
 ROR) and zero-crossing rate. Weigelt algorithm discriminate plosives from fricatives by using
 ROR values, found on the fact that the release of the burst of the plosives causes an abrupt
 rise in amplitude and therefore yielding higher values compared with fricatives.
-In LDA weights are assigned to each features to find the linear combination of features
+On the other hand, in LDA weights are assigned to each features to 
+find the linear combination of features
 which best separates the classes. Selecting most relevant features turns out to be an
-advantage compared to other classifiers.
+advantage compared to other classifiers. The two LDA methods yielded the best performance
+scores followed by GOP and Weigelt.
 
 A second group of papers are based on L1 strategies. A sufficiently large annotated nonnative
 database is required in order to follow approaches of this kind.
@@ -140,15 +150,16 @@ The normalization by $d$ allows definition of unique thresholds for the LLR for 
 independent of the length of the segments.
 
 Finally, a recent work \cite{main} explores another method that also uses 
-log-likelihood ratio based on  GMMs (equation 1.4), except that the models for each 
+log-likelihood ratio based on  GMMs (eq 1.4), except that the models for each 
 class ("correct" and  "mispronounced") are obtained by adaptation. In the same work, 
 a discriminative system based
 on \textit{Support Vector Machines} (SVM) is developed producing good results. Features 
 for this classifier are obtained by adapting class-independent GMMs to each particular 
 instance of the target phone and extracting both means and weights of the resulting 
 Gaussian Mixture.
-Both systems
-previously described are used as baselines in the work here presented so a detailed explanation
-will be provided in next sections.
-
-%SVM-based classifier is built for each phone because the feature vectors are also phone-dependent.
+These methods proved to be superior to the mispronunciation detection system based of 
+LLR of independently trained GMMs (eq 1.4), which had been previously shown to 
+outperform the standard method tha uses phone log-posterior as scores, yielding
+results comparable to state-of-the-art techniques.
+Both systems previously described are used as baselines in the work here 
+presented so a detailed explanation will be provided in next sections.
