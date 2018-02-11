@@ -87,11 +87,14 @@ realizarse el análisis para unidades de tiempo más cortas (palabras y fonos).
 
 El presente trabajo se enmarca dentro de un proyecto más grande dirigido por la Dra. Ferrer,
 cuyo fin es el desarrollo de un sistema de asistencia computarizada para el 
-aprendizaje de Inglés de niños Argentinos. Este contexto constituye
-un escenario ideal para explorar variantes en el desarrollo de sistemas de calificación
-de pronunciación a nivel fono, ya que los niños que están dando sus primeros
-pasos en el Inglés no tienen la experiencia necesaria para pronunciar párrafos u oraciones
-largas.
+aprendizaje de Inglés de niños Argentinos que permita calificar la pronunciación
+a nivel fono, ya que aquellos que están dando sus primeros pasos en el idioma carecen
+de la experiencia necesaria para pronunciar párrafos u oraciones largas. 
+% Una de las metas de dicho proyecto 
+% es el desarrollo de un sistema de calificación de pronunciación que funcione
+% a nivel fono, ya que los niños que están dando sus primeros
+% pasos en el Inglés no tienen la experiencia necesaria para pronunciar párrafos u oraciones
+% largas.
 
 El objetivo de la tesis es la exploración de nuevas soluciones al problema de calificación
 de pronunciación de fonos en segundos idiomas. Para ello, se tomará como punto de partida
@@ -112,18 +115,26 @@ en proceso de aprendizaje del idioma Inglés. El proyecto cuenta con 3 tres
 etapas principales: Recolección de las grabaciones de los infantes y construcción de
 la base de datos, el desarrollo de un sistema de reconocimiento automático del habla
 para generar los alineamientos temporales y finalmente el desarrollo del sistema
-automático de puntuación a nivel fono. La tesis se centrará en este último punto.
+automático de calificación de pronunciación. La tesis se centrará en este último punto.
 
-Si bien actualmente es posible obtener estimaciones confiables de la calidad
-de pronunciación a nivel párrafo y oración, cuando la meta es generar puntajes 
-para unidades más pequeñas como palabras y específicamente fonos, los sistemas del
-estado del arte están lejos de alcanzar su máximo rendimiento.
-
-La generación de buenos sistemas de puntaje a nivel fono es un aspecto clave en el 
+Si bien actualmente es posible obtener estimaciones confiables de la calidad de 
+pronunciación a nivel párrafo y oración, la meta en este caso es generar puntajes 
+a nivel fono. Este es un aspecto clave en el 
 desarrollo del sistema ACAI ya que muchos niños que recién comienzan a estudiar 
 no están en condiciones de enunciar párrafos u oraciones largas. En suma, identificar 
 errores a este nivel permitirá al estudiante focalizar sus esfuerzos en corregir 
 aspectos concretos y específicos.
+
+% Si bien actualmente es posible obtener estimaciones confiables de la calidad
+% de pronunciación a nivel párrafo y oración, cuando la meta es generar puntajes 
+% para unidades más pequeñas como palabras y específicamente fonos, los sistemas del
+% estado del arte están lejos de alcanzar su máximo rendimiento.
+
+% La generación de buenos sistemas de puntaje a nivel fono es un aspecto clave en el 
+% desarrollo del sistema ACAI ya que muchos niños que recién comienzan a estudiar 
+% no están en condiciones de enunciar párrafos u oraciones largas. En suma, identificar 
+% errores a este nivel permitirá al estudiante focalizar sus esfuerzos en corregir 
+% aspectos concretos y específicos.
 
 %----------------------------------------------------------------------------------------
 %	PROPUESTA DE TESIS SECTION
@@ -133,29 +144,26 @@ aspectos concretos y específicos.
 
 La calificación de pronunciación a nivel fono es un área del procesamiento del habla
 que no ha sido tan estudiada en comparación con otras. Sin embargo existen
-trabajos previos en donde se ha estudiado este tema. 
+trabajos previos en donde se ha investigado este tema. 
 Entre ellos se destaca Franco, Ferrer and Bratt 2014 \cite{franco_ferrer_main_paper}, 
 en donde se analizan 
 dos tipos de modelos como posibles soluciones: generativos, mediante \textit{Gaussian 
 Mixture Models} y discriminativos mediante SVM (\textit{Support Vector Machines}). 
 A pesar de ser diferentes, ambas estrategias producen buenos resultados.
 
-La tarea de desarrollar un sistema ACAI para niños Argentinos en proceso de 
-aprendizaje de Inglés ha renovado el interés por las investigaciones llevadas
-a cabo en el trabajo de Franco, Ferrer y Bratt 2014 ya que comparten el problema
-original: la calificación de pronunciación de fonos en segundos idiomas. Por este motivo
-recientemente se ha comenzado una nueva implementación con el objetivo de retomar
-los experimentos para los modelos generativos propuestos por el trabajo y explorar 
-variantes en búsqueda de mejoras.
+Las técnicas mencionadas pueden ser de utilidad en el desarrollo
+del sistema ACAI para niños Argentinos.
+Por este motivo recientemente se ha comenzado una nueva implementación 
+con el objetivo de retomar los experimentos para los modelos 
+propuestos por el trabajo y explorar variantes en búsqueda de mejoras.
 
-Este es el marco en el cual la presente tesis tienen lugar, la cual paralelamente
-tomará como punto de partida el modelo discriminativo propuesto en el paper (cuya
-implementación no se ha replicado aún) sobre el cual se analizarán 
-alternativas no probadas en dicho trabajo. 
+Este es el marco en el cual la presente tesis tienen lugar, la cual 
+tomará como punto de partida el modelo discriminativo propuesto en el paper sobre 
+el cual se analizarán alternativas no probadas en dicho trabajo. 
 Entre ellas se destaca la utilización de features dinámicos que modelen las dependencias
 temporales presentes en cada muestra. Esto representa una gran diferencia 
 respecto al modelo de referencia, el cual utiliza features provenientes de un proceso
-de adaptación de mezclas de Gaussianas entrenandas a partir de características
+de adaptación de mezclas de Gaussianas generadas a partir de características
 espectrales estándar en la literatura del habla (\textit{Mel Frecuency Cepstral
 Coefficients}).
 
@@ -165,16 +173,10 @@ Coefficients}).
 
 \section{Objetivo}
 
-El objetivo de la tesis es la exploración de soluciones alternativas al problema de calificación
-de pronunciación de fonos en segundos idiomas.
+El objetivo de la tesis es la exploración de soluciones alternativas al problema 
+de calificación de pronunciación de fonos en segundos idiomas, con énfasis en 
+la utilización de features dinámicas para modelar las dependencias temporales.
 
-Uno de los puntos en donde se pondrá énfasis es en la utilización de features dinámicas para 
-modelar las dependencias temporales.
-Independientemente de si los clasificadores propuestos proveen mejor o peor rendimiento
-que los existentes, los experimentos permitirán saber si los features utilizados 
-previamente y los introducidos en este trabajo aportan información complementaria, 
-lo cual puede ser de gran utilidad para futuras implementaciones.
-	
 %----------------------------------------------------------------------------------------
 %	PLAN DE TRABAJO SECTION
 %----------------------------------------------------------------------------------------
@@ -185,7 +187,7 @@ La tesis estará guiada por los siguientes pasos:
 \begin{enumerate}
 	\item Lectura de bibliografía relevante
 	\item Replicación de experimentos principales del paper Franco, Ferrer and Bratt 2014 
-	\cite{franco_ferrer_main_paper}, utilizando la implementación existente para los modelos
+	\cite{franco_ferrer_main_paper}, utilizando implementación existente para los modelos
 	generativos y agregando el código necesario para el modelo discriminativo. Los mismos servirán como referencia (baselines) para los experimentos posteriores.
 	\item Exploraci\'on de nuevos sistemas basados en features din\'amicas
 	\item Evaluaci\'on de complementariedad de features mediante la fusi\'on de baselines con los nuevos sistemas
