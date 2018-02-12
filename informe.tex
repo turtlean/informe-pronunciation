@@ -2,6 +2,9 @@
 \documentclass[11pt,a4paper]{tesis}
 \usepackage[margin=1in]{geometry}          
 \usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{float}
 \usepackage{amsthm, amsmath, amssymb}
 \usepackage{setspace}\doublespacing
 \usepackage[loose,nice]{units} %replace "nice" by "ugly" for units in upright fractions
@@ -70,17 +73,7 @@ sorting=none
 				\input{files/experimental_design/legendre_experiment_steps.tex}
 
 \chapter{Results}
-	\section{Development Set}
-		\subsection{Results for SVM using Supervectors}
-			\input{files/results/development_supervectors.tex}
-		\subsection{Results for SVM using Legendre Coefficients}
-			\input{files/results/development_legendre.tex}
-		\subsection{Results for both sources}
-			\input{files/results/development_both_sources.tex}
-	\section{Held-out Data}
-		\subsection{Results for SVM using Supervectors}
-		\subsection{Results for SVM using Legendre Coefficients}
-		\subsection{Results for both sources}
+	\input{files/results/results.tex}
 \chapter{Conclusions}
 
 \printbibliography

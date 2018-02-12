@@ -6,3 +6,10 @@
 en TexShop
 
 * \printbibliography en TexShop: https://tex.stackexchange.com/a/351793
+
+Deciding which color palettes to use in plots:
+
+https://www.perceptualedge.com/articles/b-eye/choosing_colors.pdf
+http://www.perceptualedge.com/articles/visual_business_intelligence/rules_for_using_color.pdf
+(Explanation of hue, value(intensity or brightness) and saturation(chroma))
+http://learn.leighcotnoir.com/artspeak/elements-color/hue-value-saturation/
