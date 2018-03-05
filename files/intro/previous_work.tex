@@ -1,37 +1,40 @@
 In this section we will be reviewing representative works in pronunciation assessment
-at phone level. This selection is done in order to focus on most closely related researches to
-the topic studied in this thesis.
+at phone level, which is the topic of interest in this thesis.
 
-One of the most simple ways of scoring a phone pronunciation found in the literature 
-is using segment duration scores (\cite{pronunciation_scoring_instruction}\cite{pronunciation_scoring_phone_segments_instruction}). In the beginning, a discrete duration 
-distribution is generated for each phone from alignments generated for the native 
-training data. After that, nonnative uttances from L2 learners are evaluated by measuring the 
-normalized phone duration in frames, to compensate for rate of speech. 
+One of the simplest ways of scoring a phone pronunciation found in the literature 
+is to use segment duration scores (\cite{pronunciation_scoring_instruction, pronunciation_scoring_phone_segments_instruction}), which are obtained through the following
+procedure. First, a discrete duration distribution is generated for each phone
+using the native training data. 
+Then, phone durations in frames for nonnative utterances are obtained 
+and its value is normalized to compensate for rate of speech. 
+Finally, phone-segment-duration scores are computed as 
+the log-probability of the normalized duration, using the discrete duration 
+distributions previously mentioned. Phone durations are obtained from Viterbi alignments.
 In the same works, other two methods that use \textit{Hidden Markov Models} (HMMs) to obtain 
 spectral matches and compute pronunciation scores are tested. 
-As first step, phonetic time alignments for
+Phonetic time alignments for
 non-native utterances are generated from an HMM-based speech recognition system trained
 with native instances. In order to do that, the text pronounced by the student 
 must be known. This is achieved by eliciting speech in a
-constrained way, such as reading a predifined text.
+constrained way, such as reading a predefined text.
 From these phonetic segmentations two 
 probabilistic mesasures based on HMMs are computed as scores: log-likelihood and 
 log-posterior probabilities. The underlying asumption is that the logarithm of the likelihood
-of the speech data, computed by the Viterbi algorithm using the HMMs obtained from native
-speakers is a good mesasure of the similarity between the native speech and the students's
-speech.
+of the speech data, computed by the Viterbi algorithm using the HMMs trained with speech from native
+speakers is a good mesasure of the similarity between the students's
+speech and native-sounding speech.
 
 For each phone segment the log-likelihood score \^{l} is computed as:
 \begin{equation}
 \hat{l} = \frac{1}{d} \sum_{t=t_{0}}^{t_{0}+d-1} log \ p(y_{t}|q_{i})
 \end{equation}
-where $p(y_{t}|q_{i})$ is the likelihood of the current frame with observation vector $y_{t}$
+where $p(y_{t}|q_{i})$ is the likelihood at the time $t$ with observation vector $y_{t}$
 given the phone class $q_{i}$, $d$ is the duration in frames of the phone segment 
-and $t_{0}$ is the starting frame index of the phone segment. Time normalization allows to 
+and $t_{0}$ is the starting frame index of the phone segment. Duration normalization is done to 
 eliminate the dependency of the pronunciation score on the duration of the phone.
 
-Alternatively, in order to compute log-posterior scores, a frame-based posterior probability
-$P(q_{i}|y_{t})$ is computed for each frame belonging to a segment.
+Alternatively, log-posterior scores can be computed for each time $t$:
+
 \begin{equation}
 P(q_{i}|y_{t}) = \frac{p(y_{t}|q_{i})P(q_{i})}{\sum\limits_{j=1}^{M} p(y_{t}|q_{j})P(q_{j})}
 \end{equation}
@@ -52,65 +55,90 @@ scores.
 
 A very similar approach to log-posterior probabilities named \textit{Goodness of Pronunciation}
 (GOP) was developed at the same time as log-posteriors and
-is used in some works: \cite{gop_1} \cite{gop_2} \cite{gop_3}. The quality of 
-pronunciation for any phone $p$ is defined to be the duration normalised log of the posterior
-probability that the speaker uttered phone $p$ given the corresponding acoustic segment
-$O^{(p)}$.
+is used in some works \cite{gop_1, gop_2, gop_3}. The quality of 
+pronunciation for any phone $p$ is defined to be the duration-normalized log of the posterior
+probability that the speaker uttered phone $p$ given the corresponding vector of observations
+$y=\{y_{t_{0}}, \dotsc y_{t_{0}+d-1} \}$
 
 \begin{equation}
-GOP(p) = \left| log \ \left(\frac{p(O^{(p)}|q)P(p))}{\sum_{q \in Q}p(O^{(p)}|q)P(q))}\right) \right| \Biggm/ NF(p)
+GOP(p) = \left| log \ \left(\frac{p(y|q)P(p))}{\sum_{q \in Q}p(y|q)P(q))}\right) \right| \Biggm/ d 
 \end{equation}
 
+The likelihoods $p(y|q)$ are obtained from the recognizer as a sum of the likelihoods over all
+observations in the phone.
 The difference between GOP scores and log-posterior score technique previously mentioned 
-is that in GOP, likelihood for both numerator and every phone in the denominator is
-computed at segment level as a sum of log-likelihood per frame over the 
-duration of $O^{(p)}$, while in equation (1.2) log-posterior probabilities are computed
+is that in GOP, the likelihood for both numerator and every phone in the denominator is
+computed at segment level as a sum of log-likelihoods per frame over the 
+duration of the phone $p$, while in Equation (1.2) log-posterior probabilities are computed
 at the frame level and averaged over the segment's length.
 
-A different technique is explored in \cite{detection_mispronunciation_instruction}, where
-speech is modeled with networks of phone HMMs where each phone in the network can optionally
-be pronounced either natively or not. Native phone models are initialized using a subset of
-the native training speech data while nonnative models are initialized using the subset of 
-the nonnative data that was scored low by the human raters. A mispronunciation score for each
-sentence is then computed as a ratio between the number of nonnative phones to the total 
-number of phones in the sentence.
-
-So far, most of the aforementioned methods are based on confidence measures 
+So far, aforementioned methods are based on confidence measures 
 obtained from Automatic Speech Recognition (ASR) systems. 
 Scores measure how closely the utterance of the speaker matches the recognizer's
 acoustic model. Mismatches result in low confidence scores, which provide a profile of the 
-speakers' production erorrs. Nevertheless, the accuracy of assessment based on the
-confidence scores is not always high. Moreover, since the measure is calculated in a similar
-way for all phonemes, it is difficult to specialize the measure for the specific 
-phonemes with which L2 learners make frequent errors. In addition,
-ASR systems based on HMMs are both time-consuming to train and extremely vulnerable to
+speakers' production erorrs. Nevertheless, the accuracy of the assessment based on these
+confidence scores can be quite low \cite{landmark_svm}. 
+In addition, ASR systems based on HMMs are both time-consuming to train and extremely vulnerable to
 acoustic interference and variation in speaking style, and the conventional methods for
 enhancing ASR performance often require enormous amounts of data collection and annotation,
 as well as extensive training on representative material.
-
 For those reasons, other types of classifiers are explored in many works, specially after
-the 1990s. \textit{Support Vector Machines} (SVMs) are a preferred choice 
+the 1990s. 
+
+\textit{Support Vector Machines} (SVMs) are a preferred choice 
 due to their excellent generalization capability and suitability for 2-class classification
-problems. Moreover, in contrast to the confidence model, which does not explain what the
-incorrect phonemes are like, SVM can provide the acoustic characteristics of the incorrect phone.
+problems. Moreover, in contrast to the confidence models described above, which do not take into
+account misspronounced data, SVMs are trained directly to discriminate the two classes of interest.
+Of course, this poses a new requirement: both correctly and incorrectly-pronounced data should be
+available for training.
 
 In \cite{detection_mispronunciation_dutch_vowel}, SVMs are trained with different types of
-features to discriminate between good and mispronounced vowels in Dutch, including log-posteriors
-based scores obtained from HMMs, MFCCs and a set of 
-phonetic features (first three formants, pitch and intensity). The results show that the best 
-results are obtained by using MFCCs, then confidence measures based scores and finally phonetic
+features to discriminate between good and mispronounced vowels in Dutch: log-posterior-based 
+scores obtained from HMMs, MFCCs and a set of 
+phonetic features (first three formants, pitch and intensity). Despite the existence of nonnative-speech  
+databases for Dutch language, they were considered too small for the purpose of the research. 
+For that reason, phonemic 
+substitutions that induce vocalic errors are simulated by artificially introducing them in the native corpus.
+The results show that the best 
+results are obtained by using MFCCs as features of the SVM models, followed by confidence-measure-based 
+scores and finally phonetic
 features, though substantial improvements can be obtained by combining them.
-In a different work \cite{svm_space_models}, features are based solely on
+
+In a different work \cite{svm_space_models}, SVM is used as the classifier and the
 log-likelihood ratios between all the acoustic models and the model corresponding to the given
-phone. It also introduces \textit{Pronunciation Space Models} (PSMs), 
-built from an unsupervised method, where
-each phone is modeled with several parallel acoustic models to represent pronunciation 
-variations of that phone at different proficiency levels. Experiments are carried out on the 
-Mandarin mispronunciation detection task for native Chinese speakers with various dialect accents.
-SVM based on log-likelihood ratio features outperforms GOP scores (used as baseline), and some
+phone are employed as features for the classifier. In other words, given the observation
+$y$, the feature vector for the classification problem is computed as:
+
+[$LLR(y|q,q_{1}), \ LLR(y|q,q_{2}) \dotsc LLR(y|q, q_{M})$],
+
+where $q$ is the canonical label of the observation being pronounced and {$q_{1}, q_{2} \dotsc q_{M}$}
+represent the set of acoustic models of all the phones. The reason for choosing these features is
+that $q$ can be mispronounced as any other phone and the likelihood ratio is a powerful
+method to detect this kind of mispronunciation. Classifiers trained with this kind of features, however, 
+can only effectively deal with a phone mispronounced as another phone. This kind of acoustic models is 
+less effective for partially changed mispronunciations, that are the most frequent mispronunciations
+in practice. In order to detect all kinds of mispronunciation, a technique called  
+\textit{Pronunciation Space Models} (PSMs) is introduced. The idea is to represent pronunciation variations
+of different proficiency levels. The traditional phone-based model $q$ is expanded to 
+\{$q_{1}, q_{2} \dotsc q_{K}$\} representing $K$ types of pronunciation variations, ranging from perfect or
+totally wrong pronunciations, where $K$ is a tunable parameter. PSMs are built from an unsupervised method
+using the posterior probabilities obtained from the acoustic models for each phone $q$.
+Experiments are carried out on the 
+Mandarin mispronunciation detection task for native Chinese speakers with various dialect accents, 
+and data labeled as 'correct' or not by experienced human annotators is used to train and test the models.
+Results show that SVM based on log-likelihood ratio features outperforms GOP scores (used as baseline), and some
 imporvements are obtained when adding PSMs.
+
+Relying on labeled nonnative speech data leads to more flexible models that yields better performance
+when working on pronunciation assessment of a specific combination of L1 and L2. On the one hand,
+the set of common pronunciation errors tend to be typical for a given L1, L2 pair so 
+models that specifically focus on these errors can be trained. On the other hand, it provides more 
+flexibility when assessing nonnative utterances close to native-sounding, in a similar way that
+an annotator would do. However, the cost of nonnative database collection and annotation is very
+high and not always feasible.
+
 Finally, in \cite{landmark_svm}\cite{landmark_svm_2} a landmark based 
-SVM is introduced and compared with a confidence scoring method over 10 phonemes where 
+SVM is introduced and compared with a confideence scoring method over 10 phonemes where 
 L2 English learners, whose native language is Korean, make frequent errors. 
 Landmark theory relies on the fact that humans can perceive distinctive
 features using only spectral features extracted from the time frame including and adjacent to
