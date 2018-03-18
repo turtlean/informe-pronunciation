@@ -129,37 +129,44 @@ and data labeled as 'correct' or not by experienced human annotators is used to 
 Results show that SVM based on log-likelihood ratio features outperforms GOP scores (used as baseline), and some
 imporvements are obtained when adding PSMs.
 
-Relying on labeled nonnative speech data leads to more flexible models that yields better performance
-when working on pronunciation assessment of a specific combination of L1 and L2. On the one hand,
-the set of common pronunciation errors tend to be typical for a given L1, L2 pair so 
-models that specifically focus on these errors can be trained. On the other hand, it provides more 
-flexibility when assessing nonnative utterances close to native-sounding, in a similar way that
-an annotator would do. However, the cost of nonnative database collection and annotation is very
-high and not always feasible.
+Relying on labeled nonnative speech data usually leads to more flexible models 
+with better performance than those trained with native speech
+when working on pronunciation assessment for specific combinations of L1 and L2. On the one hand,
+the set of common pronunciation errors tend to be particular for a given \textless L1, L2 
+\textgreater \ pair so 
+models that specifically focus on those errors can be trained. On the other hand, it provides more 
+flexibility by assessing nonnative utterances that are close enough to native-sounding as correct, 
+in a similar way that an annotator would do. 
+However, labeled nonnative speech databases are rarely available. Both collection and annotation 
+of nonnative speech is an expensive and time-consuming task, and in some cases it is not feasible.
+So models trained with annotated nonnative speech usually have better performance
+than those trained with native data, though the cost of non-native database 
+collection and annotation is very high.
 
-Finally, in \cite{landmark_svm}\cite{landmark_svm_2} a landmark based 
-SVM is introduced and compared with a confideence scoring method over 10 phonemes where 
+Finally, a last example of SVM-based resarch is found in \cite{landmark_svm, landmark_svm_2}. 
+A landmark-based SVM is introduced and compared with a confidence 
+scoring method over 10 phonemes where 
 L2 English learners, whose native language is Korean, make frequent errors. 
 Landmark theory relies on the fact that humans can perceive distinctive
 features using only spectral features extracted from the time frame including and adjacent to
 a landmark (sudden signal change). A particular SVM for each phoneme is trained. Vowel SVMs are 
 trained using one or more frames from the vowel center. Frames from both onset and offset
 (prevocalic and postvocalic position) are selected and used in the training of consonant
-SVMs. Confidence score method shows a similar performance to SVM, though by combining 
-the two scores, statistically significant improvement are achieved for almost all phonemes.
+SVMs. The confidence score method shows a similar performance to SVM, though by combining 
+the two scores, statistically significant improvements are achieved for almost all phonemes.
 
 A different strategy for discrimination of Dutch velar fricative /x/ versus the velar plosive
 /k/ is studied in \cite{lda_weigelt}. Latent Discriminant Analysis (LDA) over two different sets
-of features are explored and compared with previous approaches: Aforementioned GOP scores and
-Weigelt. This last algorithm is based on three measures that can be easily obtained:
+of features are explored and compared with previous approaches: aforementioned GOP scores and
+Weigelt algorithm. The latter is based on three measures that can be easily obtained:
 log root-mean-square (rms) energy, the derivative of log rms energy (\textit{Rate of Rise} or
 ROR) and zero-crossing rate. Weigelt algorithm discriminate plosives from fricatives by using
-ROR values, found on the fact that the release of the burst of the plosives causes an abrupt
-rise in amplitude and therefore yielding higher values compared with fricatives.
-On the other hand, in LDA weights are assigned to each features to 
+ROR values, based on the fact that the release of the burst of the plosives causes an abrupt
+rise in amplitude therefore yielding higher values compared with fricatives.
+On the other hand, LDA weights are assigned to each feature to 
 find the linear combination of features
-which best separates the classes. Selecting most relevant features turns out to be an
-advantage compared to other classifiers. The two LDA methods yielded the best performance
+which best separates the classes. Selecting the most relevant features turns out to give an
+advantage compared to other classifiers. The two LDA methods yielded the best performing
 scores followed by GOP and Weigelt.
 
 A second group of papers are based on L1 strategies. A sufficiently large annotated nonnative
