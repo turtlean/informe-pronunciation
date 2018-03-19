@@ -55,7 +55,7 @@ scores.
 
 A very similar approach to log-posterior probabilities named \textit{Goodness of Pronunciation}
 (GOP) was developed at the same time as log-posteriors and
-is used in some works \cite{gop_1, gop_2, gop_3}. The quality of 
+is investigated in some works \cite{gop_1, gop_2, gop_3}. The quality of 
 pronunciation for any phone $p$ is defined to be the duration-normalized log of the posterior
 probability that the speaker uttered phone $p$ given the corresponding vector of observations
 $y=\{y_{t_{0}}, \dotsc y_{t_{0}+d-1} \}$
@@ -92,8 +92,9 @@ account misspronounced data, SVMs are trained directly to discriminate the two c
 Of course, this poses a new requirement: both correctly and incorrectly-pronounced data should be
 available for training.
 
-In \cite{detection_mispronunciation_dutch_vowel}, SVMs are trained with different types of
-features to discriminate between good and mispronounced vowels in Dutch: log-posterior-based 
+In \cite{detection_mispronunciation_dutch_vowel}, SVMs are used to discriminate
+between good and mispronounced vowels in Dutch.
+Three different types of features for training the models are evaluated: log-posterior-based 
 scores obtained from HMMs, MFCCs and a set of 
 phonetic features (first three formants, pitch and intensity). Despite the existence of nonnative-speech  
 databases for Dutch language, they were considered too small for the purpose of the research. 
@@ -125,22 +126,22 @@ totally wrong pronunciations, where $K$ is a tunable parameter. PSMs are built f
 using the posterior probabilities obtained from the acoustic models for each phone $q$.
 Experiments are carried out on the 
 Mandarin mispronunciation detection task for native Chinese speakers with various dialect accents, 
-and data labeled as 'correct' or not by experienced human annotators is used to train and test the models.
+and data labeled as ``correct'' or ``mispronounced'' by experienced human annotators is used to train and test the models.
 Results show that SVM based on log-likelihood ratio features outperforms GOP scores (used as baseline), and some
 imporvements are obtained when adding PSMs.
 
 Relying on labeled nonnative speech data usually leads to more flexible models 
 with better performance than those trained with native speech
 when working on pronunciation assessment for specific combinations of L1 and L2. On the one hand,
-the set of common pronunciation errors tend to be particular for a given \textless L1, L2 
-\textgreater \ pair so 
-models that specifically focus on those errors can be trained. On the other hand, it provides more 
-flexibility by assessing nonnative utterances that are close enough to native-sounding as correct, 
-in a similar way that an annotator would do. 
+the set of common pronunciation errors tend to be particular for a given \textless L1, L2 \textgreater \ pair so 
+models that specifically focus on those errors can be trained. On the other hand, models trained
+with nonnative speech are better at capturing the subtle differences between the nonnative
+speech realizations that are considered acceptable versus the nonnative speech realizations
+that are considered mispronounced, in a similar way that an annotator would do. 
 However, labeled nonnative speech databases are rarely available. Both collection and annotation 
 of nonnative speech is an expensive and time-consuming task, and in some cases it is not feasible.
 So models trained with annotated nonnative speech usually have better performance
-than those trained with native data, though the cost of non-native database 
+than those trained with native data, though the cost of nonnative database 
 collection and annotation is very high.
 
 Finally, a last example of SVM-based resarch is found in \cite{landmark_svm, landmark_svm_2}. 
@@ -169,32 +170,76 @@ which best separates the classes. Selecting the most relevant features turns out
 advantage compared to other classifiers. The two LDA methods yielded the best performing
 scores followed by GOP and Weigelt.
 
-A second group of papers are based on L1 strategies. A sufficiently large annotated nonnative
-database is required in order to follow approaches of this kind.
-In \cite{detection_phone_level_mispronunciation_learning}, a phonetically labeled nonnative
+To conclude this section, the papers that set the starting point for the current thesis will
+be reviewed. They are the two latest works in one of the most important lines of investigation
+in the field of pronunciation assessment at phone level. 
+Both use a Latin-American Spanish speech database that includes recordings from 
+native and nonnative speakers, where nonnative speech
+is produced by speakers whose native language is American English.
+
+The first of these works \cite{detection_phone_level_mispronunciation_learning} is 
+a continuation of \cite{pronunciation_scoring_phone_segments_instruction}, 
+where log-likelihood and log-posterior scores were proposed as effective methods for 
+assessing pronunciation. In \cite{detection_phone_level_mispronunciation_learning}, 
+the same log-posterior method (Equation 1.2 and 1.3) is applied using models trained on native
+data and is used as baseline and compared with a proposed technique 
+based on log-likelihood ratio (LLR).
+To compute LLRs, the phonetically labeled nonnative
 database is used to train two different \textit{Gaussian mixture models} (GMMs) for each phone
-class: one model is trained with the "correct" native-like pronunciations of a phone, while the
-other model is trained with the "mispronounced" or nonnative pronunciations of the same phone.
+class: one model is trained with the ``correct'' native-like pronunciations of a phone, while the
+other model is trained with the ``mispronounced'' or nonnative pronunciations of the same phone.
 In the evaluation phase, for each phone segment $q_{i}$, a length-normalized log-likelihood ratio
-$LLR(q_{i})$ score is computed for the phone segment by using the "mispronounced" and "correct"
+$LLR(q_{i})$ score is computed for the phone segment by using the ``mispronounced'' and ``correct''
 pronunciation models $\lambda_{M}$ and $\lambda_{C}$ respectively:
 \begin{equation}
 LLR(q_{i}) = \frac{1}{d}\sum_{t=t_{0}}^{t_{0}+d-1} [log \ p(y_{t}|q_{i}, \lambda_{M}) - log \ p(y_{t}|q_{i}, \lambda_{C})]
 \end{equation}
-The normalization by $d$ allows definition of unique thresholds for the LLR for each phone class, 
-independent of the length of the segments.
+The normalization by $d$ allows the definition of unique thresholds for each phone class, 
+independent of the length of the segments. A mispronunciation is detected when the LLR is above that threshold. 
+The LLR method performed better than the posterior-based method for almost all phone classes, 
+specially for those with the highest consistency across transcribers. These results are in
+line with the fact that models trained on nonnative speech data have better results than
+those trained on native speech, as it was previously mentioned.
 
-Finally, a recent work \cite{main} explores another method that also uses 
-log-likelihood ratio based on  GMMs (eq 1.4), except that the models for each 
-class ("correct" and  "mispronounced") are obtained by adaptation. In the same work, 
-a discriminative system based
-on \textit{Support Vector Machines} (SVM) is developed producing good results. Features 
-for this classifier are obtained by adapting class-independent GMMs to each particular 
-instance of the target phone and extracting both means and weights of the resulting 
-Gaussian Mixture.
-These methods proved to be superior to the mispronunciation detection system based of 
-LLR of independently trained GMMs (eq 1.4), which had been previously shown to 
-outperform the standard method tha uses phone log-posterior as scores, yielding
-results comparable to state-of-the-art techniques.
-Both systems previously described are used as baselines in the work here 
-presented so a detailed explanation will be provided in next sections.
+Finally, the most recent work of the series \cite{main} extends the research 
+proposing two new methods that also explicitly model both mispronunciations and correct pronunciations 
+by nonnative speakers. The LLR method developed in 
+\cite{detection_phone_level_mispronunciation_learning} is used as baseline and compared with
+the new modeling techniques. 
+
+The first proposed method also uses LLR based on GMMs trained
+on nonnative data (Equation 1.4). The difference resides in the way these GMMs are obtained.
+In the baseline approach, for each phone class two different GMMs are trained: one model is
+trained with the ``correct'' native-like pronuncations of a phone while the other is trained
+with the ``mispronounced'' or nonnative pronunciations of the same phone. In the new approach,
+the models for each class for a given phone are obtained by adaptation. The model to which they
+are adapted is trained using all the samples from a given phone, ignoring the class (``correct''
+or ``mispronounced''). Bayesian adaptation \cite{ubm} is used to adapt this class independent
+GMM to all the ``correctly'' pronounced training examples for a phone and obtain the adapted
+``correct'' model for that phone. An analogous process is followed to obtained the adapted
+``mispronounced'' model. For these class-dependent GMMs both the means and the mixture weights 
+are adapted to the class-specific data.
+
+The second proposed method follows a discriminative approach. It uses the class-independent
+GMM of the previous experiment to create supervectors by adapting this GMM to each phone instance.
+The supervector for a certain phone instance is obtained by adapting the means and the mixture
+weights of the original GMM to the acoustic feature vector representing the phone.
+These supervectors are then used as features to train a linear SVM classifier.
+To evaluate test instances of a given phone, its supervector is calculated by adaptation of the class-independent
+GMM to the phone feature vector frames. Finally, the distance of that supervector to the SVM
+hyperplane is taken as the score for the phone.
+
+The two methods presented in \cite{main} show better results than the mispronunciation
+detection system based on LLR of independently trained GMMs developed in
+\cite{detection_phone_level_mispronunciation_learning}, which at the same time
+outperforms the standard method that uses phone log posteriors
+as scores \cite{pronunciation_scoring_phone_segments_instruction}. 
+This is one of the most important lines of research in pronunciation assessment 
+at phone level, positioning the methods described in \cite{main} among the best
+systems in the field. 
+
+For that reason, both generative and discriminative models are used as baseline
+and as a starting point in the work here presented. A more detailed explanation of these systems
+will be provided in the next sections.
+
+
