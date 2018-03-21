@@ -18,7 +18,7 @@ with native instances. In order to do that, the text pronounced by the student
 must be known. This is achieved by eliciting speech in a
 constrained way, such as reading a predefined text.
 From these phonetic segmentations two 
-probabilistic mesasures based on HMMs are computed as scores: log-likelihood and 
+probabilistic measures based on HMMs are computed as scores: log-likelihood and 
 log-posterior probabilities. The underlying asumption is that the logarithm of the likelihood
 of the speech data, computed by the Viterbi algorithm using the HMMs trained with speech from native
 speakers is a good mesasure of the similarity between the students's
@@ -38,7 +38,7 @@ Alternatively, log-posterior scores can be computed for each time $t$:
 \begin{equation}
 P(q_{i}|y_{t}) = \frac{p(y_{t}|q_{i})P(q_{i})}{\sum\limits_{j=1}^{M} p(y_{t}|q_{j})P(q_{j})}
 \end{equation}
-Likelihood in the numerator is computed through a forced recognition phase by using a known 
+The likelihood in the numerator is computed through a forced recognition phase by using a known 
 ortographic transcription of the speech signal. On the other hand, 
 the sum over $j$ runs over a set of context-independent models for all phone classes. $P(q_{i})$
 represents the prior probability of the phone class $q_{i}$. 
@@ -66,17 +66,38 @@ GOP(p) = \left| log \ \left(\frac{p(y|q)P(p))}{\sum_{q \in Q}p(y|q)P(q))}\right)
 
 The likelihoods $p(y|q)$ are obtained from the recognizer as a sum of the likelihoods over all
 observations in the phone.
-The difference between GOP scores and log-posterior score technique previously mentioned 
+The difference between GOP scores and the log-posterior score technique previously mentioned 
 is that in GOP, the likelihood for both numerator and every phone in the denominator is
 computed at segment level as a sum of log-likelihoods per frame over the 
 duration of the phone $p$, while in Equation (1.2) log-posterior probabilities are computed
 at the frame level and averaged over the segment's length.
 
-So far, aforementioned methods are based on confidence measures 
+A different technique is explored in \cite{phonological_rules}, which center its works
+in modeling the relationship between phonetic mispronunciations that occur in a word
+and the actual word rating. The research is based on a set of phonological rules
+representing phonetic mispronunciations between L1 (native language of the students)
+and L2 (the target language). In this case, the corpus is obtained from Chinese Learners
+of English and all the speech data of the corpus is phonetically labeled by trained linguists.
+In addition, crowdsourcing is used to collect perceptual gradations of word-level 
+mispronunciations and the WorkerRank algorithm is used to conduct quality control to filter
+crowdsourced data in terms of reliability. The gradation score for a phonological rule
+is obtained as the average of the aggregated values of the words (rated via crowdsourcing)
+containing that rule. On the other hand, gradation for a word is calculated as either
+the maximum value among all phonological rules that are present in 
+that word or a linear combination
+of them. Even though the work is focus on the use of phonological rules in word-level
+mispronunciation gradation, the same approach can be used to evaluate mispronunciation
+gradation at phone level. In order to derive the phonological rules from the mispronunciations,
+the previous strategy requires a phonetically labeled nonnative database. 
+Taking that into account, another paper \cite{phonological_rules_2} works well as complement
+to \cite{phonological_rules}, because it develops a speech recognition system for automatic
+mispronunciation detection capable of transcribing the learner's input speech.
+
+So far, all the aforementioned methods but the last one are based on confidence measures 
 obtained from Automatic Speech Recognition (ASR) systems. 
 Scores measure how closely the utterance of the speaker matches the recognizer's
 acoustic model. Mismatches result in low confidence scores, which provide a profile of the 
-speakers' production erorrs. Nevertheless, the accuracy of the assessment based on these
+speakers' production errors. Nevertheless, the accuracy of the assessment based on these
 confidence scores can be quite low \cite{landmark_svm}. 
 In addition, ASR systems based on HMMs are both time-consuming to train and extremely vulnerable to
 acoustic interference and variation in speaking style, and the conventional methods for
@@ -159,7 +180,7 @@ the two scores, statistically significant improvements are achieved for almost a
 A different strategy for discrimination of Dutch velar fricative /x/ versus the velar plosive
 /k/ is studied in \cite{lda_weigelt}. Latent Discriminant Analysis (LDA) over two different sets
 of features are explored and compared with previous approaches: aforementioned GOP scores and
-Weigelt algorithm. The latter is based on three measures that can be easily obtained:
+Weigelt algorithm. The latter is based on three simple measures that can be easily obtained:
 log root-mean-square (rms) energy, the derivative of log rms energy (\textit{Rate of Rise} or
 ROR) and zero-crossing rate. Weigelt algorithm discriminate plosives from fricatives by using
 ROR values, based on the fact that the release of the burst of the plosives causes an abrupt
