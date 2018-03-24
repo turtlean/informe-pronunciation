@@ -21,60 +21,78 @@ sorting=none
 \linespread{1.6}
 \tableofcontents
 \chapter{Introduction}
-	\section{Problem description and Motivation}
-		\input{files/intro/problem_description_motivation.tex}
+	\section{Problem Description and Motivation}
+		% \input{files/intro/problem_description_motivation.tex}
 	\section{Previous work}
 		\input{files/intro/previous_work.tex}
 \chapter{Method}
-	\section{Binary classification problem}
-		\input{files/method/binary_classification_problem}
-	\section{Features}
-		\subsection{MFCC}
-			\input{files/method/mfcc.tex}
-		\subsection{Gaussian Mixture Models}
-			\input{files/method/gmm.tex}
-		\subsection{Legendre polynomials}
-			\input{files/method/legendre_polynomials.tex}
-			\subsubsection{Motivation}
-				\input{files/method/legendre_polynomials_motivation.tex}
-			\subsubsection{Regularization}
-				\input{files/method/regularization.tex}
+	% \input{files/method/gmm.tex}
+	\section{Machine Learning Overview}
+		\subsection{Binary Classification Problem}
+			\input{files/method/binary_classification_problem}
+		\subsection{Cross Validation}
+		\subsection{Feature Normalization (zero mean unit variance)}
+			\input{files/method/feature_scaling.tex}
+		\subsection{The Overfitting-Underfitting Problem}
+		\subsection{Score Combination of Multiple Models}
+	\section{Gaussian Mixture Model}
+		\subsection{Definition}
+		\subsection{GMM Adaptation}
+		\subsection{Log-Likelihood Ratio Method}
 	\section{Support Vector Machines}
 		\input{files/method/svm.tex}
-		\subsection{Cost function}
+		\subsection{Cost Function}
 			\input{files/method/cost_function.tex}
-		\subsection{C parameter}
+		\subsection{C Parameter}
 			\input{files/method/c_parameter.tex}
-		\subsection{Balancing class weights}
+		\subsection{Balancing Class Weights}
 			\input{files/method/balancing_class_weights.tex}
-		\subsection{Features scaling}
-			\input{files/method/feature_scaling.tex}
-		\subsection{Feature combination}
-			\input{files/method/feature_combination.tex}
-	\section{Performance measures}
+		\subsection{Feature Combination}
+	\section{Audio Feature Extraction}
+		\subsection{Windows and Shifts}
+		\subsection{Mel-Frecuency Cepstral Coefficients}
+			\input{files/method/mfcc.tex}
+		\subsection{Cepstral Mean Substraction}
+	\section{Legendre Polynomials}
+		\subsection{Definition}
+		\subsection{Least Squares}
+		\subsection{Lasso Regression}
+	\section{Discrete Cosine Transform}
+	\section{Performance Measures}
 		\subsection{ROC Curve}
-			\input{files/method/roc_curve.tex}
-		\subsection{Equal error rate}
+		\subsection{Equal Error Rate}
 			\input{files/method/eer.tex}
+	\section{Statistical Significance Techniques}
+		\subsection{Bootstrapping}
+		\subsection{McNemar}
+
 \chapter{Experimental Design}
-	\section{Speech Corpora}
-		\subsection{General description - Feature extraction}
-			\input{files/experimental_design/features_general_description.tex}
-		\subsection{Alignments (phonetic-temporal)}
-			\input{files/experimental_design/alignments.tex}
-		\subsection{Labels (pronunciation)}
-			\input{files/experimental_design/labels.tex}
-	\section{Model training}
-		\subsection{SVM from supervectors}
-			\subsubsection{Experiment steps}
-				\input{files/experimental_design/supervectors_experiment_steps.tex}
-		\subsection{SVM from legendre coefficients}
-			\subsubsection{Experiment steps}
-				\input{files/experimental_design/legendre_experiment_steps.tex}
+	\section{Architecture Overview}
+		\subsection{Diagram}
+		\subsection{Explanation}
+	\section{Database Description}
+	\section{Development and Test Sets Definition}
+	\section{GMMs Experiments}
+		\subsection{Independently-trained models}
+		\subsection{Adapted models}
+	\section{SVM Experiments}
+		\subsection{Supervectors}
+		\subsection{Legendre}
+			\input{files/experimental_design/legendre.tex}
+		\subsection{DCT}
+		\subsection{Features Combination}
+		\subsection{Score Combination}
 
 \chapter{Results}
 	\input{files/results/results.tex}
+
 \chapter{Conclusions}
+	\section{Improvements by adding dynamic features}
+	\section{Comparing Robustness of Fusion Systems}
+
+\chapter{Appendix A}
+	\section{Table of Results}
+	\section{Fusion Plots for All Phones}
 
 \printbibliography
  
