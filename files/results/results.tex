@@ -1,15 +1,21 @@
-\section{GMM vs Supervectors}
-
-[GMM vs supervectors] Adapt K-Means
+\section{GMM Adapt K-Means vs Supervectors}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{files/figures/results/gmm-vs-supervectors/gmm-vs-supervectors-dev.png}
+	\includegraphics[width=0.8\textwidth]{files/figures/results/gmm-vs-supervectors/gmm-vs-supervectors-dev.png}
+	\caption{Comparisons of performance between Adapted GMMs with K-Means initialization
+	and SVM trained on Supervectors for all phones in the development set, sorted
+	descendently by Kappa.}
+	\label{fig:gmmSupervectorsDev}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{files/figures/results/gmm-vs-supervectors/gmm-vs-supervectors-heldout.png}
+	\includegraphics[width=0.8\textwidth]{files/figures/results/gmm-vs-supervectors/gmm-vs-supervectors-heldout.png}
+	\caption{Comparisons of performance between Adapted GMMs with K-Means initialization
+	and SVM trained on Supervectors for all phones in the test set, sorted descendently
+	by Kappa.}
+	\label{fig:gmmSupervectorsTest}
 \end{figure}
 
 
@@ -17,7 +23,12 @@
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{files/figures/results/legendre-dct/legendre-tunning.png}
+	\includegraphics[width=1.0\textwidth]{files/figures/results/legendre-dct/legendre-tunning.png}
+	\caption{EER average over phonemes with high kappa versus degree of Legendre Polynomials in
+	the development set. Additional parameters are also studied along with the degree and 
+	represented by different curves: time normalization, appending the duration and applying
+	Lasso Regression}
+	\label{fig:legendreTunning}
 \end{figure}
 
 
@@ -26,6 +37,9 @@
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{files/figures/results/legendre-dct/legendre-dct-coefficients.png}
+	\caption{EER average over phonemes with high kappa as function of number of coefficients
+	for both Legendre Polynomials and DCT in the development set.}
+	\label{fig:legendreVsDCT}
 \end{figure}
 
 
@@ -37,10 +51,24 @@
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{files/figures/results/relatives/relatives-fusion-systems-dev-mcnemar.png}
+	\includegraphics[width=0.8\textwidth]{files/figures/results/relatives/relatives-fusion-systems-dev-mcnemar.png}
+	\caption{Comparison of performance between Features Combination system and the score combination
+	of individual systems in the development set for the phones whose results were significant 
+	in the development set, sorted descendently by significance. For all the score combinations phones the results were significant
+	in the development set,
+	whereas for the features combination phones only the phones marked with (*) were significant, 
+	and those marked with (**) weren't significant.}
+	\label{fig:fusionMcnemarDev}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{files/figures/results/relatives/relative-fusion-systems-heldout-mcnemar.png}
+	\includegraphics[width=0.8\textwidth]{files/figures/results/relatives/relative-fusion-systems-heldout-mcnemar.png}
+	\caption{Comparison of performance between Features Combination system and the score combination
+	of individual systems in the test set for the phones whose results were significant 
+	in the development set, sorted descendently by significance. For all the score combinations phones the results were significant
+	in the development set,
+	whereas for the features combination phones only the phones marked with (*) were significant, 
+	and those marked with (**) weren't significant.}
+	\label{fig:fusionMcnemarTest}
 \end{figure}
