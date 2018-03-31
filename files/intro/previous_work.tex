@@ -13,24 +13,28 @@ distributions previously mentioned. Phone durations are obtained from Viterbi al
 In the same works, other two methods that use \textit{Hidden Markov Models} (HMMs) to obtain 
 spectral matches and compute pronunciation scores are tested. 
 Phonetic time alignments for
-non-native utterances are generated from an HMM-based speech recognition system trained
+nonnative utterances are generated from an HMM-based speech recognition system trained
 with native instances. In order to do that, the text pronounced by the student 
 must be known. This is achieved by eliciting speech in a
 constrained way, such as reading a predefined text.
 From these phonetic segmentations two 
 probabilistic measures based on HMMs are computed as scores: log-likelihood and 
 log-posterior probabilities. The underlying asumption is that the logarithm of the likelihood
-of the speech data, computed by the Viterbi algorithm using the HMMs trained with speech from native
+or the posterior of the speech data, computed by the Viterbi 
+algorithm using the HMMs trained with speech from native
 speakers is a good mesasure of the similarity between the students's
 speech and native-sounding speech.
 
 For each phone segment the log-likelihood score \^{l} is computed as:
 \begin{equation}
+\label{eq:logLikelihood}
 \hat{l} = \frac{1}{d} \sum_{t=t_{0}}^{t_{0}+d-1} log \ p(y_{t}|q_{i})
 \end{equation}
 where $p(y_{t}|q_{i})$ is the likelihood at the time $t$ with observation vector $y_{t}$
 given the phone class $q_{i}$, $d$ is the duration in frames of the phone segment 
-and $t_{0}$ is the starting frame index of the phone segment. Duration normalization is done to 
+and $t_{0}$ is the starting frame index of the phone segment. 
+The likelihood is computed through a forced recognition phase by using a known ortographic
+transcription of the speech signal. Duration normalization is done to 
 eliminate the dependency of the pronunciation score on the duration of the phone.
 
 Alternatively, log-posterior scores can be computed for each time $t$:
@@ -38,9 +42,9 @@ Alternatively, log-posterior scores can be computed for each time $t$:
 \begin{equation}
 P(q_{i}|y_{t}) = \frac{p(y_{t}|q_{i})P(q_{i})}{\sum\limits_{j=1}^{M} p(y_{t}|q_{j})P(q_{j})}
 \end{equation}
-The likelihood in the numerator is computed through a forced recognition phase by using a known 
-ortographic transcription of the speech signal. On the other hand, 
-the sum over $j$ runs over a set of context-independent models for all phone classes. $P(q_{i})$
+The likelihoods in both numerator and denominator are computed in the same way as in 
+Equation \ref{eq:logLikelihood}. 
+The sum over $j$ runs over a set of context-independent models for all phone classes. $P(q_{i})$
 represents the prior probability of the phone class $q_{i}$. 
 
 Finally, the posterior score $\hat{\rho}$ for the phone segment is defined as:
@@ -72,12 +76,12 @@ computed at segment level as a sum of log-likelihoods per frame over the
 duration of the phone $p$, while in Equation (1.2) log-posterior probabilities are computed
 at the frame level and averaged over the segment's length.
 
-A different technique is explored in \cite{phonological_rules}, which center its works
-in modeling the relationship between phonetic mispronunciations that occur in a word
+A different technique is explored in \cite{phonological_rules}, which 
+studies the relationship between phonetic mispronunciations that occur in a word
 and the actual word rating. The research is based on a set of phonological rules
 representing phonetic mispronunciations between L1 (native language of the students)
 and L2 (the target language). In this case, the corpus is obtained from Chinese Learners
-of English and all the speech data of the corpus is phonetically labeled by trained linguists.
+of English and all the speech data of the corpus is phonetically transcribed by trained linguists.
 In addition, crowdsourcing is used to collect perceptual gradations of word-level 
 mispronunciations and the WorkerRank algorithm is used to conduct quality control to filter
 crowdsourced data in terms of reliability. The gradation score for a phonological rule
@@ -120,21 +124,17 @@ scores obtained from HMMs, MFCCs and a set of
 phonetic features (first three formants, pitch and intensity). Despite the existence of nonnative-speech  
 databases for Dutch language, they were considered too small for the purpose of the research. 
 For that reason, phonemic 
-substitutions that induce vocalic errors are simulated by artificially introducing them in the native corpus.
-The results show that the best 
+substitutions that induce vocalic errors are simulated by artificially introducing them in the native corpus. It is worth mentioning that training
+and testing the models with artificially generated data is not recommended
+because it can lead to models that don't generalize well to real nonnative data.
+Having said that, the results show that the best 
 results are obtained by using MFCCs as features of the SVM models, followed by confidence-measure-based 
 scores and finally phonetic
 features, though substantial improvements can be obtained by combining them.
 
 In a different work \cite{svm_space_models}, SVM is used as the classifier and the
 log-likelihood ratios between all the acoustic models and the model corresponding to the given
-phone are employed as features for the classifier. In other words, given the observation
-$y$, the feature vector for the classification problem is computed as:
-
-[$LLR(y|q,q_{1}), \ LLR(y|q,q_{2}) \dotsc LLR(y|q, q_{M})$],
-
-where $q$ is the canonical label of the observation being pronounced and {$q_{1}, q_{2} \dotsc q_{M}$}
-represent the set of acoustic models of all the phones. The reason for choosing these features is
+phone are employed as features for the classifier. The reason for choosing these features is
 that $q$ can be mispronounced as any other phone and the likelihood ratio is a powerful
 method to detect this kind of mispronunciation. Classifiers trained with this kind of features, however, 
 can only effectively deal with a phone mispronounced as another phone. This kind of acoustic models is 
