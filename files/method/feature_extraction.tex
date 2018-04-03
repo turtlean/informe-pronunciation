@@ -1,0 +1,26 @@
+The first step in order to build the system is to extract features from the speech data. In this
+work we base our features in the standard and widely used Mel Frecuency Cepstral Coefficients 
+(MFCCs).
+
+The presence or absence of particular frequencies at some instant are consequences of the shape of
+the vocal tract at that instant. The disposition of the vocal tract during the 
+release of air generates vibrations 
+that determine which kind of sound comes out.
+The choice of using power spectrum based features is motivated by
+the way the human cochlea (the organ in the ear responsible for speech processing) works.
+Depending on the location in the cochlea that vibrates (which wobbles small hairs), 
+different nerves inform to the brain that certain frequencies are present. 
+MFCCs performs a similar job carrying information about which frequencies are present at
+some instant. 
+
+
+\subsubsection{Window Size and Shift}
+
+Spectral Density is meant to be computed over an interval where the audio signal is not changing.
+To satisfy that condition, each phone utterance instance is divided into frames of 25 $ms$, 
+This is the most standard value for window size when computing MFCCs since is long enough
+to provide enough samples to get a reliable spectral estimate, and at the same time short
+enough to minimize the signal changes along the frame.
+A frame step of 10 $ms$ is used, allowing some overlap to the frames. This is also the most standard
+\emph{shift} value when computing MFCCs.
+
