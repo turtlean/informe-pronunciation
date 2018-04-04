@@ -17,10 +17,34 @@ some instant.
 \subsubsection{Window Size and Shift}
 
 Spectral Density is meant to be computed over an interval where the audio signal is not changing.
-To satisfy that condition, each phone utterance instance is divided into frames of 25 $ms$, 
-This is the most standard value for window size when computing MFCCs since is long enough
-to provide enough samples to get a reliable spectral estimate, and at the same time short
-enough to minimize the signal changes along the frame.
-A frame step of 10 $ms$ is used, allowing some overlap to the frames. This is also the most standard
-\emph{shift} value when computing MFCCs.
+To satisfy that condition, each phone utterance instance is divided into frames of 25 $ms$. 
+This is the most standard value for window size when computing MFCCs since 
+each frame contains enough samples to get a reliable spectral estimate, and at the same time is
+short enough to minimize the signal changes.
+
+For the window's shift or step the most standard value of 10 $ms$ was also selected, allowing some
+overlap to the frames.
+
+
+\subsubsection{Spectral Density and Mel Filterbanks}
+
+The next step in order to compute the MFCCs is to obtain the spectral density for each frame,
+that describes the power as fuction of the different frequencies that make up the signal.
+The Fast Fourier Transform technique (FFT) is used in order to do so. 
+
+Not all the information provided by the spectral density is useful to describe the source
+of the signal. The cochlea can't discern between two closely spaced frequencies and the
+effect becomes more pronounced as the frecuencies increase. For that reason, frequencies
+that are close enough are grouped together and summed up to get an idea of how much energy
+exists in various frequency regions. This is achieved by using Mel Filterbanks: 
+the first filter is very narrow and gives information about how much energy exists near 0 Hz.
+As the frequencies get higher, the filters get wider and variations become harder to 
+detect. The Mel scale describe exactly how to space the filterbanks and how wide to make them:
+
+\begin{equation}
+M(f)=1125*ln(1 + \frac{f}{700})
+\end{equation}
+
+
+
 
