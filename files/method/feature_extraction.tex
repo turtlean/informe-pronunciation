@@ -45,6 +45,22 @@ detect. The Mel scale describe exactly how to space the filterbanks and how wide
 M(f)=1125*ln(1 + \frac{f}{700})
 \end{equation}
 
+Once computed the filterbank energies, the logarithm of them is taken. This is also motivated by
+the human hearing thus we don't perceive loudness on a linear way, but following an exponential
+scale. So large variations in energy may not sound all that different if the sound is loud to 
+begin with.
+
+Finally, the DCT of the log filterbank energies is computed. This is performed because of  
+two main reasons. On the one hand, it helps to decorrelate the energy of the filterbanks
+in response to the overlap between them. On the other hand, only 13 of the DCT coefficients
+are kept. This is because the higher DCT coefficients represent fast changes in the filterbank
+energies and it turns out that these fast changes actually degrades performance 
+when they are included as features to build speech related systems.
 
 
+\subsubsection{Deltas and Deltas-Deltas}
 
+The MFCC feature vector describes only the power spectral envelope of a single frame, but speech
+would also have information in the dynamics: the way the coefficients change over time.	 
+Calculating differential and acceleration coefficients often leads to small improvements  
+in the performance of speech related systems when they are appended to the original feature vector.
