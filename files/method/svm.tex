@@ -1,5 +1,72 @@
-\begin{itemize}
-	\item General description. How does it work? Hyperplane to separate instances.
-	\item Max margin classifier
-	\item Advantages over other classifiers for pronunciation scoring
-\end{itemize}
+The chosen model for the discriminative analysis is the \textit{Support Vector Machine} classifier,
+an approach for classification that was developed in the computer science community in the 1990s
+and that has grown in popularity since then. The SVM is a member of the family of
+\textit{maximal margin classifiers}, which base its strategy in finding the hyperplane that
+best separate the positive and negative instances \cite{svm_jwht}.
+
+\subsection{Max Margin Classifiers}
+
+In a \textit{p-dimensional} space, a hyperplane is a flat affine subspace of
+dimension $p-1$ defined by the equation:
+
+\begin{equation}
+  \label{eq:hyperplane}
+  \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \dotsc + \beta_{p}X_{p} = 0
+\end{equation}
+
+The equation defines a \textit{p-dimensional} hyperplane in the sense that if a point
+$X=(X_{1}, X_{2}, \dotsc, X_{p})^{T}$ in \textit{p-dimensional} space
+satisfies \ref{eq:hyperplane} then $X$ lies on the hyperplane.
+
+If $X$ doesn't lie in the hyperplane then either:
+
+\begin{equation}
+  % \label{eq:hyperplaneGreater}
+  \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \dotsc + \beta_{p}X_{p} > 0
+\end{equation}
+
+\begin{center}or\end{center}
+
+\begin{equation}
+  % \label{eq:hyperplaneLesser}
+  \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \dotsc + \beta_{p}X_{p} < 0
+\end{equation}
+
+So the hyperplane somehow divides the \textit{p-dimensional} space into two halves. One can
+easily determine on which side of the hyperplane a point lies by simply calculating the sign
+of the left hand side of \ref{eq:hyperplane}.
+
+Having a set of $n$ instances of dimension $p$, with labels
+$y_{1}, y_{2}, \dotsc y_{n} \in \{-1,1\}$ and $x^{i} = (x^{i}_{1}, x^{i}_{2}, \dotsc x^{i}_{p}) \ \forall \ 1 \leq i \leq {n}$ and supposing that it is possible to construct a hyperplane that
+separates the training observations perfectly according to their class labels, then a
+separating hyperplane has the property that:
+
+\begin{equation}
+\beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \dotsc + \beta_{p}X_{p} > 0 \ if \ y_{i} = 1
+\end{equation}
+
+\begin{center}and\end{center}
+
+\begin{equation}
+\beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \dotsc + \beta_{p}X_{p} < 0 \ if \ y_{i} = -1
+\end{equation}
+
+A test observation $x^{*}$ is classified based on the sign of
+$f(x^{*})=\beta_{0}+\beta_{1}x^{*}_{1} + \beta_{2}x^{*}_{2} + \dotsc + \beta_{p}x^{*}_{p}$.
+If $f(x^{*})$ is positive, then it is assigned to class 1 whereas if $f(x^{*})$ is negative
+then it is assigned to class -1. In addition, the magnitude of $f(x^{*})$ also contains valuable
+information.
+If $f(x^{*})$ is far from zero then it means that $x^{*}$ lies far from the hyperplane
+whereas if $f(x^{*})$ is close to zero then $x^{*}$ is located near the hyperplane and
+there is less certainty about the class of $x^{*}$.
+
+
+
+
+
+
+% \begin{itemize}
+% 	\item General description. How does it work? Hyperplane to separate instances.
+% 	\item Max margin classifier
+% 	\item Advantages over other classifiers for pronunciation scoring
+% \end{itemize}
