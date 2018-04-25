@@ -110,7 +110,17 @@ it to cross the boundary set by the margin.
 
 It can be proven that given a set of $n$ observations of dimension $p$, the problem of
 finding the \textit{Maximal Margin Hyperplane} can be posed as an optimization problem:
-minimize $\| \mathbf{w} \| = (\beta_{1}, \dotsc, \beta_{p})$ subject to the constraint that:
+minimize $\| w \| = (\beta_{1}, \dotsc, \beta_{p})$.
+
+\begin{equation}
+\label{eq:svmOptimization}
+w^{T}x^{*} = p\| w \|
+\end{equation}
+
+where $x^{*}$ is an observation and $p$ is the length of the projection of the observation
+onto the normal vector of the hyperplane, i.e, the distance to the hyperplane.
+Equation \ref{eq:svmOptimization} states that in order to maximize $p$ the norm of $w$
+has to be minimized. On the other hand, the minimization problem is subject to the constraint:
 
 \begin{equation}
   \label{eq:svmConstraint}
@@ -118,15 +128,23 @@ minimize $\| \mathbf{w} \| = (\beta_{1}, \dotsc, \beta_{p})$ subject to the cons
 \end{equation}
 
 Equation \ref{eq:svmConstraint} can be easily derived from \ref{eq:hyperplaneGreater} and
-\ref{eq:hyperplaneLesser}. This context matches the necessary conditions to apply
+\ref{eq:hyperplaneLesser}.  This context matches the necessary conditions to apply
 the \textit{Lagrange Multipliers} technique, to get this problem into a form
 that can be solved analytically.
 
-In practice, real data is scarcely ever linearly separable so a kind of trade off between
-both
+In practice, real data is scarcely ever completely linearly separable
+and there is a trade off between
+minimizing $\| w \|$ (i.e separating the instances by the largest possible margin)
+and satisfying the constraint imposed over every
+observation to lie on the right side of the hyperplane.
+The desired hyperplane is one which separates correctly the vast majority of the observations and
+at the same time it separates them by the largest margin. For this reason, when training an
+\textit{SVM} classifier an additional parameter $C$ is passed as argument to the training
+method in order to prioritize one problem over the other. A bigger $C$ favors the correctly
+classification of the instances, while a smaller one favors the minimization of $\| w \|$
+and thus finding the hyperplane with the largest margin for most of the instances.
 
-% \begin{itemize}
-% 	\item General description. How does it work? Hyperplane to separate instances.
-% 	\item Max margin classifier
-% 	\item Advantages over other classifiers for pronunciation scoring
-% \end{itemize}
+(Agregar foto del efecto del parámetro C)
+
+(Agregar la aclaración de que no vamos a comentar acerca de los kernels no lineales porque
+no se usan)
