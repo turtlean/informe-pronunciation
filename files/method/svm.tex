@@ -4,8 +4,7 @@ and that has grown in popularity since then. The SVM is a member of the family o
 \textit{maximal margin classifiers}, which base its strategy in finding the hyperplane that
 best separate the positive and negative instances \cite{svm_jwht}.
 
-\subsection{Max Margin Classifiers}
-
+\subsection{Maximal Margin Classifiers}
 In a \textit{p-dimensional} space, a hyperplane is a flat affine subspace of
 dimension $p-1$ defined by the equation:
 
@@ -21,14 +20,14 @@ satisfies \ref{eq:hyperplane} then $X$ lies on the hyperplane.
 If $X$ doesn't lie in the hyperplane then either:
 
 \begin{equation}
-  % \label{eq:hyperplaneGreater}
+  \label{eq:hyperplaneGreater}
   \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \dotsc + \beta_{p}X_{p} > 0
 \end{equation}
 
 \begin{center}or\end{center}
 
 \begin{equation}
-  % \label{eq:hyperplaneLesser}
+  \label{eq:hyperplaneLesser}
   \beta_{0} + \beta_{1}X_{1} + \beta_{2}X_{2} + \dotsc + \beta_{p}X_{p} < 0
 \end{equation}
 
@@ -60,10 +59,71 @@ If $f(x^{*})$ is far from zero then it means that $x^{*}$ lies far from the hype
 whereas if $f(x^{*})$ is close to zero then $x^{*}$ is located near the hyperplane and
 there is less certainty about the class of $x^{*}$.
 
+In general, if the data can be perfectly separated using a hyperplane, then there will be an
+infinite number of such hyperplanes. This is because a given separating hyperplane can usually
+be shift a tiny bit up or down, or rotating without coming into contact with any of the
+observations.
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{files/figures/method/max-margin}
+  \caption{Taken from \textit{JWHT} \cite{svm_jwht} book.
+  Left: Three separating hyperplanes out of many
+  possibilities. Right: Optimal Separating Hyperplane for the same dataset. A test observation
+  that falls in the blue portion of the grid will be assigned to the blue class, and a test
+  observation that falls in the purple portion of the grid will be assigned
+  to the purple class.}
+  \label{fig:maxMargin}
+\end{figure}
 
+A natural choice is the \textit{Maximal Margin Classifiers} (also known as the
+\textit{Optimal Separating Hyerplane}), which is the separating hyperplane that is farthest
+from the training observations. The \textit{margin} of the hyperplane is computed as the
+minimal perpendicular distance to the hyperplane among all the training observations.
+The maximal margin hyperplane is the separating hyperplane for which the margin is the largest.
+The core idea is that a classifier that has a large margin on the training data will also
+have a large margin on the test data.
 
+\subsection{Support Vectors}
 
+The separating hyperplane is determined by the instances of both classes that lies on the margin
+of the hyperplane. These observations are known as \textit{Support Vectors}.
+Observations can be interpreted as vectors in a \textit{p-dimensional} space and they
+"support" the maximal
+margin hyperplane in the sense that if these points were moved slightly then the maximal
+margin hyperplane would move as well. The maximal margin hyperplane depends directly on the
+support vectors, but not on the other observations: a movement to any of the other observations
+would not affect the separating hyperplane, provided that the observation's movement does not cause
+it to cross the boundary set by the margin.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{files/figures/method/support-vectors}
+  \caption{Taken from \textit{JWHT} \cite{svm_jwht} book. The maximal margin hyperplane
+  is shown as a solid line. The margin is the distance between the solid line to either
+  of the dashed lines. The two blue points and the purple point that line on the
+  dashed lines are the support vectors.}
+  \label{fig:maxMargin}
+\end{figure}
+
+\subsection{Problem Formulation}
+
+It can be proven that given a set of $n$ observations of dimension $p$, the problem of
+finding the \textit{Maximal Margin Hyperplane} can be posed as an optimization problem:
+minimize $\| \mathbf{w} \| = (\beta_{1}, \dotsc, \beta_{p})$ subject to the constraint that:
+
+\begin{equation}
+  \label{eq:svmConstraint}
+  y_{i} * (\beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + \dotsc + \beta_{p}x_{p}) > 0 \ \forall \ 1 \leq i \leq {n}
+\end{equation}
+
+Equation \ref{eq:svmConstraint} can be easily derived from \ref{eq:hyperplaneGreater} and
+\ref{eq:hyperplaneLesser}. This context matches the necessary conditions to apply
+the \textit{Lagrange Multipliers} technique, to get this problem into a form
+that can be solved analytically.
+
+In practice, real data is scarcely ever linearly separable so a kind of trade off between
+both
 
 % \begin{itemize}
 % 	\item General description. How does it work? Hyperplane to separate instances.
