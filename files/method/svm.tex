@@ -142,9 +142,28 @@ at the same time it separates them by the largest margin. For this reason, when 
 \textit{SVM} classifier an additional parameter $C$ is passed as argument to the training
 method in order to prioritize one problem over the other. A bigger $C$ favors the correctly
 classification of the instances, while a smaller one favors the minimization of $\| w \|$
-and thus finding the hyperplane with the largest margin for most of the instances.
+and thus finding the hyperplane with the largest margin for most of the instances, allowing
+some instances to be on the wrong side of the margin and even on the wrong side of the
+hyperplane.
 
-(Agregar foto del efecto del parámetro C)
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{files/figures/method/c-effects}
+  \caption{Taken from \textit{JWHT} \cite{svm_jwht} book. Different effects in an SVM
+  when varying $C$ value. The smallest value of $C$ is used in the top left,
+  following an increasing order from left to right and top to bottom. When $C$ is small,
+  then there is a high tolerance for observations being on the wrong side of the margin,
+  and so the margin will be large. As $C$ increases, the tolerance for observations
+  being on the wrong side of the margin decreases, and the margin narrows.}
+  \label{fig:maxMargin}
+\end{figure}
 
-(Agregar la aclaración de que no vamos a comentar acerca de los kernels no lineales porque
-no se usan)
+Finally, it is worth mentioning that in some cases an effective classification of the
+observations of a given dataset may require a non-linear decision boundary. For that cases,
+\textit{SVM} classifiers relies on special functions called \textit{kernels} that transform
+the feature space into a space that can be linearly separable. The current work assumes
+that the input features are linearly separable and therefore uses a linear kernel,
+so there is no need to analyse kernels in detail.
+However, for other experiments involving
+different data an \textit{SVM} classifier may require different types of kernels
+such as \textit{polynomial} or \textit{radial} kernels.
