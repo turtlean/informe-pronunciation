@@ -1,0 +1,34 @@
+An alternative to Legendre Polynomials to capture the general aspects of the utterance in order to
+summarize the information carried out by the \textit{MFCCs} of each frame is the
+\textit{Discrete Cosine Transform}. Variations on the values of MFCCs through time may be explained
+using periodic functions instead of polynomial ones, making \textit{DCT} a more suitable technique
+for the task. \textit{DCT} is used in many processes related with science and engineering
+such as lossy compression of audio (e.g. \textit{MP3}) and images (e.g. \textit{JPEG}), which are
+among the most popular formats in their respective fields. This technique has also been used
+to approximate prosodic features in speaker verification tasks \cite{dct}.
+
+\textit{DCT} belongs to the family of the Fourier analysis. As a member of the family, it
+provides a way to approximate a general function by sums of simpler trigonometric functions.
+These transformations map map a function to a set of coefficient of basis functions, where
+the basis functions are sinusoidal and are therefore strongly localized in the frecuency spectrum.
+In particular, \textit{DCT} expresses a finite sequence of data points in terms of a sum of
+\textit{cosine} functions oscillating at different frequencies. Unlike the
+\textit{Fourier Transform} that expresses the sequence in terms of both sine and cosine functions,
+thus needing a complex number to represent the coefficient of each frecuency, it only uses real
+numbers to output the coefficient of each frecuency.
+
+There exists different variants of the \textit{DCT}, being the type-II
+the most common and the one it is used in the current work:
+
+\begin{equation}
+X_{k} = \sum_{n=0}^{N-1} x_{n} cos \Big[ \frac{\pi}{N} \Big( n + \frac{1}{2} \Big) k \Big], \ for \ k = [0, 1, \dotsc, N-1]
+\end{equation}
+
+where $N$ is the number of the extracted samples of the signal to be decomposed.
+In this way, $k$ coefficients are obtained corresponding to each of the frequencies from
+$0$ to $N-1$. Each coefficient is obtained from the sum of the individual contributions
+of the samples to the $k^{th}$ frequency.
+
+The evolution of each of the \textit{MFCCs} along the frames composing the phone utterance is
+then approximated by a sum of cosine functions obtained through \textit{DCT}, and the
+coefficients of the cosine functions will be used as features to train the \textit{SVM} classifier.
