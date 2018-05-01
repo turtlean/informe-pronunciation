@@ -1,0 +1,47 @@
+As it was said before, \textit{MFCCs} are the acoustic features chosen for this work.
+Even though these raw features extracted from each frame composing the utterances of a phones
+would be enough to train a classifier that separates correctly
+pronounced and mispronounced phones, a different strategy can be taken. The features of all the
+frames of a particular utterance can be gathered together in order to summarize the
+general properties of the utterance. This is the purpose of using Legendre Polynomials when
+generating the features for the classifier. This technique has been used successfully
+in speaker recognition systems \cite{legendre}.
+
+\textit{Legendre functions} are the solutions to \textit{Legendre's differential equation}:
+
+\begin{equation}
+(1-x^{2})y''(x)-2xy'(x)+n(n+1)y(x)=0, \ for -1 \leq x \leq 1
+\end{equation}
+
+The solution for each particular $n={0, 1, 2 \dotsc} \in \mathbb{N}$ is a polynomial of degree
+$n$ $P_{n}(x)$. These solutions are well known for each $n \in \mathbb{N}$, and they can even
+be generated recursively. The first few Legendre Polynomials are:
+
+\begin{itemize}
+  \item[] $P_{0}(x) = 1$
+  \item[] $P_{1}(x) = x$
+  \item[] $P_{2}(x) = \frac{1}{2}(3x^{2} - 1)$
+  \item[] $P_{3}(x) = \frac{1}{2}(5x^{3} - 3x)$
+  \item[] $P_{4}(x) = \frac{1}{8}(35x^{4} - 30x^{2} + 3)$
+\end{itemize}
+
+Legendre Polynomials are orthogonal with respect to the $L2 \ norm$ on the interval \mbox{$-1 \leq x \leq 1$}:
+
+\begin{equation}
+\int_{-1}^{1} P_{n}(x)*P_{m}(x)dx = 0, \ m \neq n
+\end{equation}
+
+Moreover, in the interval \mbox{$-1 \leq x \leq 1$} any function $f$ can be represented as sum of
+Legendre Polynomials, leading to the Fourier-Legendre Series:
+
+\begin{equation}
+f(x) = \sum_{0}^{\infty}a_{n}P_{n}(x)
+\end{equation}
+
+So an infinite terms of Legendre Polynomials over the interval \mbox{$-1 \leq x \leq 1$} can be used
+to approximate any function. Each coefficient models a particular aspect of the curve: $a_{0}$
+is interpreted as the \textit{mean} of the segment, $a_{1}$ is the slope, $a_{2}$ gives
+information about the curvature of the segment and the next coefficients model the fine details.
+A particular cutoff $c$ can be chosen in order to limit the number of coefficients of the
+Legendre Polynomials to be picked in order to approximate the function in a reasonable manner
+while avoiding the complex details that may lead to overfitting.
