@@ -19,6 +19,7 @@ sorting=none
 \usepackage{csvsimple}
 \usepackage{lscape}
 \usepackage{hhline}
+\usepackage{multicol}
 \usepackage[table,x11names]{xcolor}
 
 \begin{document}
@@ -61,9 +62,10 @@ sorting=none
 	\section{Discrete Cosine Transform}
 		\input{files/method/dct.tex}
 	\section{Performance Measures}
-		\subsection{ROC Curve}
-		\subsection{Equal Error Rate}
-			\input{files/method/eer.tex}
+		\input{files/method/performance_measures.tex}
+		% \subsection{ROC Curve}
+		% \subsection{Equal Error Rate}
+		% 	\input{files/method/eer.tex}
 	\section{Statistical Significance Techniques}
 		\subsection{Bootstrapping}
 		\subsection{McNemar}
