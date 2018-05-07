@@ -1,0 +1,55 @@
+\subsection{McNemar's Test}
+
+\textit{McNemar's Test} is used as an alternative to determine whether the \textit{SVM}
+based on the combined features and the \textit{SVM} based on \textit{supervectors}
+features only are significantly different.
+
+\cite{mcnemar} Given a set of $n$ test samples labeled by two systems, $A_{1}$ and $A_{2}$
+the results can be resumed in:
+
+\begin{center}
+    \begin{tabular}{ | c | c | c | }
+    \hline
+    & Correctly Predicted by $A_{2}$ & Incorrectly Predicted by $A_{2}$ \\ \hline
+    Correctly Predicted by $A_{1}$ & $N_{0,0}$ & $N_{0,1}$ \\ \hline
+    Incorrectly Predicted by $A_{1}$ & $N_{1,0}$ & $N_{1,1}$ \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{itemize}
+\item{$N_{0, 0}$ is the number of samples which $A_{1}$ classifies correctly and $A_{2}$ classifies correctly}
+\item{$N_{0, 1}$ is the number of samples which $A_{1}$ classifies correctly and $A_{2}$ classifies incorrectly}
+\item{$N_{1, 0}$ is the number of samples which $A_{1}$ classifies incorrectly and $A_{2}$ classifies correctly}
+\item{$N_{1, 1}$ is the number of samples which $A_{1}$ classifies incorrectly and $A_{2}$ classifies incorrectly}
+\end{itemize}
+
+Let's denote $p_{1}$ the error rate of the system $A_{1}$ and $p_{2}$ the error rate of the
+system $A_{2}$. \\
+Let's also denote $q_{0,0}$ as the probability of ($A_{1}$ correct $\land$ $A_{2}$ correct),
+$q_{0,1}$ the probability \\ of ($A_{1}$ correct $\land$ $A_{2}$ incorrect), etc. Hence:
+
+\begin{multicols}{2}
+  \noindent
+  \begin{equation}
+    % \label{eq:p1}
+    p_{1} = q_{1,0} + q_{1,1}
+  \end{equation}
+  \begin{equation}
+    % \label{eq:p2}
+    p_{2} = q_{0,1} + q_{1,1}
+  \end{equation}
+\end{multicols}
+
+The \textit{null hypothesis} $p1=p2$ is equivalent to $q_{1,0}=q_{0,1}$. Defining
+$q=q_{1,0}/(q_{1,0}+q_{0,1})$ the \textit{null hypothesis} becomes $q=\frac{1}{2}$.
+The probability $q$ is the probability that given that only one of the systems
+made an error, it was system $A_{1}$ that did it. Under the \textit{null hypothesis},
+$N_{1,0}$ is distributed as a Binomial Distribution $B(n,1/2)$, where $n$ is
+the observed number of samples for which only one system made an error: $N_{1,0}+N_{0,1}$.
+At this point, a two-tail test can be applied to obtain a \textit{p-value}.
+
+In conclusion \textit{McNemar's Test} evaluates cross information by comparing the results of
+evaluating both systems on exactly the same sample. \textit{Bootstrapping} differs on this
+point because each sample is evaluated independently for each system, allowing a complementary
+analysis to determine the statistic significance of the results.
+
