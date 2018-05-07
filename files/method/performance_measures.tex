@@ -8,7 +8,7 @@ was taken in the present work.
 The \textit{EER} can be easily explained by using other important concept related to
 performance measures of machine learning classifiers: the \textit{Receiving Operating Characteristic} curve.
 So in first place a briefly explanation of the \textit{ROC} curve will be given, and after that
-the explanation of the \textit{EER} will be expanded a little bit more.
+the explanation of the \textit{EER} will be introduced.
 
 \subsection{Receiving Operating Characteristic}
 
@@ -104,7 +104,14 @@ classes are equally important. In other tasks, such as \textit{Bank Fraud} or
 other. In the current task however it is reasonable to assign the same priority
 to both \textit{sensitivity} and \textit{specificity}.
 Anyway, it is worth mentioning that during language learning a student may get
-discouraged if she pronounces an utterance correctly and the system classifies it as
-an error. A threshold can be chosen in order to ensure that whenever the system
-classifies an instance as incorrect it has an acceptable level of confidence.
+discouraged if she pronounces an utterance correctly and the system classifies her
+utterance as incorrect. A threshold can be chosen in order to ensure that
+a mispronunciation flag is raised only when the resulting score is above that
+threshold. The system could have made a mistake
+for instances labeled as incorrect with values below the threshold, so a conservative
+decision of not raising a mispronunciation flag can be taken to avoid discouraging
+the students.
+
+% whenever the system
+% classifies an instance as incorrect it has an acceptable level of confidence.
 

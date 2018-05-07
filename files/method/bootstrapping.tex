@@ -1,12 +1,11 @@
-One of the main objectives of this work is to find out whether or not there is again in performance
+One of the main objectives of this work is to find out whether or not there is a gain in performance
 when combining the supervectors features derived from \textit{GMM Adaptation} with features
 that carry information of the evolution through time of the phonetic features.
 The chosen approach to achieve that is to carry out a sample based study and analyse if the
-finding generalizes to the parent population. A subset of the samples, the \textit{heldout} data,
+finding generalizes to the parent population. A subset of the samples
 is reserved with this purpose in order to test the models and generate statistics of its
 performance. The statistic to be analysed in this case
-is the \textit{EER} of the models
-when tested against the heldout data, as it was mentioned in the previous \textit{Performance
+is the \textit{EER}, as it was mentioned in the previous \textit{Performance
 Measures} section.
 
 But how can be ensured that the sample based study generalizes to the parent population?
@@ -31,7 +30,6 @@ a fairly good idea about the sampling distribution of a particular statistic fro
 the collection of its values arising from these repeated samples could be obtained.
 This method doesn't make sense as it would be too expensive and defeat the purpose of a
 sample study, that is gather information in the cheapest and effortless way.
-
 The idea behind \textit{Bootstrapping} is to use the data of a sample study at hand as a
 ``surrogate population'' for the purpose of approximating the sampling distribution of
 a statistic. This is achieved by resampling with replacement from the sample data
@@ -40,10 +38,10 @@ bootstrap samples. The sample summary is then computed on each of the bootstrap
 samples (usually between 1-10 thousand). A histogram of the set of these computed
 values is referred to as the bootstrap distribution of the statistic.
 
-Suppose a population parameter $\theta$ is the target of the study. A random sample
+For the sake of understanding the maths behind this technique,
+suppose a population parameter $\theta$ is the target of the study. A random sample
 of size $n$ yields the data $(X_{1}, X_{2}, \dotsc X_{n})$, and the corresponding
 sample statistic computed from this dataset is ${\hat{\theta}}$.
-
 \textit{Central Limit Theorem} states that for most sample
 statistics the sampling distribution of ${\hat{\theta}}$ for large $n$
 ($n \geq 30$ is generally accepted as large sample size) is bell shaped with
@@ -61,13 +59,16 @@ approximates fairy well the sampling distribution of $\hat{\theta} - \theta$.
 It the current work, \textit{Bootstrapping} technique is used along with Confidence
 Intervals in order to determine if the \textit{SVM} trained with the combined features
 performs better than the one trained with the supervectors features only.
-Bootstrap samples are extracted from the \textit{heldout} data in order
+Bootstrap samples are extracted from the \textit{test} data in order
 to generate a distribution of $EER$ for both types of classifiers. After that,
 a 95\% confidence interval is computed for each distribution by finding the interval
 [$\hat{\theta}_{B1}, \hat{\theta}_{B2}$] that enclose the 95\% of the instances
-composing each distribution. The confidence interval of the \textit{SVM} trained with
-the combined features should be shifted to the left with respect to the confidence
-interval of the \textit{SVM} trained with the supervectors features only.
+composing each distribution.
+If it's true that the \textit{SVM} trained with
+the combined features performs better than
+\textit{SVM} trained with the supervectors features only, then its confidence
+interval should be shifted to the left with respect to the confidence interval
+of the latter system.
 The bigger the overlap between both intervals, the
 lesser the evidence of the results coming from different distributions and thus
 resulting in less significant results.

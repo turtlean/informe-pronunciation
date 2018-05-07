@@ -109,15 +109,17 @@ it to cross the boundary set by the margin.
 \subsection{Problem Formulation}
 
 It can be proven that given a set of $n$ observations of dimension $p$, the problem of
-finding the \textit{Maximal Margin Hyperplane} can be posed as an optimization problem:
-minimize $\| w \| = (\beta_{1}, \dotsc, \beta_{p})$.
+finding the \textit{Maximal Margin Hyperplane} can be posed as an optimization problem.
+The perpendicular distance from the observation $x^{*}$ is determined by the equation:
+% In order to
+% minimize $\| w \| = (\beta_{1}, \dotsc, \beta_{p})$.
 
 \begin{equation}
 \label{eq:svmOptimization}
-w^{T}x^{*} = p\| w \|
+\frac{w^{T}x^{*}}{\| w \|} = p \implies w^{T}x^{*} = p{\| w \|}
 \end{equation}
 
-where $x^{*}$ is an observation and $p$ is the length of the projection of the observation
+$p$ is the length of the projection of the observation $x^{*}$
 onto the normal vector of the hyperplane, i.e, the distance to the hyperplane.
 Equation \ref{eq:svmOptimization} states that in order to maximize $p$ the norm of $w$
 has to be minimized. On the other hand, the minimization problem is subject to the constraint:

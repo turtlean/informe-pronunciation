@@ -1,6 +1,6 @@
 In order to assess nonnative pronunciation a machine learning system was chosen as solution.
-In this section we will review the way the system works and explain the concepts 
-and techiniques required to build it.
+In this section we will review the way the system works and explain the concepts
+and techniques required to build it.
 
 ~
 
@@ -22,14 +22,14 @@ The phone is the unit of analysis, so the first step is extracting the informati
 for each phone instance in the utterances.  In order to do so,
 an HMM-based (Hidden Markov Model) recognition system is used to obtain the phonetic
 segmentations of the utterances, and these segmentations along with an external tool
-called \emph{Kaldi} are then used to extract the 
+called \emph{Kaldi} are then used to extract the
 acoustic features for each phone. At the same time, manual transcriptions of profesional
 annotators are used to obtain labels for each instance. A label has two possible values (0 or 1),
 and determines if a given instance of a phone was correctly or incorrectly pronounced.
 
 After that, labels and features are used to prepare a dataset: training and test sets. The first
 one is used to explore different models and find the parameters that lead to the
-best possible configurations. 
-After selecting the model that works the best, the model is tested against the test set 
+best possible configurations.
+Finally, after picking the model with the best performance it is tested against the heldout data
 and the results are analyzed.
 

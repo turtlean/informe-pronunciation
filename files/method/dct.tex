@@ -9,7 +9,7 @@ to approximate prosodic features in speaker verification tasks \cite{dct}.
 
 \textit{DCT} belongs to the family of the Fourier analysis. As a member of the family, it
 provides a way to approximate a general function by sums of simpler trigonometric functions.
-These transformations map map a function to a set of coefficient of basis functions, where
+These transformations map a function to a set of coefficient of basis functions, where
 the basis functions are sinusoidal and are therefore strongly localized in the frecuency spectrum.
 In particular, \textit{DCT} expresses a finite sequence of data points in terms of a sum of
 \textit{cosine} functions oscillating at different frequencies. Unlike the
@@ -18,7 +18,7 @@ thus needing a complex number to represent the coefficient of each frecuency, it
 numbers to output the coefficient of each frecuency.
 
 There exists different variants of the \textit{DCT}, being the type-II
-the most common and the one it is used in the current work:
+the most common and the one that it is used in the current work:
 
 \begin{equation}
 X_{k} = \sum_{n=0}^{N-1} x_{n} cos \Big[ \frac{\pi}{N} \Big( n + \frac{1}{2} \Big) k \Big], \ for \ k = [0, 1, \dotsc, N-1]
