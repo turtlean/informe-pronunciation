@@ -35,8 +35,8 @@ sequence of $N$ training vectors $X=\{x_{1}, x_{2}, \dotsc x_{N}\}$ the GMM like
 (assuming independence between vectors) can be written as:
 
 \begin{equation}
-	p(X|\lambda) = \prod_{n=1}^{N}p(x_{n}|\lambda)
 	\label{eq:likelihoodGMM}
+	p(X|\lambda) = \prod_{n=1}^{N}p(x_{n}|\lambda)
 \end{equation}
 
 The parameters $\lambda$ that maximizes \ref{eq:likelihoodGMM} are obtained by using an iterative
@@ -80,45 +80,19 @@ criterion is evaluated for either the parameters or the log likelihood:
 If the convergence criterion is not satisfied, the algorithm returns to \ref{eq:expectationStep}
 to start a new iteration of the Expectation and Maximization steps.
 
-% In order to generate the Gaussian Mixture Model from our data, the Expectation Maximization
-% Algorithm is used.
+\subsection{\textit{Universal Background Model} Adaptation}
 
-% \subsubsection{Definition and explanation of GMM}
-% 	Given a particular phoneme, Normal Distributions are used to model the distribution of each class (correct
-% 	 and mispronounced), where the space of the random variable consists in the MFCCs extracted from each instance.
+% A \textit{GMM} model trained using \textit{MFCCs} as input features is the chosen classifier for
+% the first experiment of the current work. The classifiers for the are trained with features
+In the present work, as in the previous works of the current line of investigation
+\cite{detection_phone_level_mispronunciation_learning, main}, the \textit{GMMs} are derived
+by using a techinque called \textit{GMM-UBM} \textit{Universal Background Model} \cite{ubm_adaptation}.
 
-% 	Instead of using a single Gaussian for each class, a Mixture is used because it allows
-% 	a much richer representation of a density model. The optimal number of Gaussians used for each
-% 	mixture is assumed to be proportional to the number of instances used to train the model.
-% 	Because of the differences in the number of instances for each phoneme, and also for each
-% 	class given a particular phoneme, each mixture is composed of a different number of gaussians.
-
-% \subsubsection{Log Likelihood Ratio method to asses pronunciation}
-% 	The core idea is based on the fact that the pattern of features of mispronounced instances are most likely to be found in the Gaussian Mixture of the incorrect instances than in the mixture of the
-% 	correct ones. Of course, the opposite scenario occurs when considering the well pronounced
-% 	instances.
-
-% 	Given a sample, its class is predicted by calculating
-% 	the log likelihood ratio between the chances of the instances of being mispronounced and
-% 	the chances of being correct. An instance is considered as incorrect by the system whenever
-% 	the LLR is above 0, and in the other way as correct when the LLR is below 0.
-
-% \subsubsection{GMM adaptation method}
-% 	Given a particular phoneme, the Gaussian Mixture Model for each class is computed by adaptation.
-% 	An intial GMM is trained with all the instances, and it will be used as basis for the next steps. This kind of model trained with all the instances and intended to be the basis of future
-% 	adaptation is named \textit{Universal Background Model} (UBM).
-% 	From there, two GMMs are created by adapting both weights and means of the base Gaussians according to a \textit{relevance factor} parameter and the number of features used in the adaptation. The more instances are used in the process, the more confidence will be perceived
-% 	over the new values thus allowing a more aggressive adaptation.
-
-% \subsubsection{Generating supervectors from adapted GMMs}
-% 	In the next experiments, the adaptation technique is used again but for a different purpose.
-% 	The task consist in generating input features for a \textit{SVM} classifier. In order to do that,
-% 	the first step is training an \textit{UBM} for a particular phoneme with all the
-% 	instances, both positives and negatives. After that, for each instance a GMM is obtained
-% 	by adapting the UBM to the new MFCCs. Usually, the parameters adaptation comprises a trade off
-% 	between the previous means and weights and the new values obtained. In this case,
-% 	the most aggressive strategy is used, because the previous values are not being taken into
-% 	account.
-
-% 	The final step in the process is the supervector generation, that is obtained by a concatenation
-% 	of all the means of the adapted gmm and their respectives weights.
+The \textit{UBM} is a large class-independent \textit{GMM} intended to represent the whole possible
+distribution of features. In a \textit{GMM-UBM} system, the
+\textit{GMM} is derived by adapting the parameters of the \textit{UBM} using the particular
+instances according to the custom desired model and a form of
+\textit{Maximum a Posteriori} (\textit{MAP}) estimation. This provides a tighter coupling
+between the particular models and the \textit{UBM} that produces better performance than
+using decoupled models, and it can be specially usefull for the models that has a small number
+of training instances.
