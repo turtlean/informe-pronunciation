@@ -1,5 +1,5 @@
 One of the main objectives of this work is to find out whether or not there is a gain in performance
-when combining the supervectors features derived from \textit{GMM Adaptation} with features
+when combining the features derived from \textit{GMM Adaptation} with features
 that carry information of the evolution through time of the phonetic features.
 The chosen approach to achieve that is to carry out a sample based study and analyse if the
 finding generalizes to the parent population. A subset of the samples
@@ -58,15 +58,15 @@ approximates fairy well the sampling distribution of $\hat{\theta} - \theta$.
 
 It the current work, \textit{Bootstrapping} technique is used along with Confidence
 Intervals in order to determine if the \textit{SVM} trained with the combined features
-performs better than the one trained with the supervectors features only.
+performs better than the one trained only with features derived from the \textit{GMM} adaptation.
 Bootstrap samples are extracted from the \textit{test} data in order
 to generate a distribution of $EER$ for both types of classifiers. After that,
 a 95\% confidence interval is computed for each distribution by finding the interval
 [$\hat{\theta}_{B1}, \hat{\theta}_{B2}$] that enclose the 95\% of the instances
 composing each distribution.
 If it's true that the \textit{SVM} trained with
-the combined features performs better than
-\textit{SVM} trained with the supervectors features only, then its confidence
+the combined features performs better than the
+\textit{SVM} trained with a single feature source, then its confidence
 interval should be shifted to the left with respect to the confidence interval
 of the latter system.
 The bigger the overlap between both intervals, the
