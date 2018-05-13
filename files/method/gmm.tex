@@ -101,12 +101,12 @@ In the present work, as in the previous works of the current line of investigati
 by using a techinque called \textit{GMM-UBM} \textit{Universal Background Model} \cite{ubm_adaptation}.
 
 The \textit{UBM} is a large class-independent \textit{GMM} intended to represent the whole possible
-distribution of features. In a \textit{GMM-UBM} system, the
+distribution of the features. In a \textit{GMM-UBM} system, the
 \textit{GMM} is derived by adapting the parameters of the \textit{UBM} using the particular
 instances according to the custom desired model and a form of
 \textit{Maximum a Posteriori} (\textit{MAP}) estimation. This provides a tighter coupling
 between the particular models and the \textit{UBM} that produces better performance than
-using decoupled models, and it can be specially usefull for the models that has a small number
+using decoupled models, and it can be specially useful for the models that has a small number
 of training instances. The method described in \cite{ubm_adaptation} involves adapting weight,
 mean and variance of each mixture, though in the current work only weights and means are adapted
 because of the limited size of the dataset.
@@ -124,7 +124,7 @@ from the adaptation data rely more on the old sufficient statistics for final pa
 estimation.
 
 Given a \textit{UBM} and the adaptation vectors $X=\{x_{1}, x_{2} \dotsc x_{N}\}$, the first step
-in the adaptation process is to compute the posterior probabilities that represents the
+in the adaptation process is to compute the posterior probabilities representing the
 \textit{responsibility} that the mixture $k, \ 1 \leq k \leq K$ of the \textit{UBM}
 takes for 'explaining' each observation
 (as in the first step of the \textit{EM} \ref{eq:expectationStep}):
@@ -168,8 +168,8 @@ the equations:
 \end{equation}
 
 The scale factor $\gamma$ is computed over all adapted mixture weights to ensure they sum to unity.
-$\alpha_{k}$ are the adaptation coefficients that controls the balance between old and new
-estimates, and they are defined as:
+$\alpha_{k}$ is the adaptation coefficient that controls the balance between old and new
+estimates, and is defined as:
 
 \begin{equation}
 	\alpha_{k} = \frac{N_{k}}{N_{k} + r}
