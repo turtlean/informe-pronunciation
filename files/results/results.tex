@@ -91,6 +91,7 @@ in \cite{main}.
 \end{figure}
 
 The same experiment was carried out in the heldout set leading to the results shown below.
+Both models were trained using all the instances in the development set.
 Both systems had a very similar performance for each phoneme compared with the results obtained
 in the development set, from which one can deduce that both classifiers generalize well to
 unobserved data. This time, however, it was the Adapted GMM with K-Means initialization
@@ -265,11 +266,47 @@ For both combination types, the DCT features yield better results than the Legen
 though the results for both features are very close to each other (around 1\% of relative
 difference).
 
-\section{Fusion systems}
+Once taken the decision of using DCT derived features to model the dynamic temporal
+information, the phoneme-dependent proportions for each of the remaining phonemes with
+lower Kappa values are computed for both Features Combination and Score
+Combination.
 
-\subsection{Statistical Significant Filtering}
+\section{Main Experiment}
 
-\subsection{Plots}
+The final experiment is carried out to determine if there is a real gain when combining
+supervectors with DCT features by testing the final models against
+both the development and the heldout data.
+Relative gain is calculated with respect to the baseline system: SVM trained on supervectors
+features only
+
+A McNemar test is performed as previous step to scope the analysis
+to a subset of phonemes that yields statistically significant results in the development
+data (\textit{p-value} $<$ 0.05).
+McNemar is used to estimate confidence of the two classifiers being actually different
+using the paired nominal results of both classifiers (\ref{subsection:mcnemar}).
+The McNemar test is run using the SVM
+trained only on supervectors as baseline of the comparison.
+
+\subsection{Development results}
+
+Once again, the experiment in the development set is carried out using 4-Fold Cross Validation
+and taking the average of the results obtained in each fold.
+
+Results are included only for those phonemes that were pointed out as statistically
+significant for the McNemar test. Those are:
+
+\begin{itemize}
+	\item /s/, /y/, /e/, /o/, /l/, /n/, /m/ in Features Combination
+	\item /s/, /y/, /e/, /o/, /l/, /z/, /n/, /m/, /rr/, /t/ in Score Combination
+\end{itemize}
+
+It is worth noting that phonemes with statistically significant gains in the Features
+Combination experiment are a subset of the statistically significant phonemes in the
+Score Combination experiment. For that reason, even though the barplots includes
+the results for the ten statistically significant phonemes of the Score Combination,
+additional marks (*) and (**) are included for the Features Combination bars to
+point out whether or not those results are significant in the Features Combination
+case.
 
 \begin{figure}[H]
 	\centering
@@ -283,6 +320,18 @@ difference).
 	\label{fig:fusionMcnemarDev}
 \end{figure}
 
+\subsection{Heldout results}
+
+To run the experiment against the heldout data, the models were trained using all the
+instances of the development set. A new McNemar test is performed for the results obtained
+in the heldout data for the same phoneme with statistically significant results in the
+development data, but this time any of them gave a significant p-value $<$ 0.05.
+This can be explained by the fact that heldout data has around 1/4 of the data of the
+development data, affecting the efectiveness of the test.
+
+The results are then still scoped to the phonemes with statistically significant results
+in the development experiment, and the same notation (*) and (**) is kept as a reference.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{files/figures/results/relatives/relative-fusion-systems-heldout-mcnemar.png}
@@ -294,3 +343,27 @@ difference).
 	and those marked with (**) weren't significant.}
 	\label{fig:fusionMcnemarTest}
 \end{figure}
+
+Among all the phonemes that were statistically significant in the Score Combination
+experiment carried out in the development set, only 'z' degraded its performance compared
+with the baseline system, though in a substantial way (around 6\% relative). Among the
+remaining phonemes, some reduced its gain compared with the development set (such as
+/y/ from 8\% to less than 2\% and /rr/ from almost 6\% to less than 2\%). Others such
+as /m/ improved its performance from 6\% to more than 8\%.
+
+On the other hand, among all the phonemes that were statistically significant in the
+Features Combination experiment carried out in the development set, only /o/ degraded
+its performance and in a slightly way. The plots also show a degradation of the /rr/
+performance, but /rr/ is not statistically significant for the Features Combination
+experiment. As in the case of the Score Combination, there are cases where both improvements
+and degradations of the performance is observed.
+
+A positive aspect of the analysis is that both /s/ and /m/, that are phonemes with high
+Kappa values, yields almost the best results in both development and heldout experiments,
+This fact matches the expected results and helps to
+increase the confidence over the obtained results.
+
+One important aspect to be analysed in the next section is whether or not the Score Combination
+of the results leads to a more robust classifier than the Features Combination technique.
+
+
