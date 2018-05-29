@@ -14,9 +14,6 @@ by testing the model trained on the development set against the heldout data.
 In all the experiments, an individual system is trained for each different phoneme.
 
 \section{Baseline Experiments}
-% We used a four-way jackknifing procedure to train and test these approaches on the same phonetically transcribed nonnative database. We trained models using data from three partitions and tested on the remaining partition, rotating the procedure four times over the four partitions. There were no common speakers across any of the partitions. When reporting results for a given system, the errors obtained for each of the four partitions were pooled to obtain mispronunciation detection average performance on the complete database.
-
-%For System 1 we replicated the results from the original work [9] with our current GMM training software. As different phones have different amounts of training data, we explored the number of mixture components to use for each phone class GMM, and found that the proportion of 25 training samples for each mixture component resulted in the best performance for this system.
 
 The current work uses the same database used in \cite{main} with the exception that
 data is split differently:
@@ -114,12 +111,46 @@ combining the supervectors features with features that carry temporal informatio
 	\centering
 	\includegraphics[width=0.8\textwidth]{files/figures/results/gmm-vs-supervectors/gmm-vs-supervectors-heldout.png}
 	\caption{Comparison of EER between LLR from Adapted GMMs with K-Means initialization
-	and SVM trained on Supervectors for all phones in the test set, sorted descendently
+	and SVM trained on Supervectors for all phones in the heldout set, sorted descendently
 	by Kappa values.}
 	\label{fig:gmmSupervectorsTest}
 \end{figure}
 
-\section{Legendre Best System}
+\section{Tunning Experiments}
+
+Tunning experiments are carried out in order to compare both alternative
+dynamic features that capture the temporal dependencies on each instance. These features are
+used as training instances of an SVM classifier.
+
+Features are first analysed in isolation to determine the best possible configuration for
+each technique. After that, the features generated with these configurations are combined with
+the supervectors and compared to each other.
+
+Tunning is again performed in the deveopment set using 4-Fold Cross Validation. Results are
+calculated only for the phonemes with high Kappa values taking the average of all the values.
+Only these phonemes are considered in the process because they are the most reliable ones.
+
+The optimal parameters to be obtained at this point: mainly the number of coefficients to
+be used of both Legendre and DCT, are shared by all the phonemes. This helps to keep
+the models simple by reducing the number of phone-dependent configuration parameters.
+
+\subsection{Legendre Best System}
+
+Tunning the best Legendre configuration involves the analysis of three different parameters:
+
+\begin{itemize}
+	\item Time axis normalization between -1 and 1
+	\item Inclusion of duration
+	\item Lasso-Regression normalization
+\end{itemize}
+
+The objective of the Legendre tunning experiments is to find the optimum degree of the Legendre
+Polynomials along with the decision of normalizing or not the time axis and applying or not
+Lasso Regularization over the coefficients. Degree was varied between 0 and 6,
+because polynomials with
+higher degrees run the risk of overfit to training instances by modeling very specific not
+generalizable details.
+
 
 \begin{figure}[H]
 	\centering
@@ -132,8 +163,33 @@ combining the supervectors features with features that carry temporal informatio
 	\label{fig:legendreTunning}
 \end{figure}
 
+Time normalization before approximating the
+MFCCs turned out to be an essential property for the Legendre Polynomials, evidenced by a
+considerable reduction of the EER average (gap between the blue and green curves). At the same
+time, appending the duration to the features produced a slight improvement in the performance.
+Lasso Regularization, however, doesn't contribute to reduce the average EER.
+Results show that the optimal configuration is to model the dynamics of the temporal dependencies
+using Legendre Polynomials of degree 2, normalizing the time axis and appending the duration of the
+phone utterance to the features (green dotted line).
 
-\section{Legendre vs DCT}
+\subsection{DCT Best System and Comparison Between Features}
+
+Analogous to Legendre, the objective of the DCT tunning experiments is to find the optimum
+number of coefficients of DCT to approximate the dynamics of the temporal dependencies.
+In the DCT case, the only additional parameter to be determined is whether or not appending the
+duration to the DCT coefficients.
+
+As in the Legendre optimal configuration, DCT tunning experiments also showed that appending the
+duration to the coefficients produced a slight reduction in the averaged EER (around 1\%
+relative).
+
+A comparative plot between the variation of the EER as function of the number of coefficients
+is shown below. The additional parameters were fixed according to their optimal configuration
+for both techinques:
+Normalizing the time axis and appending the duration for Legendre (without Lasso Regularization),
+and appending the duration for DCT. The degree of the Legendre coefficients is transformed to
+the number of coefficients in the \textit{x-axis} to allow the comparison: 1 coefficient for
+Legendre Polynomials of degree 0, 2 coefficients for polynomials of degree 1, etc.
 
 \begin{figure}[H]
 	\centering
@@ -143,6 +199,71 @@ combining the supervectors features with features that carry temporal informatio
 	\label{fig:legendreVsDCT}
 \end{figure}
 
+A dot is placed on each curve showing the optimal number of coefficients for both techniques.
+As it was known from \ref{fig:legendreTunning}, the optimal number of coefficients for the
+Legendre Polynomials is 3 (Polynomials of degree 2). Polynomials with 4 coefficients performs
+almost as well as polynomials with 3 coefficients, but it is always preferable to keep the
+model as simple as possible. On the other hand, the optimal number of coefficients for DCT is 2.
+
+The results show that when the analysis is done in isolation (in absence of the supervectors
+features), Legendre Polynomials lead to a better performance, generating a relative reduction
+of the average EER of 3.3\% compared with DCT.
+
+\subsection{Comparing the Combination of Dynamic Features with Supervectors}
+
+Even though the SVM based solely on Legendre performed better than the SVM based solely on
+DCT, a new experiment is carried out in order to determine which feature integrates better
+with the supervectors features to produce the best results.
+
+Two types of combination are studied in the current thesis: a Features Combination and a Score
+Combination. In the former, features from both sources are mixed in some proportion and
+used to train a single SVM, and the results are obtained by running this SVM on the test data.
+In the latter, an independent SVM is trained for each feature source and run against the
+test data and then the results are combined in some proportion to generate the final results.
+
+The experiment is scoped again to phonemes with high Kappa values. In this case, however, the
+proportions to be used when combining the features and the scores are kept phoneme-dependent.
+The objective is thus to compute for each phoneme two optimal proportions:
+one for the features combinations and the other one for the score combination.
+
+To make the experiment, proportions of the dynamic features with respect to supervectors
+features were varied between 0 and 1 with steps of 0.1. In other words, the following
+proportions were tested: [0.0, 0.1, 0.2 \ldots 1.0]. Both ends corresponds to use only
+a feature source and not using the other source at all. A proportion of 0.0 of the dynamic
+features with respect to supervectors leads to not using the dynamic features at all while
+a proportion of 1.0 leads to not using the supervectors features at all.
+In the case of the Features Combination, an extra exploration is done in the interval
+[0.0 - 0.1], because achieving an optimal feature combination may have required a more
+refined granularity in the proportions. No significant gains, however, were observed
+when zooming in in the interval [0.0 - 0.1].
+
+For the Features Combination case, the optimal proportion for the majority of the phonemes
+for both Legendre and DCT approaches is 0.1. There are also some phonemes such as
+$/\gamma/$ and $/b/$ where the best proprtions is 0.0. That is, that there is no
+proportion of the dynamic features that produces an improvement when combined with the
+supervector features.
+
+On the other hand, for the Score Combination case, the optimal proportions for
+the phonemes are more scattered along the whole interval [0.0 - 1.0] for both Legendre and
+DCT. Again, there are also some phonemes where the optimal proportions is 0.0, but they are
+considerable fewer than in the Features Combination case.
+
+~
+
+\begin{center}
+    \begin{tabular}{ | c | c | c | }
+    \hline
+    & Legendre + Supervectors & DCT + Supervectors \\ \hline
+    EER Features Combination (Avg) & 0.188 & 0.187 \\ \hline
+    EER Score Combination (Avg) & 0.189  & 0.187 \\ \hline
+    \end{tabular}
+\end{center}
+
+~
+
+For both combination types, the DCT features yield better results than the Legendre features,
+though the results for both features are very close to each other (around 1\% of relative
+difference).
 
 \section{Fusion systems}
 
