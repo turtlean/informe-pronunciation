@@ -1,66 +1,124 @@
-The first step in order to build the system is to extract features from the speech data. In this
-work we base our features in the standard and widely used Mel Frecuency Cepstral Coefficients 
-(MFCCs).
+The first step in order to build the system is to extract features from the speech data.
+The feature extraction process aims at approximating the linguistic content that is conveyed
+by the speech signal, by identifying its relevant aspects and discarding other unuseful
+properties like background noise, emotions, etc.
 
-The presence or absence of particular frequencies at some instant are consequences of the shape of
-the vocal tract at that instant. The disposition of the vocal tract during the 
-release of air generates vibrations 
-that determine which kind of sound comes out.
-The choice of using power spectrum based features is motivated by
-the way the human cochlea (the organ in the ear responsible for speech processing) works.
-Depending on the location in the cochlea that vibrates (which wobbles small hairs), 
-different nerves inform to the brain that certain frequencies are present. 
-MFCCs performs a similar job carrying information about which frequencies are present at
-some instant. 
+\subsection{MFCCs Extraction}
+In this work we base our features in the standard and widely used Mel Frecuency
+Cepstral Coefficients (MFCCs). They were introduced by Davis and Mermelstein in 1980 and
+have been state-of-the-art ever since \cite{mfcc_foundational}.
+MFCC coefficients represent the spectral envelope of the speech signal on the Mel-frequency scale,
+which relates the perceived frequency of a pure tune to its actual measured frequency inspired
+by the human hearing.
+
+The process to compute the MFCCs coefficients can be summarized into applying the following steps:
+
+\begin{enumerate}
+
+  \item Preemphasis: Preemphasis aims at increasing the amplitude of high frequency bands while
+  decreasing the amplitudes of lower bands by means of a high-pass filter. This stage is performed
+  in order to balance the frequency spectrum since high frequencies usually have smaller
+  magnitudes compared to lower ones.
+  % http://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html
+  % https://www.quora.com/Why-is-pre-emphasis-i-e-passing-the-speech-signal-through-a-first-order-high-pass-filter-required-in-speech-processing-and-how-does-it-work
+
+  \item Windowing: The MFCCs are computed in time intervals where the audio signal isn't
+  supposed to be changing
+  so much. Because of that reason the signal is divided in frames using a
+  25 ms duration window and 10 ms shift (standard values). A 25 ms duration window provides
+  enough samples to get a reliable spectral estimate: 200 samples per frame at 8 $kHz$,
+  and at the same time is short enough to minimize the signal changes.
+  On the other hand, a 10 ms shift leads to a
+  15 ms overlap between consecutive frames, ensuring that the information between adjacent
+  frames is also captured in the middle of another frame.
+  % http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/
+
+  \item Discrete Fourier Transform: This is the first and main step in regard to spectral
+  analysis. Frequency domain approaches are proven to be
+  among the best options in speech classification tasks.
+  The \textit{spectral density}, which is the distribution of power
+  into the frequency components composign the signal, is obtained for each frame by using
+  the Discrete Fourier Transform technique.   % mfcc_extraction_v3
+
+  \item Mel Filter-bank: At this stage, a perceptual scale of pitches inspired in human
+  hearing called Mel scale is used. Because humans are much better at discerning small changes
+  in pitch at low frequencies than they are at high frequencies,
+  the Mel frequency scale is linear up to 1000Hz and logarithmic thereafter according to
+  the following formula:
+
+  \begin{equation}
+    M(f)=1125*ln(1 + \frac{f}{700})
+  \end{equation}
+
+  The spectrum obtained in (3) is passed through a series of traingular filters
+  uniformly spaced on the Mel scale to produce the so called filter-bank energies.
+  The original values of these energies are replaced by their natural logarithm values,
+  also motivated by human hearing: loudness is not perceived according to
+  a linear but an exponential scale.
+
+  \item Cepstral Coefficients: The Discrete Cosine Transform (DCT) is applied to the logarithm
+  of the filterbank energies to obtain the Cepstral Coefficients. In general, only the lower
+  12 Cepstral Coefficients are kept. The resulting features are called Mel Frequency
+  Cepstral Coefficients. Additionally, a $13\textsuperscript{th}$ MFCC computed
+  as the sum of the energy in the frame is included,
+  because it usually improves the performance in phone detection
+  related tasks.
+
+  \item Deltas and Double Deltas: Finally, the speech also carries information
+  in the dynamics, i.e, trajectories of the MFCC coefficients over time. Calculating
+  the MFCC trajectories and appending them to the original MFCC vector usually increase the
+  performance of the systems. Both Delta and Delta-Delta features are included, adding to
+  a total of 39 features per frame.
+
+  \end{enumerate}
+
+% \subsubsection{Window Size and Shift}
+
+% Spectral Density is meant to be computed over an interval where the audio signal is not changing.
+% To satisfy that condition, each phone utterance instance is divided into frames of 25 $ms$.
+% This is the most standard value for window size when computing MFCCs since
+% each frame contains enough samples to get a reliable spectral estimate, and at the same time is
+% short enough to minimize the signal changes.
+
+% For the window's shift or step the most standard value of 10 $ms$ was also selected, allowing some
+% overlap to the frames.
 
 
-\subsubsection{Window Size and Shift}
+% \subsubsection{Spectral Density and Mel Filterbanks}
 
-Spectral Density is meant to be computed over an interval where the audio signal is not changing.
-To satisfy that condition, each phone utterance instance is divided into frames of 25 $ms$. 
-This is the most standard value for window size when computing MFCCs since 
-each frame contains enough samples to get a reliable spectral estimate, and at the same time is
-short enough to minimize the signal changes.
+% The next step in order to compute the MFCCs is to obtain the spectral density for each frame,
+% that describes the power as fuction of the different frequencies that make up the signal.
+% The Fast Fourier Transform technique (FFT) is used in order to do so.
 
-For the window's shift or step the most standard value of 10 $ms$ was also selected, allowing some
-overlap to the frames.
+% Not all the information provided by the spectral density is useful to describe the source
+% of the signal. The cochlea can't discern between two closely spaced frequencies and the
+% effect becomes more pronounced as the frecuencies increase. For that reason, frequencies
+% that are close enough are grouped together and summed up to get an idea of how much energy
+% exists in various frequency regions. This is achieved by using Mel Filterbanks:
+% the first filter is very narrow and gives information about how much energy exists near 0 Hz.
+% As the frequencies get higher, the filters get wider and variations become harder to
+% detect. The Mel scale describe exactly how to space the filterbanks and how wide to make them:
 
+% \begin{equation}
+% M(f)=1125*ln(1 + \frac{f}{700})
+% \end{equation}
 
-\subsubsection{Spectral Density and Mel Filterbanks}
+% Once computed the filterbank energies, the logarithm of them is taken. This is also motivated by
+% the human hearing thus we don't perceive loudness on a linear way, but following an exponential
+% scale. So large variations in energy may not sound all that different if the sound is loud to
+% begin with.
 
-The next step in order to compute the MFCCs is to obtain the spectral density for each frame,
-that describes the power as fuction of the different frequencies that make up the signal.
-The Fast Fourier Transform technique (FFT) is used in order to do so. 
-
-Not all the information provided by the spectral density is useful to describe the source
-of the signal. The cochlea can't discern between two closely spaced frequencies and the
-effect becomes more pronounced as the frecuencies increase. For that reason, frequencies
-that are close enough are grouped together and summed up to get an idea of how much energy
-exists in various frequency regions. This is achieved by using Mel Filterbanks: 
-the first filter is very narrow and gives information about how much energy exists near 0 Hz.
-As the frequencies get higher, the filters get wider and variations become harder to 
-detect. The Mel scale describe exactly how to space the filterbanks and how wide to make them:
-
-\begin{equation}
-M(f)=1125*ln(1 + \frac{f}{700})
-\end{equation}
-
-Once computed the filterbank energies, the logarithm of them is taken. This is also motivated by
-the human hearing thus we don't perceive loudness on a linear way, but following an exponential
-scale. So large variations in energy may not sound all that different if the sound is loud to 
-begin with.
-
-Finally, the DCT of the log filterbank energies is computed. This is performed because of  
-two main reasons. On the one hand, it helps to decorrelate the energy of the filterbanks
-in response to the overlap between them. On the other hand, only 13 of the DCT coefficients
-are kept. This is because the higher DCT coefficients represent fast changes in the filterbank
-energies and it turns out that these fast changes actually degrades performance 
-when they are included as features to build speech related systems.
+% Finally, the DCT of the log filterbank energies is computed. This is performed because of
+% two main reasons. On the one hand, it helps to decorrelate the energy of the filterbanks
+% in response to the overlap between them. On the other hand, only 13 of the DCT coefficients
+% are kept. This is because the higher DCT coefficients represent fast changes in the filterbank
+% energies and it turns out that these fast changes actually degrades performance
+% when they are included as features to build speech related systems.
 
 
-\subsubsection{Deltas and Deltas-Deltas}
+% \subsubsection{Deltas and Deltas-Deltas}
 
-The MFCC feature vector describes only the power spectral envelope of a single frame, but speech
-would also have information in the dynamics.	 
-Calculating differential and acceleration coefficients often leads to small improvements  
-in the performance of speech related systems when they are appended to the original feature vector.
+% The MFCC feature vector describes only the power spectral envelope of a single frame, but speech
+% would also have information in the dynamics.
+% Calculating differential and acceleration coefficients often leads to small improvements
+% in the performance of speech related systems when they are appended to the original feature vector.
