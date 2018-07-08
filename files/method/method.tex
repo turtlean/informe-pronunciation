@@ -1,6 +1,6 @@
-In this section we will review the way pronunciation scoring the system works
-and explain the concepts and techniques required to build it. A diagram showing
-the architecture of the system is shown bellow.
+In this section we will review the way the pronunciation scoring system works
+and explain the concepts and techniques on which it is based. The diagram bellow
+shows the overall architecture of the system:
 
 ~
 
@@ -15,25 +15,30 @@ Given a test instance, the objective is to compute a score for each phone that
 is uttered in that instance. In order to do so, the flow goes as follows:
 
 \begin{enumerate}
+
  \item The first step is to calculate the audio features from the recordings.
  This is done in order to summarize the signal information
  in a measurable way through numeric values. The chosen features
  are the \textit{Mel Frecuency Cepstral Coefficients} (MFCCs) because they are one of the
  most standard and widely-spread features in the speech processing field.
+
  \item The MFCCs are then splitted in segments according to the phones to which they
  belong. Each segment is at the same time divided in frames, that represent short
- intervals where the audio signal is not supposed to be changing so much. The MFCCs of
- the signal is calculated on each of these frames.
- \item MFCCs of each phone are then used to compute the more complex features
+ intervals where the audio signal is not supposed to be changing so much.
+
+ \item MFCCs of each instance of the phone present in the utterance
+ are then used to compute the more complex features
  on which the SVMs operates. Supervectors are the base and proven to work features,
  while the Dynamic Features are the experimental features to be studied.
- An individual classifier corresponds to each of the phones.
+ There is an individual classifier for each of the phones.
+
  \item Finally an individual score is obtained for each of the phones present in the
  utterance. Scores with positive sign corresponds to correctly pronounced instances of the phone
  while scores with negative sign corresponds to mispronunciations. The magnitude of the score
  is associated with how well or bad the phone is pronounced.
  The bigger the magnitude of the score, the better the pronunciation when the sign is positive
  and the worst the mispronunciation when the sign is negative.
+
 \end{enumerate}
 
 % Given a phone utterance the objective is to determine wheter or not it was correctly
