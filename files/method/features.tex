@@ -1,9 +1,25 @@
-The first step in order to build the system is to extract features from the speech data.
+In this section we describe the chosen features for the current study. The features can be classified in two different categories: initial or base features and main features.
+
+Initial or base features are computed directly from the speech signal, and they carry spectral density information. For the current work, the standard Mel Frequency Cepstral Coefficients
+were chosen.
+
+The initial features are then used as base to compute more complex features:
+The main features. These
+are the features used to train the SVM and classify the instances. In the current work, two
+types of main features are studied: \textit{Supervectors} obtained from an adaptation process of
+a Gaussian Mixture Model trained on the MFCCs and the \textit{Dynamic Features}, computed
+as the coefficients of different interpolation methods of the MFCC values through time.
+
+In the following subsections a detailed description of each of the aforementioned features is
+provided.
+
+\subsection{Acoustic Features: MFCCs}
+
+The first step in order to build the system is to extract acoustic features from the speech data.
 The feature extraction process aims at approximating the linguistic content that is conveyed
 by the speech signal, by identifying its relevant aspects and discarding other unuseful
 properties like background noise, emotions, etc.
 
-\subsection{MFCCs Extraction}
 In this work we base our features in the standard and widely used Mel Frecuency
 Cepstral Coefficients (MFCCs). They were introduced by Davis and Mermelstein in 1980 and
 have been state-of-the-art ever since \cite{mfcc_foundational}.
@@ -70,4 +86,4 @@ The process to compute the MFCCs coefficients can be summarized into applying th
   performance of the systems. Both Delta and Delta-Delta features are included, adding to
   a total of 39 features per frame.
 
-  \end{enumerate}
+\end{enumerate}
