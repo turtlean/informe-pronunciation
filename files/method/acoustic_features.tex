@@ -89,14 +89,3 @@ The process to compute the MFCCs coefficients can be summarized into applying th
   a total of 39 features per frame.
 
 \end{enumerate}
-
-\subsection{Main Features: Supervectors}
-
-Supervectors, introduced in \cite{main} are one of the two features used to train the SVM
-classifier. Supervectors for a given phone are obtained by extracting the means and weights
-of different
-Gaussian Mixture Models derived from the adaptation of a class-independently trained GMM
-to each of the instances.
-
-So in order to go into more details of the supervectors features, a brief introduction to
-GMMs is provided along with an explanation of the adaptation process.

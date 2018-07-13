@@ -21,6 +21,7 @@ sorting=none
 \usepackage{hhline}
 \usepackage{multicol}
 \usepackage[table,x11names]{xcolor}
+\usepackage{flexisym}
 
 \begin{document}
 \linespread{1.6}
@@ -31,16 +32,11 @@ sorting=none
 	\section{Previous work}
 		\input{files/intro/previous_work.tex}
 \chapter{Method}
-	% \input{files/method/gmm.tex}
 	\input{files/method/method.tex}
 	\section{Features}
-		\input{files/method/features.tex}
-			% \subsubsection{Windows and Shifts}
-			% \subsubsection{Mel-Frecuency Cepstral Coefficients}
-			% 	\input{files/method/mfcc.tex}
+		\input{files/method/acoustic_features.tex}
+		\input{files/method/supervector_features.tex}
 		% \subsection{Cepstral Mean Substraction}
-	\section{Gaussian Mixture Model}
-	\input{files/method/gmm.tex}
 		% \subsection{Definition}
 		% \subsection{GMM Adaptation}
 		% \subsection{Log-Likelihood Ratio Method}
