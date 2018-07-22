@@ -40,7 +40,7 @@ Because of these reasons, the requirement that a separating hyperplane will perf
 every training observation on the correct side of the line according to its class label can
 be relaxed by introducing a new concept developed in \cite{svm_soft_margin}: the Soft Margin.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \begin{subfigure}{.5\textwidth}
     \centering
@@ -67,6 +67,7 @@ A Support Vector Classifier or Soft Margin Classifier allows some observations t
 incorrect side of the margin or even on the incorrect side of the hyperplane, thus providing
 a "soft" separation. The soft margin method will choose a hyperplane that splits the example
 as cleanly as possible while still maximizing the distance to the nearest training instances.
+The effects of the soft margin can be observed in Fig. \ref{fig:soft_margin_low_c}.
 
 Given a labeled dataset D of $n$ points
 of the form: $D=\{ \ (x_{i}, y_{i}) \ | \ x_{i} \in R^{p}, \ y_{i} \in \{-1, 1\} \ \}$, the
@@ -95,6 +96,16 @@ Finally, slack variables $\xi_{i}$ allow the individual observations to be
 on the wrong side of the
 margin or hyperplane, while $C$ is an input parameter that determines the cost of
 the errors, thus establishing a trade off between a large margin and the error penalty.
+
+\begin{figure}[H]
+  \centering
+  % \captionsetup{width=.95\linewidth}
+  \includegraphics[width=.55\linewidth]{files/figures/method/soft_margin_low_c}
+  \caption{When lowering the cost of misclassifications ($C$ parameter), the SVM still
+  prioritizes maximizing the margin, even though an instance ends in the wrong side
+  of the margin or hyperplane.}
+  \label{fig:soft_margin_low_c}
+\end{figure}
 
 Different values of $C$ were tested at the beginning of the
 current work using at first an exponential scale:
