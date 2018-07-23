@@ -5,9 +5,9 @@ the acoustic features do include deltas and double-deltas, these features only r
 information of adjacent frames.
 
 The evolution of the MFCCs over time can be modeled by using different interpolation techniques,
-and Dynamic Features are obtained by extracting the coefficients of the interpolation functions.
+and Dynamic Features are obtained by extracting the coefficients of those interpolation functions.
 Given a phone instance,
-the values of each of the MFCCs, deltas and double-deltas along the whole interval are
+the values of each of the MFCCs along the whole interval are
 interpolated separately, so a total of 39 functions are computed.
 The chosen methods for the current work are Legendre Polynomials and Discrete Cosine Transform.
 

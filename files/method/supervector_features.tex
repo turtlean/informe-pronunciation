@@ -35,7 +35,8 @@ MFCCs (13), plus deltas (13) and double deltas (13). So the features for our GMM
 
 GMMs are created with a number of gaussian components proportional to the number of samples
 of the given phone. For the current work, a proportion of 1 gaussian every 15 instances is used
-because it is a similar proportion to that used in the previous work \cite{main}.
+because it is a similar proportion to that used succesfully in the previous work
+of the current line of investigation \cite{main}.
 
 It is desirable, when possible, to transform the feature space into a normally distributed feature
 space because it leads to more robust results. For that reason, the acoustic features are
@@ -79,7 +80,11 @@ a relevance factor input parameter $r$. A higher value of $r$ produces a decreas
 of $\alpha_{k}$, thus adapting in a more conservative way by assigning more importance
 to the previous values. By contrary, a lower value of $r$ produces an increment in the value
 of $\alpha_{k}$, thus leading to a more aggresive adaptation strategy by assigning more importance
-to the new values. % No menciono que la cantidad de instancias también se relaciona con \alpha_{k}
+to the new values. In the current work $r$ is set to 0, taking the most aggresive
+adaptation strategy. This is again motivated by the previous work of the current
+line of investigation \cite{main}.
+
+% No menciono que la cantidad de instancias también se relaciona con \alpha_{k}
 % porque para el caso de nuestra tesis no es tenido en cuenta (relevance_factor = 0)
 
 \subsubsection{Supervectors computation}
@@ -88,13 +93,13 @@ In order to compute the supervectors for a given phone, which are then used to t
 classifier, the following steps are performed:
 
 \begin{enumerate}
-  \item At first, a GMM-UBM is trained on the acoustic features (13 MFCCs plus deltas and double
-  deltas) of all the available training instances for that phone, regardless of their class.
+  \item At first, a GMM-UBM is trained on the MFCCs
+  of all the available training instances for that phone, regardless of their class.
   \item After that, an individual MAP adaptation process is carried out for each
   of the $N$ training intances, thus generating $N$ different GMMs.
   % \item The supervector generated for the i\textsuperscript{th} instance is obtained by stacking
   % the means and the weights of each of the gaussians composing the i\textsuperscript{th} GMM.
-  \item Finally, for each of the training instances $i$ the supervector is obtained by stacking
+  \item Finally, for each of the training instances $i$, the supervector is obtained by stacking
   the means and the weights of each of the gaussians composing the GMM obtained from the
   i\textsuperscript{th} instance.
 \end{enumerate}
