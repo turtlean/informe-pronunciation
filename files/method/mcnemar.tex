@@ -1,11 +1,12 @@
 \subsection{McNemar's Test} \label{subsection:mcnemar}
 
-\textit{McNemar's Test} is used as an alternative to determine whether the \textit{SVM}
+\textit{McNemar's Test} \cite{mcnemar}
+is used as an alternative to determine whether the \textit{SVM}
 based on the combined features and the \textit{SVM} based only on features
 derived from the \textit{GMM} adaptation are significantly different.
 
-\cite{mcnemar} Given a set of $n$ test samples labeled by two systems, $A_{1}$ and $A_{2}$
-the results can be resumed in:
+Given a set of $n$ test samples labeled by two systems, $A_{1}$ and $A_{2}$
+the results can be summarized as:
 
 \begin{center}
     \begin{tabular}{ | c | c | c | }
@@ -23,10 +24,10 @@ the results can be resumed in:
 \item{$N_{1, 1}$ is the number of samples which $A_{1}$ classifies incorrectly and $A_{2}$ classifies incorrectly}
 \end{itemize}
 
-Let's denote $p_{1}$ the error rate of the system $A_{1}$ and $p_{2}$ the error rate of the
+Let $p_{1}$ be the error rate of the system $A_{1}$ and $p_{2}$ the error rate of the
 system $A_{2}$. \\
-Let's also denote $q_{0,0}$ as the probability of ($A_{1}$ correct $\land$ $A_{2}$ correct),
-$q_{0,1}$ the probability \\ of ($A_{1}$ correct $\land$ $A_{2}$ incorrect), etc. Hence:
+Let $q_{0,0}$ be the probability of ($A_{1}$ correct $\land$ $A_{2}$ correct),
+$q_{0,1}$ the probability \\ of ($A_{1}$ correct $\land$ $A_{2}$ incorrect), and so on. Hence:
 
 \begin{multicols}{2}
   \noindent
@@ -43,7 +44,7 @@ $q_{0,1}$ the probability \\ of ($A_{1}$ correct $\land$ $A_{2}$ incorrect), etc
 The \textit{null hypothesis} $p1=p2$ is equivalent to $q_{1,0}=q_{0,1}$. Defining
 $q=q_{1,0}/(q_{1,0}+q_{0,1})$ the \textit{null hypothesis} becomes $q=\frac{1}{2}$.
 The probability $q$ is the probability that given that only one of the systems
-made an error, it was system $A_{1}$ that did it. Under the \textit{null hypothesis},
+made an error, it was system $A_{1}$ that did. Under the \textit{null hypothesis},
 $N_{1,0}$ is distributed as a Binomial Distribution $B(n,1/2)$, where $n$ is
 the observed number of samples for which only one system made an error: $N_{1,0}+N_{0,1}$.
 At this point, a two-tail test can be applied to obtain a \textit{p-value}.
@@ -51,6 +52,9 @@ At this point, a two-tail test can be applied to obtain a \textit{p-value}.
 In conclusion \textit{McNemar's Test} is based on cross information by comparing the results of
 evaluating both systems on exactly the same sample. \textit{Bootstrapping} differs on this
 point because each sample is evaluated independently for each system.
-So a complementary analysis using both different techniques can be carried out
+A disadvantage of McNemar's, however, is that unlike Bootstrapping, it assumes that the samples are
+independent, and that condition does not hold in the current work.
+
+A complementary analysis using both different techniques is carried out in the experiment section
 in order to determine the statistic significance of the results.
 
