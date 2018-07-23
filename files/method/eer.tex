@@ -5,16 +5,17 @@ in the previous works of the current line of investigation related to pronunciat
 at phone level \cite{detection_phone_level_mispronunciation_learning, main}, so the same approach
 was taken in the present work.
 
-The process for evaluating the performance of the classifier goes as follows:
+% The process for evaluating the performance of the classifier goes as follows:
+The process for evaluating the performance of a classifier usually involves the following steps:
 At first, the decision function of the classifier, which can be for example predicted probabilities
 or in our case distances to the hyperplane, is computed for each instance of the test set.
 Then, the obtained results are used to generate
 a distribution of the instances count as function of the values
 in the domain of the decision function. Finally,
-to make class predictions a threshold is chosen and the instances with a result of the
+in order to make class predictions a threshold is chosen and the instances with a result of the
 decision function above that threshold are classified as positive, while
 those with results below the threshold are classified as negative. Most classifiers
-usually set a threshold by default, such as 0 for the Support Vector Machines that
+usually set a threshold by default, such as 0 in the case of Support Vector Machines that
 determines a separation of
 positives and negative instances according to the sign of their distance to the hyperplane.
 
@@ -28,14 +29,13 @@ shown in Fig. \ref{fig:eer}.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{files/figures/method/eer}
-  \caption{EER threshold for perfectly balanced classes, with negative and positive distributions
-  of the same size and shape.
+  \caption{An example of EER threshold with perfectly balanced classes. Both negative and positive distributions have the same size and shape.
   The threshold separates the instances in such way that FPR equals FNR.}
   \label{fig:eer}
 \end{figure}
 
 Even though the diagram shows a case where the classes are perfectly balanced, in most of
-real world problems (including the current one) this is not the case. Distributions of both
+real world problems (including the current one) this does not happen. Distributions of both
 classes usually differs in both size and shape. However,
 as the technique is based on the \textit{rate} of misclassified positive and negative instances,
 the EER method can be applied without any trouble for unbalanced datasets and
