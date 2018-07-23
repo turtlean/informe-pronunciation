@@ -1,9 +1,9 @@
-In this section we describe the chosen features for the current study. The features can be classified in two different categories: initial or base features and main features.
+In this section we describe the chosen features for the current study. The features can be classified in two different categories: Acoustic features and main features.
 
-Initial or base features are computed directly from the speech signal, and they carry spectral density information. For the current work, the standard Mel Frequency Cepstral Coefficients
+Acoustic features are computed directly from the speech signal, and they carry spectral density information. For the current work, the standard Mel Frequency Cepstral Coefficients
 were chosen.
 
-The initial features are then used as base to compute more complex features:
+The acoustic features are then used as base to compute more complex features:
 The main features. These
 are the features used to train the SVM and classify the instances. In the current work, two
 types of main features are studied: \textit{Supervectors}
@@ -57,7 +57,7 @@ The process to compute the MFCCs coefficients can be summarized into applying th
   analysis. Frequency domain approaches are proven to be
   among the best options in speech classification tasks.
   The \textit{spectral density}, which is the distribution of power
-  into the frequency components composign the signal, is obtained for each frame by using
+  of the frequencies composing the signal, is obtained for each frame by using
   the Discrete Fourier Transform technique.   % mfcc_extraction_v3
 
   \item Mel Filter-bank: At this stage, a perceptual scale of pitches inspired in human
@@ -73,7 +73,7 @@ The process to compute the MFCCs coefficients can be summarized into applying th
   The spectrum obtained in (3) is passed through a series of traingular filters
   uniformly spaced on the Mel scale to produce the so called filter-bank energies.
   The original values of these energies are replaced by their natural logarithm values,
-  also motivated by human hearing: loudness is not perceived according to
+  also motivated by human hearing, because loudness is not perceived according to
   a linear but an exponential scale.
 
   \item Cepstral Coefficients: The Discrete Cosine Transform (DCT) is applied to the logarithm
@@ -87,11 +87,12 @@ The process to compute the MFCCs coefficients can be summarized into applying th
   \item Deltas and Double Deltas: Finally, the speech also carries information
   in the dynamics, i.e, trajectories of the MFCC coefficients over time. Calculating
   the MFCC trajectories and appending them to the original MFCC vector usually increase the
-  performance of the systems. Both Delta and Delta-Delta features are included, adding to
+  performance of the systems that are based on MFCCs.
+  Both Delta and Delta-Delta features are included, adding to
   a total of 39 features per frame.
 
 \end{enumerate}
 
 Even though the acoustic features are made up of different features: 13 MFCCs plus 13 deltas
 and 13 double-deltas, for the sake of simplicity the expression "MFCCs"
-will be referring to the whole 39 features in the current work.
+will be referring to the whole 39 features throughout the current work.
