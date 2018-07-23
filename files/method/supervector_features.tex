@@ -33,6 +33,10 @@ In this work, GMMs are used to model the acoustic features mentioned in the prev
 MFCCs (13), plus deltas (13) and double deltas (13). So the features for our GMMs are
 39-dimensional vectors corresponding to each frame of each instance of a given phone.
 
+GMMs are created with a number of gaussian components proportional to the number of samples
+of the given phone. For the current work, a proportion of 1 gaussian every 15 instances is used
+because it is a similar proportion to that used in the previous work \cite{main}.
+
 It is desirable, when possible, to transform the feature space into a normally distributed feature
 space because it leads to more robust results. For that reason, the acoustic features are
 standardized by removing the mean and scaling to unit variance before training the GMMs.
