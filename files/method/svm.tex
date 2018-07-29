@@ -13,14 +13,17 @@ speech processing fields, such as speaker recognition and pronunciation assessme
 % The previous work of the current line proposed
 % The baseline work for the current thesis developed
 
-Given a p-dimensional feature space, an SVM constructs an hyperplane of dimension p-1
+Given a p-dimensional feature space, an SVM \textcolor{red}{(with linear kernel)}
+constructs a hyperplane of dimension p - 1
 that separates the space in two halves, which allows to classify the instances according
-to their relative position to the hyperplane (above or bellow). The classification
+to their relative position to the hyperplane. The classification
 procedure is then just simply a case of determining which side a test observation falls on.
 
-Among all the potentially infinite separating hyperplanes that can be generated from a
-given training set (it would be possible to slightly translate or rotate such plane without
-touching any training observation), SVM generates the hyperplane that has the largest
+\textcolor{red}{
+If the instances are separable by a hyperplane, then there exists potentially infinite
+separating hyperplanes that can be generated from those same instances, because it
+is possible to slightly translate or rotate the initial plane without touching any training
+observation. Among all of them}, SVM generates the hyperplane that has the largest
 distance to the nearest training data points of either of both classes. Such a classifier
 is known as Maximal Margin Classifier, and in most of the cases generalizes better to
 unobserved data than any of the other possible separating hyperplanes.
@@ -65,7 +68,7 @@ be relaxed by introducing a new concept developed in \cite{svm_soft_margin}: the
 
 A Support Vector Classifier or Soft Margin Classifier allows some observations to be on the
 incorrect side of the margin or even on the incorrect side of the hyperplane, thus providing
-a "soft" separation. The soft margin method will choose a hyperplane that splits the example
+a ``soft'' separation. The soft margin method will choose a hyperplane that splits the example
 as cleanly as possible while still maximizing the distance to the nearest training instances.
 The effects of the soft margin can be observed in Fig. \ref{fig:soft_margin_low_c}.
 
@@ -73,23 +76,36 @@ Given a labeled dataset D of $n$ points
 of the form: $D=\{ \ (x_{i}, y_{i}) \ | \ x_{i} \in R^{p}, \ y_{i} \in \{-1, 1\} \ \}$, the
 problem can be formulated as:
 
-\begin{equation}
-  \displaystyle \min_{\omega, \xi} \left\{ \frac{1}{2}{\| w \|}^{2} + C \sum_{i=i}^{n}\xi_{i} \right\}
-\end{equation}
+% \begin{equation}
+%   \displaystyle \min_{\omega, \xi} \left\{ \frac{1}{2}{\| w \|}^{2} + C \sum_{i=i}^{n}\xi_{i} \right\}
+% \end{equation}
 
-Subject to (for any $i = 1 \ldots n$):
+% Subject to (for any $i = 1 \ldots n$):
 
-\begin{equation}
-  y_{i}*(\omega^{t} \cdot x_{i} + b \ ) \geq 1 - \xi_{i}, \ \xi_{i} \geq 0
-\end{equation}
+% \begin{equation}
+%   y_{i}*(\omega^{t} \cdot x_{i} + b \ ) \geq 1 - \xi_{i}, \ \xi_{i} \geq 0
+% \end{equation}
+
+\textcolor{red}{
+  \begin{equation}
+  % \begin{align}
+    \displaystyle \min_{\omega, \xi} \left\{ \frac{1}{2}{\| w \|}^{2} + C \sum_{i=i}^{n}\xi_{i} \right\}, \ s.t \ \forall i: \
+    y_{i}*(\omega^{t} \cdot x_{i} + b \ ) \geq 1 - \xi_{i}, \ \xi_{i} \geq 0
+  % \end{align}
+  \end{equation}
+}
 
 Each $x_{i}$ is a p-dimensional real number vector.
-The hyperplane $\omega^{t} \cdot x + b = 0$ splits the instances of both classes in two.
+The hyperplane $\omega^{t} \cdot x + b = 0$ splits the \textcolor{red}{space in two halves}.
 The condition $y_{i}*(\omega^{t} \cdot x_{i} - b) \geq 1$ for any instance $x_{i}$ is
-known as the margin condition, and ensures at least a margin on each side of:
+known as the margin condition,
+\textcolor{red}{
+  and ensures a margin $\gamma$ on each side of at least
+  $\frac{1}{\| \omega \|}$:
+}
 
 \begin{equation}
-  \gamma = \frac{ |\omega^{t} \cdot x_{i} + b| }{ \| \omega \| } = \frac{1}{\| \omega \|}
+  \gamma = \frac{ |\omega^{t} \cdot x_{i} + b| }{ \| \omega \| } \geq \frac{1}{\| \omega \|}
 \end{equation}
 
 Finally, slack variables $\xi_{i}$ allow the individual observations to be
@@ -107,16 +123,20 @@ the errors, thus establishing a trade off between a large margin and the error p
   \label{fig:soft_margin_low_c}
 \end{figure}
 
-Different values of $C$ were tested at the beginning of the
+Different values of the \textcolor{red}{input parameter $C$ (which is set to 1.0 by default
+in \textit{sklearn})}
+were tested at the beginning of the
 current work using at first an exponential scale:
 $10^{-i} \ldots 10^{i}$ with $i=4$, an after that reducing the search interval to
-$[-1 \ldots 1]$. The best results, however, were obtained when using a default value
-suggested in the docs of SVM-Light, an implementation of SVMs in C language: $\frac{1}{avg(x*x)}$.
+$[0 \ldots 1]$. The best results, however, were obtained when using a default value
+suggested in the docs of SVM-Light, an implementation of SVMs in C language: $\frac{1}{avg(x*x)}$,
+\textcolor{red}{that is the average of the squared norm of the instances}.
 
 To conclude this section, it is worth mentioning that feature scaling is an important
 step to be performed before training
-the linear SVM classifier to avoid the domination of the features with highest values
-when calculating the hyperplane. For this reason, like in the GMM case, both supervectors
+the linear SVM classifier to avoid the \textcolor{red}{dominance} of the
+features with highest values
+when calculating the hyperplane. For this reason both supervectors
 and dynamic features are standardized by removing the mean and scaling to unit variance
 before training.
 

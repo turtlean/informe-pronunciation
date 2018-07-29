@@ -129,7 +129,7 @@ databases for Dutch language, they were considered too small for the purpose of 
 For that reason, phonemic
 substitutions that induce vocalic errors are simulated by artificially introducing them in the native corpus. It is worth mentioning that training
 and testing the models with artificially generated data is not recommended
-because it can lead to models that don't generalize well to real nonnative data.
+because it can lead to models that do not generalize well to real nonnative data.
 Having said that, the results show that the best
 results are obtained by using MFCCs as features of the SVM models, followed by confidence-measure-based
 scores and finally phonetic
@@ -156,7 +156,7 @@ less effective for partially changed mispronunciations, that are the most freque
 in practice. In order to detect all kinds of mispronunciation, a technique called
 \textit{Pronunciation Space Models} (PSMs) is introduced. The idea is to represent pronunciation variations
 of different proficiency levels. The traditional phone-based model $q$ is expanded to
-\{$q_{1}, q_{2} \dotsc q_{K}$\} by means of an unsupervised algorithm that doesn't require
+\{$q_{1}, q_{2} \dotsc q_{K}$\} by means of an unsupervised algorithm that does not require
 speech data labeled with proficiency level.
 This set of models represents $K$ types of pronunciation variations ranging from perfect to
 totally wrong pronunciations, where $K$ is a tunable parameter. To build the PSM models for a

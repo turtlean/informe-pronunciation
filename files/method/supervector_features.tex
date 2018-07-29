@@ -1,10 +1,10 @@
-\subsection{Main Features: Supervectors}
+\subsection{\textcolor{red}{Phone-level Features}: Supervectors}
 
 Supervectors, which have already been succesfully used in
 \cite{supervectors, main} are one of the two features used in this work to train the SVM
 classifier. Supervectors for a given phone are obtained by extracting the means and weights
 of different
-Gaussian Mixture Models derived from the adaptation of a class-independently trained GMM
+Gaussian Mixture Models derived from the adaptation of a class-independent GMM
 to each of the instances.
 
 So in order to go into more details of the supervectors features, a brief introduction to
@@ -29,26 +29,27 @@ and has its own mean $\mu_{k}$ and variance $\Sigma_{k}$. The parameters $\pi_{k
 mixing coefficients and they can be thought of as the prior probability of picking the $k^{th}$
 component \cite{gmm_bishop}.
 
-In this work, GMMs are used to model the acoustic features mentioned in the previous section:
+In this work, GMMs are used to model the frame-level features mentioned in the previous section:
 MFCCs (13), plus deltas (13) and double deltas (13). So the features for our GMMs are
 39-dimensional vectors corresponding to each frame of each instance of a given phone.
 
-GMMs are created with a number of gaussian components proportional to the number of samples
-of the given phone. For the current work, a proportion of 1 gaussian every 15 instances is used
-because it is a similar proportion to that used succesfully in the previous work
-of the current line of investigation \cite{main}.
+% GMMs are created with a number of gaussian components proportional to the number of samples
+% of the given phone. For the current work, a proportion of 1 gaussian every 15 instances is used
+% because it is a similar proportion to that used succesfully in the previous work
+% of the current line of investigation \cite{main}.
 
-It is desirable, when possible, to transform the feature space into a normally distributed feature
-space because it leads to more robust results. For that reason, the acoustic features are
-standardized by removing the mean and scaling to unit variance before training the GMMs.
+% It is desirable, when possible, to transform the feature space into a normally distributed feature
+% space because it leads to more robust results. For that reason, the frame-level features are
+% standardized by removing the mean and scaling to unit variance before training the GMMs.
 
 \subsubsection{Universal Background Model Adaptation}
 
 As in the previous works of the current line of investigation
 \cite{detection_phone_level_mispronunciation_learning, main},
-the GMMs are derived by the adaptation of a \textit{Universal Background Model} (UBM)
+the \mbox{\textcolor{red}{phone- and class-dependent}} GMMs are derived by the adaptation of a
+\textit{Universal Background Model} (UBM)
 \cite{ubm_adaptation}, a technique that has been effective on significantly improving
-accuracy in the speaker recongition field.
+the accuracy in the speaker recongition field.
 
 The UBM is a large class-independent GMM intended to represent the class-independent distribution
 of the features. In a GMM-UBM system, the GMM is derived by adapting the parameters of the UBM
@@ -56,8 +57,11 @@ to a vector of instances with a \textit{Maximum a Posteriori} (MAP) estimation. 
 tighter coupling between the generated models that produces better performance than using
 decoupled models such as class-dependent GMMs. In addition, it can be specially useful when
 just a small number of training instances is available.
+\textcolor{red}{In the current work, an individual
+class-independent UBM (trained with both correctly and mispronounced instances)
+is generated for each phone.}
 
-The method described in \cite{ubm_adaptation} involves adapting weight, mean and variance of each
+The UBM approach involves adapting weight, mean and variance of each
 mixture, though in the current work only weights and means are adapted because of the limited
 size of the dataset. For each gaussian $k$ composing the GMM-UBM, the weight and mean parameters
 are updated according to the following equations:
@@ -70,42 +74,66 @@ are updated according to the following equations:
   \mu_{k}^{new} = \alpha_{k} E_{k}(x) + (1-\alpha_{k})\mu_{k}
 \end{equation}
 
+\begin{equation}
+  \alpha_{k} = \frac{n_{k}}{n_{k}+r}
+\end{equation}
+
+\begin{equation}
+  n_{k} = \sum_{t=1}^{T} Pr(k|x_{t})
+\end{equation}
+
 where $\pi_{k}$ and $\mu_{k}$ are the original values of the weight and mean of the
 k\textsuperscript{th} component of the GMM-UBM, \mbox{$\pi_{k}^{'}$ and $E_{k}(x)$} are
-the estimated values for the weight and mean calculated on the vector of instances provided
+the estimated values for the weight and mean
+\textcolor{red}{of the k\textsuperscript{th} component}
+calculated on the vector of instances provided
 for the adaptation and the scale factor $\gamma$ is computed over all the
-adapted mixture weights to ensure they sum to unity. $\alpha_{k}$ is an adaptation
-coefficient that controls the balance between old and new estimates, and depends on the value of
-a relevance factor input parameter $r$. A higher value of $r$ produces a decrease in the value
-of $\alpha_{k}$, thus adapting in a more conservative way by assigning more importance
-to the previous values. By contrary, a lower value of $r$ produces an increment in the value
-of $\alpha_{k}$, thus leading to a more aggresive adaptation strategy by assigning more importance
-to the new values. In the current work $r$ is set to 0, taking the most aggresive
+adapted mixture weights to ensure they sum to unity. \textcolor{red}{
+  $\alpha_{k}$ is the adaptation
+  coefficient that controls the balance between old and new estimates that depends on
+  two things: $n_{k}$, which is the sum of the posterior probabilities
+  of the k\textsuperscript{th} component given the vectors, and
+  the relevance factor $r$, which is an input parameter.
+  % a relevance factor input parameter $r$.
+  When a mixture component has a low probabilistic count $n_{k}$ of new data, then
+  $\alpha_{k} \to 0$ causing the deemphasis of the new (potentially undertrained) parameters
+  and the emphasis of the old (better trained) parameters. Analogously,
+  when mixture components has
+  high probabilistic counts $n_{k}$, $\alpha_{k} \to 1$ causing the use of the new parameters.
+  In addition, a higher value of $r$ produces a decrease in the value
+  of $\alpha_{k}$, thus adapting in a more conservative way by assigning more importance
+  to the previous values. By contrary, a lower value of $r$ produces an increment in the value
+  of $\alpha_{k}$, thus leading to a more aggresive adaptation strategy by assigning more importance
+  to the new values \textcolor{red}{\cite{ubm_adaptation}}.
+}. In the current work $r$ is set to 0, taking the most aggresive
 adaptation strategy. This is again motivated by the previous work of the current
 line of investigation \cite{main}.
-
-% No menciono que la cantidad de instancias también se relaciona con \alpha_{k}
-% porque para el caso de nuestra tesis no es tenido en cuenta (relevance_factor = 0)
+% We can interpret Nk as the effective number of points assigned to cluster k
 
 \subsubsection{Supervectors computation}
 
 In order to compute the supervectors for a given phone, which are then used to train the SVM
 classifier, the following steps are performed:
 
-\begin{enumerate}
-  \item At first, a GMM-UBM is trained on the MFCCs
-  of all the available training instances for that phone, regardless of their class.
-  \item After that, an individual MAP adaptation process is carried out for each
-  of the $N$ training intances, thus generating $N$ different GMMs.
-  % \item The supervector generated for the i\textsuperscript{th} instance is obtained by stacking
-  % the means and the weights of each of the gaussians composing the i\textsuperscript{th} GMM.
-  \item Finally, for each of the training instances $i$, the supervector is obtained by stacking
-  the means and the weights of each of the gaussians composing the GMM obtained from the
-  i\textsuperscript{th} instance.
-\end{enumerate}
+\textcolor{red}{
+  \begin{enumerate}
+    \item At first, a GMM-UBM is trained on the MFCCs
+    of all the available training instances for that phone, regardless of their class
+    label (mispronounced or correctly pronounced).
+    \item Once the GMM-UBM is trained, for each of the instances of
+    that phone two additional steps are performed:
+      \begin{enumerate}
+        \item An individual MAP adaptation process of the GMM-UBM to the values of
+        the instance is carried out, thus generating an adapted GMM for that instance.
+        \item The supervector for that instance
+        is obtained by stacking the means and the weights of each of the
+        gaussians composing the adapted GMM.
+      \end{enumerate}
+  \end{enumerate}
+}
 
 The supervector computation process for a given phone instance
-is summarized in the figure shown below:
+is summarized in Fig. \ref{fig:supervectors_extraction} shown below:
 
 \begin{figure}[H]
   \centering
@@ -113,21 +141,19 @@ is summarized in the figure shown below:
   \caption{
     Adapted figure from Campbell, Sturim, Reynolds, Solomonoff 2006 \cite{supervectors}.
     A MAP Adaptation of a GMM-UBM with $m$ gaussians
-    is performed using the acoustic features of a phone instance.
+    is performed using the frame-level features of a phone instance.
     The resulting supervector is made up of the stacked weights $\pi_{i}$ and means
     $\mu_{i}$ $\forall \ 1 \leq i \leq m$, where each weight is a real value and each
     mean is a 39-dimensional vector.
   }
+  \label{fig:supervectors_extraction}
 \end{figure}
 
-As each derived GMM has the same number of gaussian components as the GMM-UBM, then the dimension
+As each derived GMM has the same number of gaussian components as the initial GMM-UBM,
+then the dimension
 of each supervector is: $39*m + m$, where $m$ is the number of gaussians of the GMM-UBM. The
 first term corresponds to the means while the second one to the weights.
 
 % Intentar relacionarlo después con la parte de SVM
 % The GMM supervector can be thought of as a mapping between an utterance and a
 % high-dimensional vector.
-
-Supervectors for testing are calculated following the same procedure as for training except for
-the first step: the same GMM-UBM obtained in training is used for the adaptation process of the
-testing instances.

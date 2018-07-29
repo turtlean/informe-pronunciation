@@ -2,8 +2,8 @@
 
 \textit{McNemar's Test} \cite{mcnemar}
 is used as an alternative to determine whether the \textit{SVM}
-based on the combined features and the \textit{SVM} based only on features
-derived from the \textit{GMM} adaptation are significantly different.
+based on the combined features and the \textit{SVM} based only on the
+supervectors are significantly different.
 
 Given a set of $n$ test samples labeled by two systems, $A_{1}$ and $A_{2}$
 the results can be summarized as:
@@ -47,15 +47,12 @@ The probability $q$ is the probability that given that only one of the systems
 made an error, it was system $A_{1}$ that did. Under the \textit{null hypothesis},
 $N_{1,0}$ is distributed as a Binomial Distribution $B(n,1/2)$, where $n$ is
 the observed number of samples for which only one system made an error: $N_{1,0}+N_{0,1}$.
-At this point, a two-tail test can be applied to obtain a \textit{p-value}.
+At this point, a two-tail test is applied to obtain a \textit{p-value} that represents
+the statistical significance of the results.
 
-In conclusion \textit{McNemar's Test} is based on cross information by comparing the results of
+As it was said before,
+\textit{McNemar's Test} is based on cross information by comparing the results of
 evaluating both systems on exactly the same sample. \textit{Bootstrapping} differs on this
 point because each sample is evaluated independently for each system.
-An advantage for Bootstrapping over McNemar's, however,
-is that the latter assumes that the samples are
-independent, and that condition does not hold in the current work.
-
-A complementary analysis using both different techniques is explored in this work
+A complementary analysis using both different techniques is carried out in this work
 in order to determine the statistic significance of the results.
-

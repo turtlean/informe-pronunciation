@@ -22,6 +22,8 @@ sorting=none
 \usepackage{multicol}
 \usepackage[table,x11names]{xcolor}
 \usepackage{flexisym}
+\usepackage{xcolor}
+\usepackage{soul}
 
 \begin{document}
 \linespread{1.6}
@@ -37,52 +39,19 @@ sorting=none
 		\input{files/method/acoustic_features.tex}
 		\input{files/method/supervector_features.tex}
 		\input{files/method/dynamic_features.tex}
-		% \subsection{Cepstral Mean Substraction}
-		% \subsection{Definition}
-		% \subsection{GMM Adaptation}
-		% \subsection{Log-Likelihood Ratio Method}
 	\section{Support Vector Machines}
 		\input{files/method/svm.tex}
-		% \subsection{Cost Function}
-		% 	\input{files/method/cost_function.tex}
-		% \subsection{C Parameter}
-		% 	\input{files/method/c_parameter.tex}
 		% \subsection{Balancing Class Weights}
 		% 	\input{files/method/balancing_class_weights.tex}
-		% \subsection{Feature Combination}
-	% \section{Legendre Polynomials}
-		% \input{files/method/legendre.tex}
-		% \subsection{Definition}
-		% \subsection{Least Squares}
-		% \subsection{Lasso Regression}
-	% \section{Discrete Cosine Transform}
-		% \input{files/method/dct.tex}
 	\section{Equal Error Rate}
 		\input{files/method/eer.tex}
-		% \subsection{ROC Curve}
-		% \subsection{Equal Error Rate}
-		% 	\input{files/method/eer.tex}
 	\section{Statistical Significance Techniques}
 		\input{files/method/bootstrapping.tex}
 		\input{files/method/mcnemar.tex}
-		% \subsection{Bootstrapping}
-		% \subsection{McNemar}
 
 \chapter{Experimental Design}
-	\section{Architecture Overview}
-		\input{files/experimental_design/architecture.tex}
 	\section{Database Description}
-	\section{Development and Test Sets Definition}
-	\section{GMMs Experiments}
-		\subsection{Independently-trained models}
-		\subsection{Adapted models}
-	\section{SVM Experiments}
-		\subsection{Supervectors}
-		\subsection{Legendre}
-			\input{files/experimental_design/legendre.tex}
-		\subsection{DCT}
-		\subsection{Features Combination}
-		\subsection{Score Combination}
+		\input{files/experimental_design/database_description.tex}
 
 \chapter{Results}
 	\input{files/results/results.tex}

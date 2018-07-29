@@ -1,17 +1,17 @@
-%% 
+%%
 %% This is file `thesis.cls',
 %% generated with the docstrip utility.
-%% 
+%%
 %% The original source files were:
-%% 
+%%
 %% thesis.dtx  (with options: `thesis')
-%% 
-%% Copyright (C) 1991, 1996 by Wenzel Matiaske, mati1831@perform.ww.tu-berlin.de 
-%% 
-%% You are not allowed to distribute this file without the 
-%% original source thesis.dtx. For distribution of the 
-%% sources see the copyright notice in the file thesis.dtx. 
-%% 
+%%
+%% Copyright (C) 1991, 1996 by Wenzel Matiaske, mati1831@perform.ww.tu-berlin.de
+%%
+%% You are not allowed to distribute this file without the
+%% original source thesis.dtx. For distribution of the
+%% sources see the copyright notice in the file thesis.dtx.
+%%
 \def\filename{tesis}
 \def\fileversion{1.0g}
 \def\filedate{1996/25/01}
@@ -677,8 +677,9 @@
 \newcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {-3.25ex\@plus -1ex \@minus -.2ex}%
                                      {1.5ex \@plus .2ex}%
-                                     {\if@center\centering\else\raggedright\fi
-                                      \reset@font\sss@font}}
+                                     {%\if@center\centering\else\raggedright\fi
+                                      \raggedright
+                                      \reset@font\ss@font}}
 \newcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
                                     {3.25ex \@plus1ex \@minus.2ex}%
                                     {-1em}%
@@ -1118,5 +1119,5 @@
   \onecolumn
 \fi
 \endinput
-%% 
+%%
 %% End of file `thesis.cls'.

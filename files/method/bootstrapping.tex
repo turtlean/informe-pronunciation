@@ -1,4 +1,7 @@
-In order to analyse if the obtained results are statistically significant,
+In order to analyse if % the obtained results are statistically significant,
+\textcolor{red}{there is a statistically significant gain in combining the
+supervectors and the dynamic features
+over using supervectors as the only features},
 two different techiques are used in this work: \textit{Bootstrapping} and
 \textit{McNemar's Test}.
 
@@ -8,11 +11,15 @@ Test is an statistical test used on paired data.
 
 An advantage for McNemar's
 over Bootstrapping is that it bases its comparisons on cross information using
-exactly the same sample. McNemar's Test however, unlike Bootstrapping, assumes that samples
-are independent, which is not true for the samples of the current work.
-
-Both techniques focus on different statistical characteristics of the results and allow a
-complementary analysis.
+exactly the same sample. \textcolor{red}{
+  McNemar's Test however assumes that the samples
+  are independent, which is not true when considering
+  all the instances of a given phone. Even though Bootstrapping also assumes that
+  the samples are independent, in the current work resampling is performed
+  at speaker level, which ensures the independence of the instances being resampled.
+  For this reason, we use both tests, since both have advantages and
+  disadvantages with respect to the other one.
+}
 
 \subsection{Bootstrapping}
 
@@ -21,11 +28,11 @@ to almost any kind of sample statistic and can be understood without much
 knowledge of sampling distributions. It was introduced in 1979 by B. Efron and it has
 been widely used in numerous areas since then.
 
-Suppose it were possible to draw repeated samples
-of the same size from the population of interest a large number of times. Then
+Supposing that it were possible to draw repeated samples
+of the same size from the population of interest a large number of times, then
 a fairly good idea about the sampling distribution of a particular statistic from
 the collection of its values arising from these repeated samples could be obtained.
-This method doesn't make sense in practice since it assumes one has access to the
+This method, however, does not make sense in practice since it assumes one has access to the
 underlying distribution.
 The idea behind \textit{Bootstrapping} is to use the data of a sample study at hand as a
 ``surrogate population'' for the purpose of approximating the sampling distribution of
@@ -36,11 +43,19 @@ is then computed on each of the bootstrap
 samples (usually between 1-10 thousand). A histogram of these computed
 values is referred to as the bootstrap distribution of the statistic.
 
-In the current work, \textit{Bootstrapping} technique is used along with Confidence
+\textcolor{red}{
+  In the current work, resampling is performed at speaker level.
+  In other words, given a set $S$ of $n$ speakers in the
+  test set, in each iteration of bootstrapping
+  a new set of $n$ speakers $S\textprime$ is obtained by drawing speakers with replacement from the
+  original set $S$. The sample set is then obtained by gathering the instances of the speakers
+  in $S\textprime$, which will include repeated samples for the speakers that appears more than once
+  in $S\textprime$
+}. \textit{Bootstrapping} technique is used along with Confidence
 Intervals in order to determine if the \textit{SVM} trained with the combined features
 performs better than the one trained only with features derived from the \textit{GMM} adaptation.
-Bootstrap samples are extracted from the \textit{test} data in order
-to generate a distribution of $EER$ for both types of classifiers. After that,
+The first step is to generate a distribution of $EER$ for both types of classifiers.
+After that,
 a 95\% confidence interval is computed for each distribution by finding the interval
 [$\hat{\theta}_{B1}, \hat{\theta}_{B2}$] that enclose the 95\% of the instances
 composing each distribution.

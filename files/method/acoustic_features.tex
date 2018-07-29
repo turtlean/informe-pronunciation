@@ -1,28 +1,29 @@
-In this section we describe the chosen features for the current study. The features can be classified in two different categories: Acoustic features and main features.
+In this section we describe the chosen features for the current study. The features can be classified in two different categories: \textcolor{red}{frame-level features and
+phone-level features}.
 
-Acoustic features are computed directly from the speech signal, and they carry spectral density information. For the current work, the standard Mel Frequency Cepstral Coefficients
+Frame-level features are computed directly from the speech signal, and they carry spectral density information. For the current work, the standard Mel Frequency Cepstral Coefficients
 were chosen.
 
-The acoustic features are then used as base to compute more complex features:
-The main features. These
+The frame-level features are then used as base to compute more complex features:
+The phone-level features. These
 are the features used to train the SVM and classify the instances. In the current work, two
-types of main features are studied: \textit{Supervectors}
+types of phone-level features are studied: \textit{Supervectors}
 which are obtained from an adaptation process of
 a Gaussian Mixture Model trained on the MFCCs and the \textit{Dynamic Features},
 which are
-the coefficients obtained from different interpolation methods of the MFCCs values through time.
+the coefficients obtained from different parameterization methods of the MFCCs values through time.
 One of the main objectives of this work is to find out whether or not there is a gain in performance
 when combining the Supervectors with the Dynamic Features.
 
 In the following subsections a detailed description of each of the aforementioned features is
 provided.
 
-\subsection{Acoustic Features: MFCCs}
+\subsection{\textcolor{red}{Frame-level Features}: MFCCs}
 
 The first step in order to build the system is to extract acoustic features from the speech data.
 The feature extraction process aims at approximating the linguistic content that is conveyed
-by the speech signal, by identifying its relevant aspects and discarding other unuseful
-properties like background noise, emotions, etc.
+by the speech signal, \textcolor{red}{by identifying relevant aspects such as information about
+the frequencies involved during the speech, and discarding unuseful properties}.
 
 In this work we base our features in the standard and widely used Mel Frecuency
 Cepstral Coefficients (MFCCs). They were introduced by Davis and Mermelstein in 1980 and
@@ -31,7 +32,7 @@ MFCC coefficients represent the spectral envelope of the speech signal on the Me
 which relates the perceived frequency of a pure tune to its actual measured frequency inspired
 by the human hearing.
 
-The process to compute the MFCCs coefficients can be summarized into applying the following steps:
+The process to compute the MFCCs coefficients can be summarized by the following steps:
 
 \begin{enumerate}
 
@@ -42,7 +43,7 @@ The process to compute the MFCCs coefficients can be summarized into applying th
   % http://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html
   % https://www.quora.com/Why-is-pre-emphasis-i-e-passing-the-speech-signal-through-a-first-order-high-pass-filter-required-in-speech-processing-and-how-does-it-work
 
-  \item Windowing: The MFCCs are computed in time intervals where the audio signal isn't
+  \item Windowing: The MFCCs are computed in time intervals where the audio signal is not
   supposed to be changing
   so much. Because of that reason the signal is divided in frames using a
   25 ms duration window and 10 ms shift (standard values). A 25 ms duration window provides
@@ -93,6 +94,6 @@ The process to compute the MFCCs coefficients can be summarized into applying th
 
 \end{enumerate}
 
-Even though the acoustic features are made up of different features: 13 MFCCs plus 13 deltas
-and 13 double-deltas, for the sake of simplicity the expression "MFCCs"
+Even though the frame-level features are made up of different features: 13 MFCCs plus 13 deltas
+and 13 double-deltas, for the sake of simplicity the expression ``MFCCs''
 will be referring to the whole 39 features throughout the current work.
