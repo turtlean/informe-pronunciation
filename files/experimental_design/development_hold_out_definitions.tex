@@ -1,0 +1,29 @@
+% Statistical learning procedures. Refitting the model of interest on each sample set.
+
+The previously described dataset is partitioned into different subsets
+to apply some statistical methods that usually
+improves the robustness of the experiments
+when performing machine learning tasks.
+At a higher level,
+the data is divided into two groups: the $development$ set and the \textit{hold-out} or $validation$ set. The former is used to fit the different models while the latter is used
+to evaluate the performance
+of the final model on unseen data. At the same time, the $development$ set is divided in four
+subsets in order to apply \textit{k-fold cross validation} ($k=4$), a
+technique that leads to more accurate estimates of the errors when exploring different
+models in the training phase.
+
+\subsection{Hold-Out Set}
+
+The \textit{hold-out} set or \textit{validation} set is a subset of the data that is kept
+separately of the training set and remains untouched until the final model is fitted. It is
+then used to test the final model and verify if it generalizes to unseen data.
+Additionally, it allows
+an unbiased estimate for the test error because none of the instances was used in the
+fitting process. It is worth nothing that in order to keep this condition true, the samples
+of the hold-out set must come speakers that are not used in the training set.
+
+The partitioning is carried out at speaker level. Speakers are randomly split into two groups
+that contain 20\% and 80\% of the total number of speakers. The hold-out set
+is obtained from the group with 20\% of the speakers by gathering all the utterances pronounced
+by those speakers. The training set is obtained from the
+group with 80\% of the speakers in the same way.

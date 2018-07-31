@@ -1,0 +1,34 @@
+\textit{K-Fold Cross Validation} \cite{svm_jwht}
+is a method which aims to improve the accuracy in the
+estimate of the errors for a given model by fitting and testing the model using different
+subsets of the available training data. The error estimate is more robust than
+that computed when fitting the model only once using all the available training data.
+
+To apply K-Fold Cross Valdation,
+the training set is divided in $k$ groups or folds of approximately equal size.
+Then, for each fold $i \ (1 \leq i \leq k)$ the following procedure is repeated:
+
+\begin{enumerate}
+  \item A new model is fitted using the instances of all the folds but the i\textsuperscript{th} fold.
+  \item The fitted model is tested against the instances of the i\textsuperscript{th} fold.
+\end{enumerate}
+
+The results of all the iterations are then combined to obtain a final estimate of the error.
+
+K-Fold Cross Validation maximizes the number of both training and testing instances.
+Every instance is used exactly once for testing, and $k-1$ times for training the different
+models. It also allows an unbiased estimation of the results,
+because in none of the iterations the same instance is used for both training and testing the
+model.
+
+In the current work, Cross Validation is performed in the training set using 4 folds.
+On each iteration, the different models and features are computed using the instances of
+three of the folds and tested on the other one. \textit{EER} is computed over the results obtained
+when evaluating the models on each iteration.
+
+In order to keep the error estimates unbiased
+the set of speakers in each of the folds must be disjoint (the same as
+when splitting the dataset into development and hold-out).
+The partitioning of the training set
+is then carried out at speaker level, and each fold is obtained by gathering all the
+utterances pronounced by the speakers in that fold.
