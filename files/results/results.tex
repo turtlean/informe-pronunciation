@@ -282,7 +282,7 @@ At this point, the DCT features are chosen as the Dynamic Features to be combine
 supervectors when training the final models, and for each of the remaining phones with
 low Kappa values the phone-dependent proportions are computed.
 
-\section{Final Models Validation}
+\section{Final Models Validation} \label{subsection:modelValidation}
 
 The final experiments are carried out in order
 to determine if there is a real gain when combining
@@ -423,20 +423,21 @@ values obtained in the development set were statistically significant.
 	\label{fig:fusionMcnemarTest}
 \end{figure}
 
-Among the phones that were statistically significant in the Score Combination
+Results show that, for the phones that were statistically significant in the Score Combination
 experiment carried out in the development set, only 'z' degrades its performance compared
-with the baseline system around a 6\% relative. Among the
+with the baseline system (around a 6\% relative). Among the
 remaining phones, some reduce its gain compared with the development set (such as
 /y/ from 8\% to less than 2\% and /rr/ from almost 6\% to less than 2\%). Others such
 as /m/ improves its performance from 6\% to more than 8\%.
 
-On the other hand, among all the phones that were statistically significant in the
+On the other hand, results show that
+for the phones that were statistically significant in the
 Features Combination experiment carried out in the development set, only /o/ degrades
 its performance and in a slightly way. The plots also show a degradation of the /rr/
 performance, but /rr/ did not yield statistically significant
 in the Features Combination
 experiment carried out in the development set.
-As in the case of the Score Combination, among the remaining phones
+Among the remaining phones, for the Features Combination experiment,
 there are cases where both improvements
 and degradations of the performance are observed.
 

@@ -25,6 +25,8 @@ sorting=none
 \usepackage{xcolor}
 \usepackage{soul}
 
+\usepackage[title]{appendix}
+
 \begin{document}
 \linespread{1.6}
 \tableofcontents
@@ -65,11 +67,14 @@ sorting=none
 	\section{Improvements by Adding Dynamic Features}
 	\section{Comparing Robustness of Fusion Systems}
 
-\chapter{Appendix A}
-	\section{Results Tables for All Phones}
-		\input{files/appendix_a/table.tex}
-	\section{Fusion Plots for All Phones}
-		\input{files/appendix_a/results_appendix.tex}
+\chapter{Appendix}
+	\begin{appendices}
+		\input{files/appendix/intro.tex}
+		\section{Model Validation Results Tables for All Phones}
+			\input{files/appendix/table.tex}
+		\section{Model Validation Plots for All Phones}
+			\input{files/appendix/results_appendix.tex}
+	\end{appendices}
 
 \printbibliography
 

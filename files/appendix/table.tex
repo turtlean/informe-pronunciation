@@ -1,6 +1,22 @@
+In this section we include two tables that summarizes the results obtained when validating
+the final models for both fusion types: Features Combination and Score Combination.
+
+The tables include information of the results
+for all phones, and they are split in two: the left side
+contains the results obtained in the development set, while the right side contains
+the results obtained in the hold-out set. Along with the EER values obtained in each
+dataset,
+the number of instances
+for each class and each phone are included, in addition to the p-value of the McNemar
+test. The table is sort by decreasing Kappa values of the phones.
+
+Rows with grey background corresponds to the phones for which
+the McNemar's test gives significant results in the development set, which are the
+phones that are analized in the Experiments and Results section \ref{subsection:modelValidation}.
+
 % --------------------------------------------------------------------------------%
-% ---------------------------- Features combination ------------------------------% 
-% --------------------------------------------------------------------------------% 
+% ---------------------------- Features combination ------------------------------%
+% --------------------------------------------------------------------------------%
 \subsection{Features combination}
 
 \begin{table}[H]
@@ -10,7 +26,8 @@
 
 \begin{tabular}{|c| |c|c|c|c|c|c| |c|c|c|c|c|c| |c|}
 \hline
-phones & baseline & training & delta & pvalue & \#pos & \#neg & baseline & test & delta & pvalue & \#pos & \#neg & kappa \\ \hline
+& \multicolumn{5}{c}{Development} & & \multicolumn{5}{c}{Hold-Out} & &  \\ \hline
+phones & base EER & F.C EER & delta & pvalue & \#pos & \#neg & base EER & F.C EER & delta & pvalue & \#pos & \#neg & kappa \\ \hline
 b & 0.122 & 0.122 & \%0.0 & 1 & 528 & 395 & 0.133 & 0.133 & \%0.0 & 1 & 140 & 95 & 0.9 \\ \hline
 \rowcolor{lightgray} m & 0.154 & 0.144 & \%6.5 & 0.047 & 3234 & 686 & 0.186 & 0.176 & \%5.4 & 0.268 & 801 & 188 & 0.76 \\ \hline
 B & 0.206 & 0.2 & \%2.9 & 0.374 & 428 & 1169 & 0.179 & 0.189 & -\%5.6 & 0.523 & 126 & 302 & 0.7 \\ \hline
@@ -40,18 +57,17 @@ N & 0.217 & 0.198 & \%8.8 & 0.088 & 911 & 443 & 0.203 & 0.217 & -\%6.9 & 0.296 &
 \end{tabular}
 
 }
-\caption{Results of SVM system trained on Features Combination of supervectors and DCT, 
-for both training and test sets, compared to the SVM trained on supervectors 
-only (baseline system).
-For each dataset, the relative improvements along with McNemar p-value, and
-positive and negative number of instances are included. Phones are sort by decreasing Kappa values.}
+\caption{Results of SVM system trained on the Features Combination of supervectors and DCT,
+for both development and hold-out sets,
+compared to the SVM trained only on supervectors (baseline system). F.C. stands for
+Features Combination.}
 \label{tab:featuresCombinationAppendixTable}
 \end{table}
 
 
 % --------------------------------------------------------------------------------%
-% ------------------------------ Score combination -------------------------------% 
-% --------------------------------------------------------------------------------% 
+% ------------------------------ Score combination -------------------------------%
+% --------------------------------------------------------------------------------%
 
 \subsection{Score combination}
 
@@ -62,7 +78,8 @@ positive and negative number of instances are included. Phones are sort by decre
 
 \begin{tabular}{|c| |c|c|c|c|c|c| |c|c|c|c|c|c| |c|}
 \hline
-phones & baseline & training & delta & pvalue & \#pos & \#neg & baseline & test & delta & pvalue & \#pos &  \#neg & kappa \\ \hline
+& \multicolumn{5}{c}{Development} & & \multicolumn{5}{c}{Hold-Out} & &  \\ \hline
+phones & base EER & S.C. EER & delta & pvalue & \#pos & \#neg & base EER & S.C EER & delta & pvalue & \#pos &  \#neg & kappa \\ \hline
 b & 0.122 & 0.122 & \%0.0 & 1 & 528 & 395 & 0.133 & 0.133 & \%0.0 & 1 & 140 & 95 & 0.9 \\ \hline
 \rowcolor{lightgray} m & 0.154 & 0.145 & \%5.8 & 0.01 & 3234 & 686 & 0.186 & 0.17 & \%8.6 & 0.233 & 801 & 188 & 0.76 \\ \hline
 B & 0.206 & 0.199 & \%3.4 & 0.096 & 428 & 1169 & 0.179 & 0.185 & -\%3.4 & 0.289 & 126 & 302 & 0.7 \\ \hline
@@ -92,11 +109,10 @@ N & 0.217 & 0.203 & \%6.5 & 0.303 & 911 & 443 & 0.203 & 0.215 & -\%5.9 & 0.015 &
 \end{tabular}
 
 }
-\caption{Results of the Score Combination between SVM system trained on supervectors 
-and SVM system trained on DCT coefficients, for both training and test sets, 
-compared to the SVM trained on supervectors only (baseline system).
-For each dataset, the relative improvements along with McNemar p-value, and
-positive and negative number of instances are included. Phones are sort by decreasing Kappa values.}
+\caption{Results of the Score Combination between the SVM system trained on supervectors
+and the SVM system trained on DCT coefficients, for both development and test sets,
+compared to the SVM trained on supervectors only (baseline system). S.C stands for
+Score Combination.}
 \label{tab:scoreCombinationAppendixTable}
 \end{table}
 
