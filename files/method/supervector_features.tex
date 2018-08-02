@@ -42,7 +42,7 @@ MFCCs (13), plus deltas (13) and double deltas (13). So the features for our GMM
 % space because it leads to more robust results. For that reason, the frame-level features are
 % standardized by removing the mean and scaling to unit variance before training the GMMs.
 
-\subsubsection{Universal Background Model Adaptation}
+\subsubsection{Universal Background Model Adaptation} \label{subsubsection:ubm}
 
 As in the previous works of the current line of investigation
 \cite{detection_phone_level_mispronunciation_learning, main},
@@ -110,7 +110,7 @@ adaptation strategy. This is again motivated by the previous work of the current
 line of investigation \cite{main}.
 % We can interpret Nk as the effective number of points assigned to cluster k
 
-\subsubsection{Supervectors computation}
+\subsubsection{Supervectors computation} \label{subsubsection:supervectors}
 
 In order to compute the supervectors for a given phone, which are then used to train the SVM
 classifier, the following steps are performed:
