@@ -21,7 +21,7 @@ exactly the same sample. \textcolor{red}{
   disadvantages with respect to the other one.
 }
 
-\subsection{Bootstrapping}
+\subsection{Bootstrapping} \label{subsection:bootstrapping}
 
 \textit{Bootstrapping} \cite{bootstrapping} is a general intuitive method applicable
 to almost any kind of sample statistic and can be understood without much
@@ -57,12 +57,12 @@ performs better than the one trained only with features derived from the \textit
 The first step is to generate a distribution of $EER$ for both types of classifiers.
 After that,
 a 95\% confidence interval is computed for each distribution by finding the interval
-[$\hat{\theta}_{B1}, \hat{\theta}_{B2}$] that enclose the 95\% of the instances
+[$\hat{\theta}_{B1}, \hat{\theta}_{B2}$] that enclose the 95\% of the samples
 composing each distribution.
 If it is true that the \textit{SVM} trained with
 the combined features performs better than the
 \textit{SVM} trained with a single feature source, then its confidence
-interval should be shifted to the left with respect to the confidence interval
+interval should be shifted with respect to the confidence interval
 of the latter system.
 The bigger the overlap between both intervals, the
 lesser the evidence of the results coming from different distributions, thus

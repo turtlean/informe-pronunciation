@@ -83,7 +83,7 @@ leading to the results shown below
 (Fig. \ref{fig:gmmSupervectorsTest}).
 The models are trained using all the instances in the development set, namely, the
 instances of the 4 folds.
-They both have a very similar performance for each phoneme compared with the results obtained
+They both have a very similar performance for each phone compared with the results obtained
 in the development set (Fig. \ref{fig:gmmSupervectorsDev}),
 from which one can deduce that both classifiers generalize well to
 unobserved data. This time, however, it was the Adapted GMM model
@@ -364,24 +364,46 @@ included for those phones.
 	\label{fig:fusionMcnemarDev}
 \end{figure}
 
-% \begin{figure}[H]
-%   \centering
-%   \begin{subfigure}{.47\textwidth}
-%     \centering
-%     \captionsetup{width=.95\linewidth}
-%     \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_dev_2}
-%     \caption{}
-%     \label{}
-%   \end{subfigure}
-%   \begin{subfigure}{.47\textwidth}
-%     \centering
-%     \captionsetup{width=.95\linewidth}
-%     \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_dev_1}
-%     \caption{}
-%     \label{}
-%   \end{subfigure}
-% \end{figure}
+A Bootstrapping test is also performed in the development set to provide a complementary
+analysis. As it is described in Method Section \ref{subsection:bootstrapping}, the main goal
+is to compute the confidence intervals that enclose the 95\% of the samples of
+the target distributions (in our case, EER distributions) to find out if they are shifted
+with respect to each other. A thousand bootstrapping iterations are applied by resampling
+the speakers and computing the EER those speakers' instances.
 
+Results are summarized in Fig. \ref{fig:bootstrappingDev}.
+The plots are split in two in order to adjust the y-axis and display the intervals
+with greater detail.
+
+The plots show that most of the fusion system intervals are shifted downwards with
+respect to the supervectors-based baseline system, thus lowering the EER and leading
+to a better performance.
+Even though there exist an overlap
+between baseline and fusion system intervals, there are also portions of the segments
+where the confidence intervals do not overlap. The only exception seems to be /z/, which
+not only has almost identical intervals but also yields a significant difference
+between the results obtained for the baseline system and the Score Combination system.
+A possible explanation for this is that the Score Combination system for the /z/
+phone is favored by the original distribution of the speakers in the development set.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{.47\textwidth}
+    \centering
+    \captionsetup{width=.95\linewidth}
+    \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_dev_2}
+  \end{subfigure}
+  \begin{subfigure}{.47\textwidth}
+    \centering
+    \captionsetup{width=.95\linewidth}
+    \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_dev_1}
+  \end{subfigure}
+  \caption{Comparison of 95\% confidence intervals for the baseline and fusion systems.
+  A thousand iterations of Bootstrapping are applied
+  in the development set for the phones with statistically significant results in the
+  McNemar's test.}
+  \label{fig:bootstrappingDev}
+\end{figure}
 
 \subsection{Hold-out results}
 
@@ -430,23 +452,51 @@ Among the remaining phones, for the Features Combination experiment,
 there are cases where both improvements
 and degradations of the performance are observed.
 
-% \begin{figure}[H]
-%   \centering
-%   \begin{subfigure}{.47\textwidth}
-%     \centering
-%     \captionsetup{width=.95\linewidth}
-%     \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_heldout_2}
-%     \caption{}
-%     \label{}
-%   \end{subfigure}
-%   \begin{subfigure}{.47\textwidth}
-%     \centering
-%     \captionsetup{width=.95\linewidth}
-%     \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_heldout_1}
-%     \caption{}
-%     \label{}
-%   \end{subfigure}
-% \end{figure}
+A Bootstrapping test is again performed in the hold-out set to provide a complementary analysis,
+and the results are summarized in Fig. \ref{fig:bootstrappingHoldOut}.
+The plots are again split in two in order to adjust the y-axis and display the intervals
+with greater detail.
+
+The most relevant thing to mention is that, unlike in the development set, the overlap
+between the confidence intervals of the three systems is very big, to a point such that
+for some phones it is difficult to determine if the intervals come from different
+distributions. There are though some phones for which the intervals
+for the fusion systems seem to be
+shifted downwards with respect to the baseline system. The most representative example
+is /s/, followed in lesser extent by other phones such as /l/, /m/, /t/, /e/ and /y/.
+
+A positive aspect to be considered is that any of the phones degrade its performance in a
+significant manner. Even the confidence itervals for the phone /z/ for both baseline and
+fusion systems are very similar. At first glance, this may contradict the fact that
+performance of the Score Combination system for /z/ degrades 6\% with respect to the baseline
+system, as shown by the results show in Fig. \ref{fig:fusionMcnemarTest}.
+A possible explanation can be that the Score Combination system is not favored by
+the initial distribution of the speakers in the hold-out set, and is supported by
+the similarity of both intervals in Fig. \ref{fig:bootstrappingHoldOutB}.
+Additionally, in the results obtained in the development set (Fig. \ref{fig:bootstrappingDev}),
+there also was no evidence that one system was better than the other.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{.47\textwidth}
+    \centering
+    \captionsetup{width=.95\linewidth}
+    \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_heldout_2}
+    \caption{}
+    \label{fig:bootstrappingHoldOutA}
+  \end{subfigure}
+  \begin{subfigure}{.47\textwidth}
+    \centering
+    \captionsetup{width=.95\linewidth}
+    \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_heldout_1}
+    \caption{}
+    \label{fig:bootstrappingHoldOutB}
+  \end{subfigure}
+  \caption{Comparison of 95\% confidence intervals for the baseline and fusion systems.
+  A thousand iterations of Bootstrapping are applied
+  in the hold-out set for the phones of interest.}
+  \label{fig:bootstrappingHoldOut}
+\end{figure}
 
 
 % One important aspect to be analysed in the next section is whether or not the Score Combination
