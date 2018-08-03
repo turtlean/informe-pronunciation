@@ -335,7 +335,7 @@ results are statistically significant.
 
 The results for all the phones are summarized in the left side of both tables
 \ref{tab:featuresCombinationAppendixTable} and \ref{tab:scoreCombinationAppendixTable}
-of the Appendix A Section. Rows with grey background corresponds to the phones for which
+of the Appendix. Rows with grey background corresponds to the phones for which
 the McNemar's test gives significant results in the development set, which are the
 phones of interest. Those are:
 
@@ -346,19 +346,13 @@ phones of interest. Those are:
 
 The relative gains for the phones mentioned above are summarized in
 Fig. \ref{fig:fusionMcnemarDev}.
-A visual reference (*) is added on top of each bar to indicate if that value
-is statistically significant.
-It is worth noting that phones with statistically significant results in the Features
-Combination experiment are a subset of the phone with statistically significant results in the
-Score Combination experiment. For that reason, all the bars of the Score Combination experiment
-have a visual reference (*) on top, but some of the bars of the Features Combination do not
-have it.
-
-% even though the barplots includes
-% the results for the ten statistically significant phonemes of the Score Combination,
-% additional marks (*) and (**) are included for the Features Combination bars to
-% point out whether or not those results are significant in the Features Combination
-% case.
+It is worth noting that phones with statistically significant results in
+the Score Combination experiment are a superset of the phones with statistically
+significant results in the Features Combination experiment.
+Three of the phones (/z/, /rr/, /t/) give statistically significant results
+when combining the scores but not when combining the features.
+For that reason, only the bars associated with the Score Combination results are
+included for those phones.
 
 \begin{figure}[H]
 	\centering
@@ -366,16 +360,28 @@ have it.
 	\caption{Comparison of relative gains over the Baseline System
 	between the Features Combination systems
 	and the Score Combination systems
-	computed on the development set. Results are sorted descendently by McNemar's p-value.
-	A visual reference (*) is added on top of the bars
-	for each \textless phone, fusion type\textgreater \ pair that produces
-	statistically significant results.}
-
-	% For all the score combinations phones the results were significant in the training set,
-	% whereas for the features combination phones only the phones marked with (*) were significant,
-	% and those marked with (**) weren't significant.
+	computed on the development set. Results are sorted descendently by McNemar's p-value.}
 	\label{fig:fusionMcnemarDev}
 \end{figure}
+
+% \begin{figure}[H]
+%   \centering
+%   \begin{subfigure}{.47\textwidth}
+%     \centering
+%     \captionsetup{width=.95\linewidth}
+%     \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_dev_2}
+%     \caption{}
+%     \label{}
+%   \end{subfigure}
+%   \begin{subfigure}{.47\textwidth}
+%     \centering
+%     \captionsetup{width=.95\linewidth}
+%     \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_dev_1}
+%     \caption{}
+%     \label{}
+%   \end{subfigure}
+% \end{figure}
+
 
 \subsection{Hold-out results}
 
@@ -387,28 +393,17 @@ significant results in the development set.
 The obtained results for all the phones, however, is available
 in the right side of both tables
 \ref{tab:featuresCombinationAppendixTable} and \ref{tab:scoreCombinationAppendixTable}
-of the Appendix A Section.
+of the Appendix.
 Even though a new McNemar test is computed on the
 results obtained in the hold-out data, it does not yield statistically significant results
 for our phones of interest. This can be explained by the fact that hold-out data
 has around 1/4 of the data of the
 development data, affecting the efectiveness of the test.
 
-% To run the experiment against the heldout data, the models were trained using all the
-% instances of the development set.
-
-% A new McNemar test is performed for the results obtained
-% in the heldout data for the same phoneme with statistically significant results in the
-% development data, but this time any of them gave a significant p-value $<$ 0.05.
-% This can be explained by the fact that heldout data has around 1/4 of the data of the
-% development data, affecting the efectiveness of the test.
-
-% The results are then still scoped to the phonemes with statistically significant results
-% in the development experiment, and the same notation (*) and (**) is kept as a reference.
-
 The relative gains for the phones of interest are summarized in Fig. \ref{fig:fusionMcnemarTest}.
-Again, a visual reference (*) is added on top of each bar to indicate the cases were the
-values obtained in the development set were statistically significant.
+Again, the bars for the three phones (/z/, /rr/, /t/) that gave statistically significant
+results when combining the scores but not when combininig the features in the development
+set are only included for the Score Combination experiment.
 
 \begin{figure}[H]
 	\centering
@@ -416,10 +411,7 @@ values obtained in the development set were statistically significant.
 	\caption{Comparison of relative gains over the Baseline System
 	between Features Combination systems and Score Combination
 	systems computed on the hold-out set for the phones of interest.
-	Results are sorted descendently by their McNemar's p-value computed on the development set.
-	A visual reference (*) is added on top of the bars
-	for each \textless phone, fusion type\textgreater \ pair that produced
-	statistically significant results in the development set.}
+	Results are sorted descendently by their McNemar's p-value computed on the development set.}
 	\label{fig:fusionMcnemarTest}
 \end{figure}
 
@@ -433,13 +425,29 @@ as /m/ improves its performance from 6\% to more than 8\%.
 On the other hand, results show that
 for the phones that were statistically significant in the
 Features Combination experiment carried out in the development set, only /o/ degrades
-its performance and in a slightly way. The plots also show a degradation of the /rr/
-performance, but /rr/ did not yield statistically significant
-in the Features Combination
-experiment carried out in the development set.
+its performance and in a slightly way.
 Among the remaining phones, for the Features Combination experiment,
 there are cases where both improvements
 and degradations of the performance are observed.
+
+% \begin{figure}[H]
+%   \centering
+%   \begin{subfigure}{.47\textwidth}
+%     \centering
+%     \captionsetup{width=.95\linewidth}
+%     \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_heldout_2}
+%     \caption{}
+%     \label{}
+%   \end{subfigure}
+%   \begin{subfigure}{.47\textwidth}
+%     \centering
+%     \captionsetup{width=.95\linewidth}
+%     \includegraphics[width=.95\linewidth]{files/figures/results/bootstrapping/bootstrapping_heldout_1}
+%     \caption{}
+%     \label{}
+%   \end{subfigure}
+% \end{figure}
+
 
 % One important aspect to be analysed in the next section is whether or not the Score Combination
 % of the results leads to a more robust classifier than the Features Combination technique.
