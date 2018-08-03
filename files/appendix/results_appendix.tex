@@ -1,17 +1,27 @@
+In this section we include two plots that summarizes the results obtained when validating the final models in both development and hold-out set.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{files/figures/results/relatives/relatives-fusion-systems-dev-all.png}
-	\caption{Comparison of performance between Features Combination system and the Score Combination
-	of individual systems in the training set for all phones, sorted descendently by their 
-	McNemar p-value obtained in the training set. Only the phones marked with (*) were significant in the training set.}
+	\caption{Comparison of relative gains over the Baseline Systems
+	between Features Combination systems and Score Combination systems
+	computed on the development set for all the phones.
+	Results are sorted descendently by their
+	McNemar p-value computed on the development set.
+	Only the results marked with (*) are statistically significant in the development set.}
 	\label{fig:fusionAllDev}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{files/figures/results/relatives/relative-fusion-systems-heldout-all.png}
-	\caption{Comparison of performance between Features Combination system and the Score Combination
-	of individual systems in the test set for all phones, sorted descendently by their McNemar
-	p-value obtained in the training set. Only the phones marked with (*) were significant in the development set.}
+	\caption{
+		Comparison of relative gains over the Baseline Systems
+		between Features Combination systems and Score Combination systems
+		computed on the hold-out set for all the phones.
+		Results are sorted descendently by their
+		McNemar p-value computed on the development set.
+		Only the results marked with (*) were statistically significant in the development set.
+	}
 	\label{fig:fusionAllHeldout}
 \end{figure}

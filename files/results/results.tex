@@ -333,8 +333,8 @@ results obtained in each of the folds.
 In addition, McNemar's test is computed to determine if the
 results are statistically significant.
 
-The results for all the phones are summarized in the left side of both tables
-\ref{tab:featuresCombinationAppendixTable} and \ref{tab:scoreCombinationAppendixTable}
+The results for all the phones are included in the tables
+(\ref{section:tables}) and plots (\ref{section:plots})
 of the Appendix. Rows with grey background corresponds to the phones for which
 the McNemar's test gives significant results in the development set, which are the
 phones of interest. Those are:
@@ -412,15 +412,15 @@ development set and tested against the hold-out set.
 
 The analysis is again scoped to our phones of interest, which are those with statistically
 significant results in the development set.
-The obtained results for all the phones, however, is available
-in the right side of both tables
-\ref{tab:featuresCombinationAppendixTable} and \ref{tab:scoreCombinationAppendixTable}
+The results for all the phones, however, are included in the tables
+(\ref{section:tables}) and plots (\ref{section:plots})
 of the Appendix.
 Even though a new McNemar test is computed on the
 results obtained in the hold-out data, it does not yield statistically significant results
 for our phones of interest. This can be explained by the fact that hold-out data
-has around 1/4 of the data of the
-development data, affecting the efectiveness of the test.
+has around 1/4 of the instances of the
+development set, which results in very little testing data
+affecting the efectiveness of the statistical test.
 
 The relative gains for the phones of interest are summarized in Fig. \ref{fig:fusionMcnemarTest}.
 Again, the bars for the three phones (/z/, /rr/, /t/) that gave statistically significant
