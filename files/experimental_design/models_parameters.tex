@@ -1,0 +1,33 @@
+In this section we describe some relevant parameters that are computed before training the
+models.
+
+The first parameter to be described is the number of mixtures components
+to be computed when training the GMM for each phone. As it is described in Method Section
+\ref{subsection:gmm}, in order to extract the supervectors an initial GMM-UBM is trained
+using all the instances of a given phone.
+The number of Gaussian Mixtures to be trained is kept proportional to the number of
+training instances for that phone. In the current work, a
+mixture component is trained every 15 phone instances
+in order to keep a similar proportion to what was used in the previous work \cite{main} .
+
+Regarding to the SVM classifiers, two relevant parameters are tunned. The first one is
+the default value of the $C$ parameter, which is described in Section
+\ref{subsection:soft_margin}.
+Different values of the \textcolor{red}{input parameter $C$ (which is set to 1.0 by default
+in \textit{sklearn})}
+were tested at the beginning of the
+current work using at first an exponential scale:
+$10^{-i} \ldots 10^{i}$ with $i=4$, an after that reducing the search interval to
+$[0 \ldots 1]$. The best results, however, were obtained when using a default value
+suggested in the docs of SVM-Light, an implementation of SVMs in C language: $\frac{1}{avg(x*x)}$,
+\textcolor{red}{that is the average of the squared norm of the instances}.
+
+Finally, another important parameter is described with regard to the SVM classifier.
+A \textit{class-weight} parameter is provided by \textit{sklearn}, which allows to
+adjust the weight of the $C$ parameter for each class. If not given, all classes are supposed
+to weight one. In the curent work, this parameter is set to ``balanced'', which adjusts
+the weights inversely proportional to the class frequencies in the input data.
+This is particular useful in our case, because the number of instances for each class is
+unbalanced for most of the phones.
+
+

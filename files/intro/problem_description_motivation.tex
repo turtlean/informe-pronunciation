@@ -1,58 +1,64 @@
-(REHACER UNA VEZ TERMINADAS LAS DEM\'AS SECCIONES DEL INFORME)
+% (REHACER UNA VEZ TERMINADAS LAS DEM\'AS SECCIONES DEL INFORME)
 
-Technological improvements of last years permitted the development and expansion of Computer 
+Technological improvements of last years allowed the development and expansion of Computer
 Asisted Language Learning (CALL) systems. These tools are aimed to help students along the
-process of second language acquisition, which is a complex task. One of the points where the
+process of second language acquisition. One of the points where the
 students should focus is in pronunciation learning, that usually requires a one-to-one teacher
-interaction. Automatic pronunciation assessment can be very useful in this
-context because it provides an alternative with performance close to human judgement, 
+interaction. Automatic pronunciation assessment is very useful in this
+context because it provides an alternative with performance close to human judgement,
 cheaper and typically available at any time and any place.
 
-Pronunciation is a general term that covers a number of different aspects and can be measured
-with different features. A lot of work has been done in the area, and a good summary of 
-existing research to date followed by remaining challenges can be found in 
-\cite{where_we_are_go}.
+% Pronunciation is a general term that covers a number of different aspects and can be measured
+% with different features. A lot of work has been done in the area, and a good summary of
+% existing research to date followed by remaining challenges can be found in
+% \cite{where_we_are_go}.
 
-Sometimes is difficult to determine whether or not a 
-pronunciation error is being made because there is no clear definition of right or wrong
-pronunciation. Rather there exists an antire scale ranging from unintelligible speech to
-native-sounding speech. Taking that into account, pronunciation errors can be divided into
-phonemic and prosodic error types. Examples of severe errors of the first type are
-phoneme substitution, deletion or insertion. Errors on the prosodic side can be
-categorized in terms of stress, rythm and intonation. This work is focused in phonemic
-error detection.
+% Sometimes is difficult to determine whether or not a
+% pronunciation error is being made because there is no clear definition of right or wrong
+% pronunciation. Rather there exists an antire scale ranging from unintelligible speech to
+% native-sounding speech. Taking that into account, pronunciation errors can be divided into
+% phonemic and prosodic error types. Examples of severe errors of the first type are
+% phoneme substitution, deletion or insertion. Errors on the prosodic side can be
+% categorized in terms of stress, rythm and intonation. This work is focused in phonemic
+% error detection.
 
-Whenever performing pronunciation assessment, the smaller the unit the higher the
-uncertainty of the assessment. Currently, the most reliable estimates of pronunciation 
-are obtained from paragraphs composed of several sentences, so that an evaluation of the 
-speaker's overall pronunciation proficiency can be done. However, in order for the system
-to provide valuable feedback of the particular error that is being made an analysis at a
-much shorter level, like phone, is required. By following this approach, the exact error within
-a word can be identified.
+% Whenever performing pronunciation assessment, the smaller the unit the higher the
+% uncertainty of the assessment. Currently, the most reliable estimates of pronunciation
+% are obtained from paragraphs composed of several sentences, so that an evaluation of the
+% speaker's overall pronunciation proficiency can be done. However, in order for the system
+% to provide valuable feedback of the particular error that is being made an analysis at a
+% much shorter level, like phone, is required. By following this approach, the exact error within
+% a word can be identified.
 
 When working in automatic pronunciation error detection an important decision to be taken is
 wheter or not considering L1, the native language of the learner, along the process. These
-systems have improved speech recognition accuracy because they are designed 
-taking into account common known errors between L1 and L2. For example, native American English 
-students that are learning spanish have difficulties pronouncing the diphtong [eu] or 
-/r/ after [l], [n] and [s] (which should be thrilled) and native Spanish students 
-that are learning English may have trouble pronouncing 
+systems have improved speech recognition accuracy because they are designed
+taking into account common known errors between L1 and L2. For example, native American English
+students that are learning spanish have difficulties pronouncing the diphtong [eu] or
+/r/ after [l], [n] and [s] (which should be thrilled) and native Spanish students
+that are learning English may have trouble pronouncing
 different kind of vowels that are present in English
-but not in the former. For example, Spanish has just one high front vowel [i] 
-and Spanish speakers often use the vowel for both the /I/ vowel in \textit{hit} and 
-the /i:/ vowel in \textit{heat}. In this work we use a Latin-American Spanish speech 
-database, with utterances of nonnative subjects that are native American English speakers.
-So in this case American English was selected as L1 and Latin-American Spanish as target
-language L2.
+but not in the former. This approach, however, requires a labeled nonnative speech database
+which is an expensive and time-consuming task, and in some cases it is not feasible.
+\underline{In the current thesis, a system based on L1 language
+is used to assess pronunciation
+of english speakers learning spanish}
 
-This thesis is part of a bigger project led by Dr. Luciana Ferrer, whose objective is 
-the development of a CALL system for Argentine children that are learning english. The goal
-is to generate pronunciation scores for students utterances at phone level. This way,
-all children may enjoy the benefits of using the system, including those who aren't capable
-of pronouncing entire paragraphs or long sentences due to lack of skills. In addition it will
-help to detect specific errors in the students pronunciation, so they can focus in that
-particular points when practicing the language.
+% For example, Spanish has just one high front vowel [i]
+% and Spanish speakers often use the vowel for both the /I/ vowel in \textit{hit} and
+% the /i:/ vowel in \textit{heat}. In this work we use a Latin-American Spanish speech
+% database, with utterances of nonnative subjects that are native American English speakers.
+% So in this case American English was selected as L1 and Latin-American Spanish as target
+% language L2.
 
-Even though the database for the current work uses American English as L1 and Spanish as L2,
-the same implementation can be used to train the main system of the global project once 
-collected the children utterances.
+% This thesis is part of a bigger project led by Dr. Luciana Ferrer, whose objective is
+% the development of a CALL system for Argentine children that are learning english. The goal
+% is to generate pronunciation scores for students utterances at phone level. This way,
+% all children may enjoy the benefits of using the system, including those who aren't capable
+% of pronouncing entire paragraphs or long sentences due to lack of skills. In addition it will
+% help to detect specific errors in the students pronunciation, so they can focus in that
+% particular points when practicing the language.
+
+% Even though the database for the current work uses American English as L1 and Spanish as L2,
+% the same implementation can be used to train the main system of the global project once
+% collected the children utterances.

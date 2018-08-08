@@ -32,7 +32,7 @@ One of the key features of the Max Margin Classifier is that the location of the
 only depends on the support vectors, which are the training observations that lie directly
 on the margins' boundaries.
 
-\subsection{Soft Margin}
+\subsection{Soft Margin} \label{subsection:soft_margin}
 
 One of the problems with Max Margin Classifiers is that they can be very sensitive to the
 addition of new training observations: The hyperplane may be adjusted substantially
@@ -122,15 +122,6 @@ the errors, thus establishing a trade off between a large margin and the error p
   of the hyperplane.}
   \label{fig:soft_margin_low_c}
 \end{figure}
-
-Different values of the \textcolor{red}{input parameter $C$ (which is set to 1.0 by default
-in \textit{sklearn})}
-were tested at the beginning of the
-current work using at first an exponential scale:
-$10^{-i} \ldots 10^{i}$ with $i=4$, an after that reducing the search interval to
-$[0 \ldots 1]$. The best results, however, were obtained when using a default value
-suggested in the docs of SVM-Light, an implementation of SVMs in C language: $\frac{1}{avg(x*x)}$,
-\textcolor{red}{that is the average of the squared norm of the instances}.
 
 To conclude this section, it is worth mentioning that feature scaling is an important
 step to be performed before training
