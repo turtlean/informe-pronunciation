@@ -30,8 +30,8 @@ cheaper and typically available at any time and any place.
 % much shorter level, like phone, is required. By following this approach, the exact error within
 % a word can be identified.
 
-When working in automatic pronunciation error detection an important decision to be taken is
-wheter or not considering L1, the native language of the learner, along the process. These
+When working in automatic pronunciation assessment an important decision to be taken is
+whether or not considering L1, the native language of the learner, along the process. These
 systems have improved speech recognition accuracy because they are designed
 taking into account common known errors between L1 and L2. For example, native American English
 students that are learning spanish have difficulties pronouncing the diphtong [eu] or
@@ -39,17 +39,27 @@ students that are learning spanish have difficulties pronouncing the diphtong [e
 that are learning English may have trouble pronouncing
 different kind of vowels that are present in English
 but not in the former. This approach, however, requires a labeled nonnative speech database
-which is an expensive and time-consuming task, and in some cases it is not feasible.
-\underline{In the current thesis, a system based on L1 language
-is used to assess pronunciation
-of english speakers learning spanish}
+which is an expensive and time-consuming task, and
+it is not feasible in some cases.
+In the current thesis, different experiments are carried out using L1-based models, which
+are trained on collected speech from native american english speakers that are learning
+spanish.
 
-% For example, Spanish has just one high front vowel [i]
-% and Spanish speakers often use the vowel for both the /I/ vowel in \textit{hit} and
-% the /i:/ vowel in \textit{heat}. In this work we use a Latin-American Spanish speech
-% database, with utterances of nonnative subjects that are native American English speakers.
-% So in this case American English was selected as L1 and Latin-American Spanish as target
-% language L2.
+% Whenever performing pronunciation assessment, the smaller the unit the higher the
+% uncertainty of the assessment. Currently, the most reliable estimates of pronunciation
+% are obtained from paragraphs composed of several sentences, so that an evaluation of the
+% speaker's overall pronunciation proficiency can be done. However, in order for the system
+% to provide valuable feedback of the particular error that is being made an analysis at a
+% much shorter level, like phone, is required. By following this approach, the exact error within
+% a word can be identified.
+
+In the area of pronunciation scoring, the smaller the unit to be scored, the higher the
+uncertainty in the associated score \cite{pronunciation_scoring_phone_segments_instruction}.
+Currently, the most reliable estimates are obtained from paragraphs composed of several
+sentences that can be used to characterize the speaker's overall pronunciation
+proficiency \cite{main}. However, specific problems can be pointed out
+when scoring smaller units, which allow the students to focus on those specific aspects of
+their speech production.
 
 % This thesis is part of a bigger project led by Dr. Luciana Ferrer, whose objective is
 % the development of a CALL system for Argentine children that are learning english. The goal
@@ -62,3 +72,5 @@ of english speakers learning spanish}
 % Even though the database for the current work uses American English as L1 and Spanish as L2,
 % the same implementation can be used to train the main system of the global project once
 % collected the children utterances.
+\underline{In the current thesis, a system based on L1 language is used to assess
+pronunciation of english speakers learning spanish}
