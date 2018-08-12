@@ -1,7 +1,7 @@
-In order to analyse if % the obtained results are statistically significant,
-\textcolor{red}{there is a statistically significant gain in combining the
+In order to analyse if
+there is a statistically significant gain in combining the
 supervectors and the dynamic features
-over using supervectors as the only features},
+over using supervectors as the only features,
 two different techiques are used in this work: \textit{Bootstrapping} and
 \textit{McNemar's Test}.
 
@@ -11,15 +11,14 @@ Test is an statistical test used on paired data.
 
 An advantage for McNemar's
 over Bootstrapping is that it bases its comparisons on cross information using
-exactly the same sample. \textcolor{red}{
-  McNemar's Test however assumes that the samples
-  are independent, which is not true when considering
-  all the instances of a given phone. Even though Bootstrapping also assumes that
-  the samples are independent, in the current work resampling is performed
-  at speaker level, which ensures the independence of the instances being resampled.
-  For this reason, we use both tests, since both have advantages and
-  disadvantages with respect to the other one.
-}
+exactly the same sample.
+McNemar's Test however assumes that the samples
+are independent, which is not true when considering
+all the instances of a given phone. Even though Bootstrapping also assumes that
+the samples are independent, in the current work resampling is performed
+at speaker level, which ensures the independence of the instances being resampled.
+For this reason, we use both tests, since both have advantages and
+disadvantages with respect to the other one.
 
 \subsection{Bootstrapping} \label{subsection:bootstrapping}
 
@@ -43,15 +42,14 @@ is then computed on each of the bootstrap
 samples (usually between 1-10 thousand). A histogram of these computed
 values is referred to as the bootstrap distribution of the statistic.
 
-\textcolor{red}{
-  In the current work, resampling is performed at speaker level.
-  In other words, given a set $S$ of $n$ speakers in the
-  test set, in each iteration of bootstrapping
-  a new set of $n$ speakers $S\textprime$ is obtained by drawing speakers with replacement from the
-  original set $S$. The sample set is then obtained by gathering the instances of the speakers
-  in $S\textprime$, which will include repeated samples for the speakers that appears more than once
-  in $S\textprime$
-}. \textit{Bootstrapping} technique is used along with Confidence
+In the current work, resampling is performed at speaker level.
+In other words, given a set $S$ of $n$ speakers in the
+test set, in each iteration of bootstrapping
+a new set of $n$ speakers $S\textprime$ is obtained by drawing speakers with replacement from the
+original set $S$. The sample set is then obtained by gathering the instances of the speakers
+in $S\textprime$, which will include repeated samples for the speakers that appears more than once
+in $S\textprime$.
+\textit{Bootstrapping} technique is used along with Confidence
 Intervals in order to determine if the \textit{SVM} trained with the combined features
 performs better than the one trained only with features derived from the \textit{GMM} adaptation.
 The first step is to generate a distribution of $EER$ for both types of classifiers.

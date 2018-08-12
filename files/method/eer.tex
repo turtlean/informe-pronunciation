@@ -1,8 +1,6 @@
 In order to measure the performance of the different systems, the \textit{Equal Error Rate} metric
 is chosen. As its name suggests, the \textit{EER} prioritizes in an equal manner the
-\textcolor{red}{
-  \textit{False Positive Rate} and the \textit{False Negative Rate}.
-}
+\textit{False Positive Rate} and the \textit{False Negative Rate}.
 This metric was used
 in the previous works of the current line of investigation related to pronunciation assessment
 at phone level \cite{detection_phone_level_mispronunciation_learning, main}, so the same approach
@@ -23,9 +21,9 @@ positives and negative instances according to the sign of their distance to the 
 
 The EER can be found by sweeping the threshold until reaching the condition that
 False Positive Rate (FPR) equals False Negative Rate (FNR). FPR is computed as
-\textcolor{red}{the proportion} of negative instances wrongly
+the proportion of negative instances wrongly
 categorized as positive: $\frac{FP}{TN+FP}$.
-Analogously, FNR is computed as \textcolor{red}{the proportion} of positve
+Analogously, FNR is computed as the proportion of positve
 instances wrongly categorized as negative:
 $\frac{FN}{TP+FN}$. A simple example of EER threshold is
 shown in Fig. \ref{fig:eer}.
@@ -37,11 +35,3 @@ shown in Fig. \ref{fig:eer}.
   The threshold separates the instances in such way that FPR equals FNR.}
   \label{fig:eer}
 \end{figure}
-
-% Even though the diagram shows a case where the classes are perfectly balanced, in most of
-% real world problems (including the current one) this does not happen. Distributions of both
-% classes usually differs in both size and shape. However,
-% as the technique is based on the \textit{rate} of misclassified positive and negative instances,
-% the EER method can be applied without any trouble for unbalanced datasets and
-% is computed exactly the same way: by sweeping the threshold until finding the point
-% where FPR equals FNR.

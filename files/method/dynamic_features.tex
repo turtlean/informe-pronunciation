@@ -1,12 +1,12 @@
-\subsection{\textcolor{red}{Phone-level features}: Dynamic features}
+\subsection{Phone-level features: Dynamic features}
 
-Supervectors \textcolor{red}{do not} include information about the dynamics of the MFCCs over time. Even though the frame-level features do include deltas and double-deltas,
-these features only relates the information of adjacent frames.
+Supervectors do not include information about the dynamics of the MFCCs over time. Even though the frame-level features do include deltas and double-deltas,
+\textcolor{red}{these features only relate} the information of adjacent frames.
 
-The evolution of the MFCCs over time can be modeled by using different \textcolor{red}{parameterization
-techniques},
+The evolution of the MFCCs over time can be modeled by using different parameterization
+techniques,
 and Dynamic Features are obtained by extracting the coefficients of those
-\textcolor{red}{parametric functions}.
+parametric functions.
 Given a phone instance,
 the values of each of the MFCCs along the whole interval are
 modeled separately, so a total of 39 functions are computed.
@@ -107,7 +107,7 @@ the more subtle details it models. In order to achieve the right balance between
 the least squares error and keeping the hypothesis simple two different approaches are taken.
 On the one hand the degree of the polynomial $k$ is limited up to a few coefficients.
 On the other hand, a regularization technique
-\textcolor{red}{often used when solving Least Squares problems} is explored.
+often used when solving Least Squares problems is explored.
 
 \subsubsection{Lasso Regression}
 
@@ -241,14 +241,13 @@ the 4\textsuperscript{th} MFCC of an instance of the phone 'i', taken from the t
   \end{subfigure}
 \end{figure}
 
-\textcolor{red}{
-  Both techiniques perform pretty well in approximating the curve, and they are also
-  pretty similar when using the same number of coefficients. It can be observed
-  in the example with 7 coefficients in Fig. \ref{fig:dynamic_features_7}, though, that
-  in some cases DCT
-  is better at modeling the oscilations of the curve while Legendre Polynomials
-  prioritizes to capture the overall shape of the curve.
-}
+Both techiniques perform pretty well in approximating the curve, and they are also
+pretty similar when using the same number of coefficients. It can be observed
+in the example with 7 coefficients in Fig. \ref{fig:dynamic_features_7}, though, that
+in some cases DCT
+is better at modeling the oscilations of the curve while Legendre Polynomials
+prioritize to capture the overall shape of the curve.
+
 Comparative experiments are carried
 out in this work
 in order to find which is the dynamic feature that best complements the supervectors when

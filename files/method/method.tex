@@ -22,16 +22,16 @@ is uttered in that instance. In order to do so, the flow goes as follows:
  are the \textit{Mel Frecuency Cepstral Coefficients} (MFCCs) because they are one of the
  most standard and widely-spread features in the speech processing field.
 
- \item The MFCCs are then \textcolor{red}{split} in segments according to the phones to which they
+ \item The MFCCs are then split in segments according to the phones to which they
  belong. Each segment is at the same time divided in frames, that represent short
  intervals where the audio signal is not supposed to be changing so much.
 
- \item MFCCs of each \textcolor{red}{phone instance} present in the utterance
- are then used to compute the more complex \textcolor{red}{phone-level} features
+ \item MFCCs of each phone instance present in the utterance
+ are then used to compute the more complex phone-level features
  on which the SVMs operates. Supervectors are the base and proven to work features,
  while the Dynamic Features are the experimental features to be studied.
 
- \item \textcolor{red}{
+ \item {
   SVM classifiers are trained individually for each phone. Two alternative ways of combining the
   features are studied:
     \begin{itemize}
@@ -43,12 +43,10 @@ is uttered in that instance. In order to do so, the flow goes as follows:
 
  \item Finally an individual score is obtained for each of the instances
  of the different phones present in the
- utterance. Scores with positive sign corresponds to correctly pronounced instances of the phone
- while scores with negative sign corresponds to mispronunciations.
- \textcolor{red}{The bigger the magnitude of the score, the more sure the system is about the
- decision}.
- % The bigger the magnitude of the score, the better the pronunciation when the sign is positive
- % and the worst the mispronunciation when the sign is negative.
+ utterance. \textcolor{red}{Phone instances with positive score are labelled as
+ correct while phone instances with negative score are labelled as incorrect.}
+ The bigger the magnitude of the score, the more sure the system is about the
+ decision.
 
 \end{enumerate}
 

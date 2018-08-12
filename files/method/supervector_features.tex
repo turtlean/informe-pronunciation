@@ -1,4 +1,4 @@
-\subsection{\textcolor{red}{Phone-level Features}: Supervectors}
+\subsection{Phone-level Features: Supervectors}
 
 Supervectors, which have already been succesfully used in
 \cite{supervectors, main} are one of the two features used in this work to train the SVM
@@ -46,7 +46,7 @@ MFCCs (13), plus deltas (13) and double deltas (13). So the features for our GMM
 
 As in the previous works of the current line of investigation
 \cite{detection_phone_level_mispronunciation_learning, main},
-the \mbox{\textcolor{red}{phone- and class-dependent}} GMMs are derived by the adaptation of a
+the \mbox{phone- and class-dependent} GMMs are derived by the adaptation of a
 \textit{Universal Background Model} (UBM)
 \cite{ubm_adaptation}, a technique that has been effective on significantly improving
 the accuracy in the speaker recongition field.
@@ -57,9 +57,9 @@ to a vector of instances with a \textit{Maximum a Posteriori} (MAP) estimation. 
 tighter coupling between the generated models that produces better performance than using
 decoupled models such as class-dependent GMMs. In addition, it can be specially useful when
 just a small number of training instances is available.
-\textcolor{red}{In the current work, an individual
+In the current work, an individual
 class-independent UBM (trained with both correctly and mispronounced instances)
-is generated for each phone.}
+is generated for each phone.
 
 The UBM approach involves adapting weight, mean and variance of each
 mixture, though in the current work only weights and means are adapted because of the limited
@@ -85,10 +85,10 @@ are updated according to the following equations:
 where $\pi_{k}$ and $\mu_{k}$ are the original values of the weight and mean of the
 k\textsuperscript{th} component of the GMM-UBM, \mbox{$\pi_{k}^{'}$ and $E_{k}(x)$} are
 the estimated values for the weight and mean
-\textcolor{red}{of the k\textsuperscript{th} component}
+of the k\textsuperscript{th} component
 calculated on the vector of instances provided
 for the adaptation and the scale factor $\gamma$ is computed over all the
-adapted mixture weights to ensure they sum to unity. \textcolor{red}{
+adapted mixture weights to ensure they sum to unity.
   $\alpha_{k}$ is the adaptation
   coefficient that controls the balance between old and new estimates that depends on
   two things: $n_{k}$, which is the sum of the posterior probabilities
@@ -104,8 +104,8 @@ adapted mixture weights to ensure they sum to unity. \textcolor{red}{
   of $\alpha_{k}$, thus adapting in a more conservative way by assigning more importance
   to the previous values. By contrary, a lower value of $r$ produces an increment in the value
   of $\alpha_{k}$, thus leading to a more aggresive adaptation strategy by assigning more importance
-  to the new values \textcolor{red}{\cite{ubm_adaptation}}.
-}. In the current work $r$ is set to 0, taking the most aggresive
+  to the new values \cite{ubm_adaptation}.
+In the current work $r$ is set to 0, taking the most aggresive
 adaptation strategy. This is again motivated by the previous work of the current
 line of investigation \cite{main}.
 % We can interpret Nk as the effective number of points assigned to cluster k
@@ -115,22 +115,22 @@ line of investigation \cite{main}.
 In order to compute the supervectors for a given phone, which are then used to train the SVM
 classifier, the following steps are performed:
 
-\textcolor{red}{
-  \begin{enumerate}
-    \item At first, a GMM-UBM is trained on the MFCCs
-    of all the available training instances for that phone, regardless of their class
-    label (mispronounced or correctly pronounced).
-    \item Once the GMM-UBM is trained, for each of the instances of
-    that phone two additional steps are performed:
-      \begin{enumerate}
-        \item An individual MAP adaptation process of the GMM-UBM to the values of
-        the instance is carried out, thus generating an adapted GMM for that instance.
-        \item The supervector for that instance
-        is obtained by stacking the means and the weights of each of the
-        gaussians composing the adapted GMM.
-      \end{enumerate}
-  \end{enumerate}
-}
+\begin{enumerate}
+  \item At first, a GMM-UBM is trained on the MFCCs
+  of all the available training instances for that phone, regardless of their class
+  label (mispronounced or correctly pronounced).
+  \item Once the GMM-UBM is trained, for each of the instances of
+  that phone two additional steps are performed:
+    \begin{enumerate}
+      \item An individual MAP adaptation process of the GMM-UBM to
+      % the values of the instance
+      \textcolor{red}{the feature vectors within the phone instance}
+      is carried out, thus generating an adapted GMM for that instance.
+      \item The supervector for that instance
+      is obtained by stacking the means and the weights of each of the
+      gaussians composing the adapted GMM.
+    \end{enumerate}
+\end{enumerate}
 
 The supervector computation process for a given phone instance
 is summarized in Fig. \ref{fig:supervectors_extraction} shown below:
