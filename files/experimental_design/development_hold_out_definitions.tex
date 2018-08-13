@@ -15,15 +15,18 @@ models in the training phase.
 \subsection{Hold-Out Set}
 
 The \textit{hold-out} set or \textit{validation} set is a subset of the data that is kept
-separately of the training set and remains untouched until the final model is fitted. It is
+separately of the development set and remains untouched until the final model is fitted. It is
 then used to test the final model and verify if it generalizes to unseen data.
 Additionally, it allows
 an unbiased estimate for the test error because none of the instances was used in the
-fitting process. It is worth nothing that in order to keep this condition true, the samples
-of the hold-out set must come speakers that are not used in the training set.
+fitting process.
+\textcolor{red}{
+  It is worth noting that in order to keep this condition true, the samples
+  of the hold-out set must come from speakers that are not used in the development set.
+}
 
 The partitioning is carried out at speaker level. Speakers are randomly split into two groups
 that contain 20\% and 80\% of the total number of speakers. The hold-out set
 is obtained from the group with 20\% of the speakers by gathering all the utterances pronounced
-by those speakers. The training set is obtained from the
+by those speakers. The development set is obtained from the
 group with 80\% of the speakers in the same way.
