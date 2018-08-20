@@ -71,13 +71,14 @@ a ``soft'' separation. The soft margin method will choose a hyperplane that spli
 as cleanly as possible while still maximizing the distance to the nearest training instances.
 The effects of the soft margin can be observed in Fig. \ref{fig:soft_margin_low_c}.
 
-Given a labeled dataset D of $n$ points
-of the form: $D=\{ \ (x_{i}, y_{i}) \ | \ x_{i} \in R^{p}, \ y_{i} \in \{-1, 1\} \ \}$, the
+Given a labeled dataset D of $n$ tuples
+of the form: $D=\{ \ (x_{i}, y_{i}) \ | \ x_{i} \in \mathbb{R}^{p}, \ y_{i} \in \{-1, 1\} \ \}$, the
 problem can be formulated as:
 
 \begin{equation}
   \displaystyle \min_{\omega, \xi} \left\{ \frac{1}{2}{\| w \|}^{2} + C \sum_{i=i}^{n}\xi_{i} \right\}, \ s.t \ \forall i: \
   y_{i}*(\omega^{t} \cdot x_{i} + b \ ) \geq 1 - \xi_{i}, \ \xi_{i} \geq 0
+  \label{eq:svm}
 \end{equation}
 
 Each $x_{i}$ is a p-dimensional real number vector.

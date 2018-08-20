@@ -244,8 +244,53 @@ Combination. In the former, features from both sources are mixed in some proport
 used to train a single SVM, while in the latter,
 an independent SVM is trained for each feature source and
 both results are combined in some proportion to generate the final results.
-
-Again, the experiment is scoped to phones with high Kappa values.
+\textcolor{red}{
+	As it is described in equation \ref{eq:svm}, a labeled dataset
+	\mbox{$D=\{ \ (x_{i}, y_{i}) \ | \ x_{i} \in \mathbb{R}^{p}, \ y_{i} \in \{-1, 1\} \ \}$}
+	is used
+	when training the SVM for a given phone, where $x_{i}$ represents the feature vector for the
+	$i^{th}$ instance of that phone and $y_{i}$ represents the label.
+	Let us denote:
+	\begin{equation}
+		x_{i} =
+		\begin{cases}
+			s_{i} : [ \ s_{i1}, s_{i2}, \dotsc s_{in} \ ], & \text{when using supervectors features} \\
+			d_{i} : [ \ d_{i1}, d_{i2}, \dotsc d_{im} \ ], & \text{when using dynamic features}
+		\end{cases}
+	\end{equation}
+	Supervectors features are $n$-dimensional vectors while dynamic features are $m$-dimensional
+	vectors. When combining the features, dynamic features are appended to supervectors
+	% (which is denoted by the concatenation symbol $\circ$ in Eq. \ref{eq:featuresCombination}).
+	(symbol ``$\circ$'' represents concatenation in Eq. \ref{eq:featuresCombination}).
+	A proportion $p \in \mathbb{R}$
+	is chosen to determine the relevance of the dynamic features with respect to supervectors
+	within the SVM. The higher the proportion, the higher the relevance of the dynamic features.
+	The features combination vector for the $i^{th}$ instance is computed as:
+	\begin{equation}
+		x_{i}^{\prime} = s_{i} \circ (p * d_{i}) = [ \ s_{i1}, \ s_{i2}, \ \dotsc s_{in}, \ p * d_{i1}, \ p * d_{i2}, \ \dotsc p*d_{im} \ ]
+		\label{eq:featuresCombination}
+	\end{equation}
+	The process for computing the features combination vectors can be alternatively
+	thought as a dot product between the concatenation of supervectors and dynamic features ($s_{i} \ \circ \ d_{i}$) by a weight vector $\pi$
+	of dimension $n+m$, which contains a value of 1 in the first $n$ positions (which correspond to supervectors)
+	and a value of $p$ in
+	the last $m$ positions (which correspond to dynamic features): $[ \ 1, \ 1, \dotsc 1, \ p, \ p, \dotsc p \ ]$. This equivalent approach can be then expressed as:
+	\begin{equation}
+		x_{i}^{\prime} = \pi \cdot (s_{i} \circ d_{i})
+	\end{equation}
+	Score Combination, on the other hand, is computed by combining the scores
+	of the SVM classifiers trained independently on both supervectors and dynamic features.
+	A proportion $p \in \mathbb{R}$
+	is chosen to determine the amount of the score of the dynamic-feature-based system to be considered
+	in the final score. Let us denote $sup_{i}$ to the score of the
+	SVM trained on supervectors when classifing the $i^{th}$ instance,
+	and $dyn_{i}$ to the score of the SVM trained on the dynamic features. The final score for the
+	$i^{th}$ is computed as:
+	\begin{equation}
+		score_{i} = sup_{i} + p * dyn_{i}
+	\end{equation}
+}
+The experiment is again scoped to phones with high Kappa values.
 Proportions to be used when combining the features and the scores are kept phone-dependent.
 The objective is thus to compute two optimal proportions for each phone:
 one for the features combinations and the other one for the score combination.
@@ -254,6 +299,10 @@ During the experiment, proportions of the dynamic features with respect to super
 are varied between 0 and 1 with steps of 0.1.
 In other words, the explored interval is
 \mbox{[0.0, 0.1, 0.2 \ldots 1.0]}.
+\textcolor{red}{
+	An initial exploratory experiment showed that no further gains are obtained when using
+	proportions higher than 1.0 for the dynamic features in neither features nor score combinations.
+}
 It is worth noting that choosing
 a proportion of 0.0 of the dynamic
 features with respect to supervectors leads to not considering the dynamic features at all.
@@ -273,7 +322,7 @@ for both Legendre and DCT approaches turns out to be 0.1.
 % For the Features Combination case, the optimal proportion for the majority of the phonemes
 % for both Legendre and DCT approaches is 0.1.
 There are also some phones such as
-$/\gamma/$ and $/b/$ where the best proportion is 0.0.
+$/\gamma/$ and $/b/$ for which the best proportion is 0.0.
 This can be interpreted as that
 no proportion produces an improvement when combining the dynamic features with the supervectors.
 
