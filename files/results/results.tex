@@ -163,7 +163,7 @@ Polynomials along with the best \textcolor{red}{configuration}.
 \end{itemize}
 
 \textcolor{red}
-{Results are depicted in \ref{fig:legendreTunning}, which shows the variation of the
+{Results are depicted in Fig. \ref{fig:legendreTunning}, which shows the variation of the
 EER average taken over the phones with high Kappa
 as function of the degree of the Legendre Polynomials for different configurations.
 The analysis is restricted to polynomials up to degree 6.
@@ -240,12 +240,16 @@ dynamic feature integrates better
 with the supervectors producing the best results.
 
 Two types of combination are studied in the current thesis: a Features Combination and a Score
-Combination. In the former, features from both sources are mixed in some proportion and
-used to train a single SVM, while in the latter,
-an independent SVM is trained for each feature source and
-both results are combined in some proportion to generate the final results.
+Combination.
 \textcolor{red}{
-	As it is described in equation \ref{eq:svm}, a labeled dataset
+	In the former, dynamic features are first scaled by a factor $p$ and then appended to the
+	supervectors to train a single SVM. Factor $p$ determines the relevance of the dynamic features
+	with respect to supervectors. In the latter,
+	an independent SVM is trained for each feature source and
+	scores from both systems are combined in some proportion to generate the final score. }
+
+\textcolor{red}{
+	As it is described in equation \ref{eq:svm}, a labeled set
 	\mbox{$D=\{ \ (x_{i}, y_{i}) \ | \ x_{i} \in \mathbb{R}^{p}, \ y_{i} \in \{-1, 1\} \ \}$}
 	is used
 	when training the SVM for a given phone, where $x_{i}$ represents the feature vector for the
@@ -270,7 +274,7 @@ both results are combined in some proportion to generate the final results.
 		x_{i}^{\prime} = s_{i} \circ (p * d_{i}) = [ \ s_{i1}, \ s_{i2}, \ \dotsc s_{in}, \ p * d_{i1}, \ p * d_{i2}, \ \dotsc p*d_{im} \ ]
 		\label{eq:featuresCombination}
 	\end{equation}
-	The process for computing the features combination vectors can be alternatively
+	The process for computing the feature combination vectors can be alternatively
 	thought as a dot product between the concatenation of supervectors and dynamic features ($s_{i} \ \circ \ d_{i}$) by a weight vector $\pi$
 	of dimension $n+m$, which contains a value of 1 in the first $n$ positions (which correspond to supervectors)
 	and a value of $p$ in
@@ -301,7 +305,8 @@ In other words, the explored interval is
 \mbox{[0.0, 0.1, 0.2 \ldots 1.0]}.
 \textcolor{red}{
 	An initial exploratory experiment showed that no further gains are obtained when using
-	proportions higher than 1.0 for the dynamic features in neither features nor score combinations.
+	proportions higher than 1.0 for the dynamic features in neither features combination nor score combination
+	experiments.
 }
 It is worth noting that choosing
 a proportion of 0.0 of the dynamic
@@ -447,10 +452,7 @@ analysis. As it is described in Method Section \ref{subsection:bootstrapping}, t
 is to compute the confidence intervals that enclose the 95\% of the samples of
 the target distributions (in our case, EER distributions) to find out if they are shifted
 with respect to each other. A thousand bootstrapping iterations are applied by resampling
-the speakers and computing the EER those speakers' instances.
-
-Results are summarized in Fig. \ref{fig:bootstrappingDev}.
-The plots are split in two in order to adjust the y-axis and display the intervals
+the speakers and computing the EER those speakers' instances. Results are summarized in Fig. \ref{fig:bootstrappingDev}. Plots are split in two in order to adjust the y-axis and display the intervals
 with greater detail.
 
 The plots show that most of the fusion system intervals are shifted downwards with
@@ -521,12 +523,12 @@ experiment carried out in the development set, only 'z' degrades its performance
 with the baseline system (around a 6\% relative). Among the
 remaining phones, some reduce its gain compared with the development set (such as
 /y/ from 8\% to less than 2\% and /rr/ from almost 6\% to less than 2\%). Others such
-as /m/ improves its performance from 6\% to more than 8\%.
+as /m/ improves its \textcolor{red}{gain} from 6\% to more than 8\%.
 
 On the other hand, results show that
 for the phones that \textcolor{red}{gave statistically significant gains} in the
 Features Combination experiment carried out in the development set, only /o/ degrades
-its performance and in a slightly way.
+its performance and \textcolor{red}{only} slightly.
 Among the remaining phones, for the Features Combination experiment,
 there are cases where both improvements
 and degradations of the performance are observed.
@@ -539,21 +541,32 @@ with greater detail.
 The most relevant thing to mention is that, unlike in the development set, the overlap
 between the confidence intervals of the three systems is very big, to a point such that
 for some phones it is difficult to determine if the intervals come from different
-distributions. There are though some phones for which the intervals
+distributions. There are\textcolor{red}{, though,} some phones for which the intervals
 for the fusion systems seem to be
 shifted downwards with respect to the baseline system. The most representative example
 is /s/, followed in lesser extent by other phones such as /l/, /m/, /t/, /e/ and /y/.
 
-A positive aspect to be considered is that any of the phones degrade its performance in a
-significant manner. Even the confidence itervals for the phone /z/ for both baseline and
-fusion systems are very similar. At first glance, this may contradict the fact that
-performance of the Score Combination system for /z/ degrades 6\% with respect to the baseline
-system, as shown by the results show in Fig. \ref{fig:fusionMcnemarTest}.
-A possible explanation can be that the Score Combination system is not favored by
-the initial distribution of the speakers in the hold-out set, and is supported by
-the similarity of both intervals in Fig. \ref{fig:bootstrappingHoldOutB}.
-Additionally, in the results obtained in the development set (Fig. \ref{fig:bootstrappingDev}),
-there also was no evidence that one system was better than the other.
+A positive aspect to be considered is that \textcolor{red}{none} of the phones degrade their
+results in a significant manner. \textcolor{red}{In addition,
+the confidence intervals
+for the two systems for the phone /z/ are very wide and they almost completely overlap,
+which is an evidence that the degradation is not statistically significant.}
+
+% the overlap of the confidence intervals
+% for the two systems for the phone /z/, which are very wide,
+% Even the overlap for the confidence intervals for the phone /z/
+% confidence itervals (which are very wide) for the phone /z/
+% for both baseline and the score combination system overlap .
+% which is a sign that \ldots
+
+% At first glance, this may contradict the fact that
+% performance of the Score Combination system for /z/ degrades 6\% with respect to the baseline
+% system, as shown by the results show in Fig. \ref{fig:fusionMcnemarTest}.
+% A possible explanation can be that the Score Combination system is not favored by
+% the initial distribution of the speakers in the hold-out set, and is supported by
+% the similarity of both intervals in Fig. \ref{fig:bootstrappingHoldOutB}.
+% Additionally, in the results obtained in the development set (Fig. \ref{fig:bootstrappingDev}),
+% there also was no evidence that one system was better than the other.
 
 \begin{figure}[H]
   \centering

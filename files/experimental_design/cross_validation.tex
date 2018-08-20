@@ -4,12 +4,14 @@ estimate of the errors for a given model by fitting and testing the model using 
 subsets of the available development data. The error estimate is more robust than
 that computed when fitting the model only once using all the available training data.
 
-In order to keep the error estimates unbiased
-the set of speakers in each of the folds must be disjoint (the same as
-when splitting the dataset into development and hold-out).
-The partitioning of the development set
-is then carried out at speaker level, and each fold is obtained by gathering all the
-utterances pronounced by the speakers in that fold.
+\textcolor{red}{
+  In order to keep the error estimates unbiased
+  the set of speakers in each of the folds must be disjoint (the same as
+  when splitting the dataset into development and hold-out).
+  The partitioning of the development set
+  is then carried out at speaker level, and each fold is obtained by gathering all the
+  utterances pronounced by the speakers in that fold.
+}
 
 To apply K-Fold Cross Valdation,
 the development set is divided in $k$ groups or folds of approximately equal size.
@@ -34,5 +36,5 @@ three of the folds and tested on the other one.
 \textcolor{red}{
   \textit{EER} is computed by gathering the scores from all the folds.
   This approach for EER computation leads to a more realistic statistic than computing an EER
-  per fold and taking the average, because the later would lead to optimistic results.
+  per fold and taking the average, because the latter would lead to optimistic results.
 }
