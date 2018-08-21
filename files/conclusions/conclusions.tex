@@ -1,0 +1,39 @@
+In the current thesis, we explored different Dynamic Features to be used as complementary features to
+Supervectors when classifying phone instances using an SVM classifier. As in the previous work \cite{main},
+Support Vector Machines stands as a suitable model for discriminating mispronounced and correctly
+pronounced phone instances.
+
+When tested in isolation, Dynamic Features turned out to be effective features in regard to
+phone assessment task, producing results better than random. The results for both
+Legendre and DCT methods were very similar, yet DCT produced slightly better results in combination with
+supervectors, so it was selected as the representative of the Dynamic Features.
+
+Experiments showed that among all the phones that were analysed in the current work, only a subset of them
+benefits from the combination of supervectors and dynamic features. A proper strategy when following this
+technique is then to combine the features using a phone-dependent approach.
+
+% The results obtained in the development and hold-out sets suggest that in fact dynamic features carry
+The obtained results suggest that in fact dynamic features carry
+information complementary to supervectors' information, which leads to a reduction of the errors
+made by the classifiers. For most of the phones for which the combination experiments gave statistically significant gains in the development set, the experiments in the hold-out set also yielded gains,
+though in less extent when taking the average. Moreover, the degradation for the remaining phones
+is not statistically significant.
+
+The number of instances for each phone was insufficient in many cases. The classes for many
+phones are highly unbalanced, which led to training models with high variance an
+hindered the computation of reliable statistics for the errors.
+Some possible consequences
+of this, which can be observed in the statistical analysis carried out in the hold-out set,
+could be the fact that bootstrapping
+confidence intervals ended up being very wide for some of the phones,
+or that McNemar test did not yield statistically significant results for many of the phones
+for which the same test had given statistically significant results in the development set.
+
+% Possible consequences of this could
+% be observed when carrying out the statistical analysis in the hold-out set:
+% confidence intervals for some phones were very wide and McNemar test did not yield
+% reliable results at all.
+Finally, it is not possible to determine if any of the combination approaches is better than the other based
+on the obtained results. Both Features Combination and Score Combination approaches yielded
+similar results with no clearer differences. Again, using a bigger dataset would have helped to pick out one
+method over the other.
