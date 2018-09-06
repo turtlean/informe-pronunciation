@@ -9,7 +9,7 @@ out in the following order:}
 	experiments are performed in order to replicate the results
 	obtained in the previous work \cite{main} for both GMM and SVM classifiers.
 	\item In a second stage, different parameters for the dynamic features are explored.
-	Those parameters include the optimal proportions to be used when combining the
+	Those parameters include the optimal weight to be used when combining the
 	supervectors with the dynamic features.
 	\item At last, the final model is selected and it is tested against the hold-out data.
 \end{enumerate}
@@ -237,18 +237,13 @@ of the average EER of 3.3\% compared with DCT.
 Even though the SVM based solely on Legendre performs better than the SVM based solely on
 DCT, a new experiment is carried out in order to determine which
 dynamic feature integrates better
-with the supervectors producing the best results.
-
-Two types of combination are studied in the current thesis: a Features Combination and a Score
+with the supervectors producing the best results. Two types of combination are
+studied in the current thesis: a Features Combination and a Score
 Combination.
-\textcolor{red}{
-	In the former, dynamic features are first scaled by a factor $p$ and then appended to the
-	supervectors to train a single SVM. Factor $p$ determines the relevance of the dynamic features
-	with respect to supervectors. In the latter,
-	an independent SVM is trained for each feature source and
-	scores from both systems are combined in some proportion to generate the final score. }
 
 \textcolor{red}{
+	In order to describe how the Features Combination is computed we recall some
+	concepts previously mentioned in the Method section.
 	As it is described in equation \ref{eq:svm}, a labeled set
 	\mbox{$D=\{ \ (x_{i}, y_{i}) \ | \ x_{i} \in \mathbb{R}^{p}, \ y_{i} \in \{-1, 1\} \ \}$}
 	is used
@@ -264,53 +259,53 @@ Combination.
 	\end{equation}
 	Supervectors features are $n$-dimensional vectors while dynamic features are $m$-dimensional
 	vectors. When combining the features, dynamic features are appended to supervectors
-	% (which is denoted by the concatenation symbol $\circ$ in Eq. \ref{eq:featuresCombination}).
 	(symbol ``$\circ$'' represents concatenation in Eq. \ref{eq:featuresCombination}).
-	A proportion $p \in \mathbb{R}$
+	A factor $c = \frac{n}{m}$ multiplies the dynamic features
+	in order to compensate the difference in
+	the number of features between supervectors and dynamic features.
+	Additionally, a weight factor $w \in \mathbb{R}$ that also multiplies the dynamic features
 	is chosen to determine the relevance of the dynamic features with respect to supervectors
-	within the SVM. The higher the proportion, the higher the relevance of the dynamic features.
-	The features combination vector for the $i^{th}$ instance is computed as:
+	within the SVM (the weight for the supervectors is implicitly set to 1).
+	The higher the value of $w$, the more relevant become the dynamic features.
+	The features combination vector for the $i^{th}$ instance is then computed as:
 	\begin{equation}
-		x_{i}^{\prime} = s_{i} \circ (p * d_{i}) = [ \ s_{i1}, \ s_{i2}, \ \dotsc s_{in}, \ p * d_{i1}, \ p * d_{i2}, \ \dotsc p*d_{im} \ ]
+		x_{i}^{\prime} = s_{i} \circ (w * c * d_{i}) = [ \ s_{i1}, \ s_{i2}, \ \dotsc s_{in}, \ w * c * d_{i1}, \ w * c * d_{i2}, \ \dotsc w * c * d_{im} \ ]
 		\label{eq:featuresCombination}
-	\end{equation}
-	The process for computing the feature combination vectors can be alternatively
-	thought as a dot product between the concatenation of supervectors and dynamic features ($s_{i} \ \circ \ d_{i}$) by a weight vector $\pi$
-	of dimension $n+m$, which contains a value of 1 in the first $n$ positions (which correspond to supervectors)
-	and a value of $p$ in
-	the last $m$ positions (which correspond to dynamic features): $[ \ 1, \ 1, \dotsc 1, \ p, \ p, \dotsc p \ ]$. This equivalent approach can be then expressed as:
-	\begin{equation}
-		x_{i}^{\prime} = \pi \cdot (s_{i} \circ d_{i})
 	\end{equation}
 	Score Combination, on the other hand, is computed by combining the scores
 	of the SVM classifiers trained independently on both supervectors and dynamic features.
-	A proportion $p \in \mathbb{R}$
+	Again, a weight $w \in \mathbb{R}$
 	is chosen to determine the amount of the score of the dynamic-feature-based system to be considered
-	in the final score. Let us denote $sup_{i}$ to the score of the
+	in the final score. Let us denote $\text{sup}_{i}$ to the score of the
 	SVM trained on supervectors when classifing the $i^{th}$ instance,
-	and $dyn_{i}$ to the score of the SVM trained on the dynamic features. The final score for the
+	and $\text{dyn}_{i}$ to the score of the SVM trained on the dynamic features. The final score for the
 	$i^{th}$ is computed as:
 	\begin{equation}
-		score_{i} = sup_{i} + p * dyn_{i}
+		\text{score}_{i} = \text{sup}_{i} + p * \text{dyn}_{i}
 	\end{equation}
+	The range of values to be explored for the parameter $w$ was adjusted empirically for both
+	Features Combination and Score Combination. The chosen interval for $w$ was restricted
+	to \mbox{[0.0 - 1.0]} with steps of 0.1. It is worth noting that choosing
+	a value for $w$ of 0.0 leads to not considering the dynamic features at all.
 }
-The experiment is again scoped to phones with high Kappa values.
-Proportions to be used when combining the features and the scores are kept phone-dependent.
-The objective is thus to compute two optimal proportions for each phone:
+
+The experiment is again scoped to the phones with high Kappa values.
+Weights to be used when combining the features and the scores are kept phone-dependent.
+The objective is thus to compute two optimal weights for each phone:
 one for the features combinations and the other one for the score combination.
 
-During the experiment, proportions of the dynamic features with respect to supervectors
-are varied between 0 and 1 with steps of 0.1.
-In other words, the explored interval is
-\mbox{[0.0, 0.1, 0.2 \ldots 1.0]}.
-\textcolor{red}{
-	An initial exploratory experiment showed that no further gains are obtained when using
-	proportions higher than 1.0 for the dynamic features in neither features combination nor score combination
-	experiments.
-}
-It is worth noting that choosing
-a proportion of 0.0 of the dynamic
-features with respect to supervectors leads to not considering the dynamic features at all.
+% During the experiment, proportions of the dynamic features with respect to supervectors
+% are varied between 0 and 1 with steps of 0.1.
+% In other words, the explored interval is
+% \mbox{[0.0, 0.1, 0.2 \ldots 1.0]}.
+% \textcolor{red}{
+% 	An initial exploratory experiment showed that no further gains are obtained when using
+% 	proportions higher than 1.0 for the dynamic features in neither features combination nor score combination
+% 	experiments.
+% }
+% It is worth noting that choosing
+% a proportion of 0.0 of the dynamic
+% features with respect to supervectors leads to not considering the dynamic features at all.
 
 % both ends of the interval corresponds to use only
 % a feature source and not using the other source at all. A proportion of 0.0 of the dynamic
@@ -322,19 +317,19 @@ features with respect to supervectors leads to not considering the dynamic featu
 % when zooming in in the interval [0.0 - 0.1].
 
 In the Features Combination experiment,
-the optimal proportion for the majority of the phones
+the optimal weight for the majority of the phones
 for both Legendre and DCT approaches turns out to be 0.1.
 % For the Features Combination case, the optimal proportion for the majority of the phonemes
 % for both Legendre and DCT approaches is 0.1.
 There are also some phones such as
-$/\gamma/$ and $/b/$ for which the best proportion is 0.0.
+$/\gamma/$ and $/b/$ for which the best weight is 0.0.
 This can be interpreted as that
-no proportion produces an improvement when combining the dynamic features with the supervectors.
+no weight produces an improvement when combining the dynamic features with the supervectors.
 
-On the other hand, in the Score Combination experiment, the optimal proportions for
+On the other hand, in the Score Combination experiment, the optimal weight for
 the results of the different phones are more scattered along the whole interval [0.0 - 1.0]
 for both Legendre and
-DCT. Again, there are also some phones for which the optimal proportion is 0.0, but they are
+DCT. Again, there are also some phones for which the optimal weight is 0.0, but they are
 considerable fewer than in the features combination case.
 
 For both combination types, the DCT features yield better results than the Legendre features,
@@ -352,7 +347,7 @@ difference), as it is shown in Table \ref{table:legendreVsDCTCombinations}.
 	    EER Features Combination (Avg) & 0.188 & 0.187 \\ \hline
 	    EER Score Combination (Avg) & 0.189  & 0.187 \\ \hline
 	    \end{tabular}
-	    \caption{EER average over phones with high Kappa using the best proportions for
+	    \caption{EER average over phones with high Kappa using the best weight for
 	    both Dynamic Features and combination approaches, obtained in the development set.}
 	    \label{table:legendreVsDCTCombinations}
 	\end{center}
@@ -360,7 +355,7 @@ difference), as it is shown in Table \ref{table:legendreVsDCTCombinations}.
 
 At this point, the DCT features are chosen as the Dynamic Features to be combined with the
 supervectors when training the final models, and for each of the remaining phones with
-low Kappa values the phone-dependent proportions are computed.
+low Kappa values the phone-dependent weights are computed.
 
 \section{Final Models Validation} \label{subsection:modelValidation}
 
@@ -372,10 +367,10 @@ than the other one. The three systems to be compared are then:
 
 \begin{itemize}
 	\item SVM trained only on supervectors, which is used as the baseline system.
-	\item SVM trained on the features combination of DCT and supervectors (using the best features combination proportions obtained in the tunning phase).
+	\item SVM trained on the features combination of DCT and supervectors (using the best features combination weights obtained in the tunning phase).
 	\item System based on the score combination of an SVM trained
 	only on supervectors and an SVM trained
-	only on DCT features (using the best score combination proportions obtained in the tunning phase).
+	only on DCT features (using the best score combination weights obtained in the tunning phase).
 \end{itemize}
 
 An initial experiment is performed in the development set
