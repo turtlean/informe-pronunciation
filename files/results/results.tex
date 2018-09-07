@@ -1,8 +1,8 @@
 % Finally, a brief description of the configuration of different model paramaters used in the current work is provided.
 
 In this section we introduce the experiments that were carried throughout this work
-along with the obtained results for each of them. \textcolor{red}{Experiments were carried
-out in the following order:}
+along with the obtained results for each of them. The outline of the experiments can be
+summarized as follows:
 
 \begin{enumerate}
 	\item At first, initial or baseline
@@ -14,50 +14,40 @@ out in the following order:}
 	\item At last, the final model is selected and it is tested against the hold-out data.
 \end{enumerate}
 
-% The outline of the experiments can be
-% summarized as follows:
-% At first, a brief description of the configuration
-% of some relevant model parameters that were set during the experiments is provided.
+% \section{Models' Parameters}
 
-\textcolor{red}{The outline of this section is as follows: At first, a brief description of the
-chosen configuration
-for some relevant model parameters is provided.
-After that, the experiments are presented.}
+% \textcolor{red}{In this section we briefly describe some relevant configuration parameters that
+% are used when training the models.}
 
-\section{Models' Parameters}
+% The first parameter to be described is the number of mixtures components
+% to be computed when training the GMM for each phone. As it is described in Method Section
+% \ref{subsection:gmm}, in order to extract the supervectors an initial GMM-UBM is trained
+% using all the instances of a given phone.
+% The number of Gaussian Mixtures to be trained is kept proportional to the number of
+% training instances for that phone. In the current work, a
+% mixture component is trained every 15 phone instances
+% in order to keep a similar proportion to what was used in the previous work \cite{main} .
 
-\textcolor{red}{In this section we briefly describe some relevant configuration parameters that
-are used when training the models.}
+% Regarding to the SVM classifiers, two relevant parameters are \textcolor{red}{tuned}.
+% The first one is
+% the value of the $C$ parameter, which is described in Section
+% \ref{subsection:soft_margin}.
+% Different values of the input parameter $C$ (which is set to 1.0 by default
+% in \textit{sklearn})
+% were tested at the beginning of the
+% current work using at first an exponential scale:
+% $10^{-i} \ldots 10^{i}$ with $i=4$, an after that reducing the search interval to
+% $[0 \ldots 1]$. The best results, however, were obtained when using a default value
+% suggested in the docs of SVM-Light, an implementation of SVMs in C language: $\frac{1}{avg(x*x)}$,
+% that is the average of the squared norm of the instances.
 
-The first parameter to be described is the number of mixtures components
-to be computed when training the GMM for each phone. As it is described in Method Section
-\ref{subsection:gmm}, in order to extract the supervectors an initial GMM-UBM is trained
-using all the instances of a given phone.
-The number of Gaussian Mixtures to be trained is kept proportional to the number of
-training instances for that phone. In the current work, a
-mixture component is trained every 15 phone instances
-in order to keep a similar proportion to what was used in the previous work \cite{main} .
-
-Regarding to the SVM classifiers, two relevant parameters are \textcolor{red}{tuned}.
-The first one is
-the value of the $C$ parameter, which is described in Section
-\ref{subsection:soft_margin}.
-Different values of the input parameter $C$ (which is set to 1.0 by default
-in \textit{sklearn})
-were tested at the beginning of the
-current work using at first an exponential scale:
-$10^{-i} \ldots 10^{i}$ with $i=4$, an after that reducing the search interval to
-$[0 \ldots 1]$. The best results, however, were obtained when using a default value
-suggested in the docs of SVM-Light, an implementation of SVMs in C language: $\frac{1}{avg(x*x)}$,
-that is the average of the squared norm of the instances.
-
-Finally, the other important parameter with regard to the SVM classifier is named
-\textit{class-weight}. It is provided by \textit{sklearn} and allows to
-adjust the weight of the $C$ parameter for each class. If not given, all classes are supposed
-to weight one. In the curent work, this parameter is set to ``balanced'', which adjusts
-the weights inversely proportional to the class frequencies in the input data.
-This is particular useful in our case, because the number of instances for each class is
-unbalanced for most of the phones.
+% Finally, the other important parameter with regard to the SVM classifier is named
+% \textit{class-weight}. It is provided by \textit{sklearn} and allows to
+% adjust the weight of the $C$ parameter for each class. If not given, all classes are supposed
+% to weight one. In the curent work, this parameter is set to ``balanced'', which adjusts
+% the weights inversely proportional to the class frequencies in the input data.
+% This is particular useful in our case, because the number of instances for each class is
+% unbalanced for most of the phones.
 
 \section{Baseline Experiments}
 
@@ -70,14 +60,37 @@ The results to be replicated come from the comparison between GMM and SVM models
 The GMMs are obtained by adaptation of UBM-GMMs, as it was previously described in
 the method section \ref{subsubsection:ubm}, and they are based on
 a likelihood-ratio detection method.
-\textcolor{red}{The SVM model approach is based on supervectors, as it was also described
-in \ref{subsubsection:supervectors}.}
+The SVM model approach is based on supervectors, as it was also described
+in \ref{subsubsection:supervectors}.
+
+\textcolor{red}{
+	Some of the models' parameters are tuned during the baseline experiments
+	and kept throughout the subsequent experiments.
+	The number of Gaussian Mixtures to be trained for each GMM
+	is kept proportional to the number of
+	available training instances for the phone being analysed. A
+	mixture component is trained every 15 phone instances
+	in order to keep a similar proportion to what was used in the previous work \cite{main}.
+	With regard to the SVM classifier,
+	different values of the input parameter $C$, that is described in section
+	\ref{subsection:soft_margin}, were tested. The best results were obtained when
+	using $C=\frac{1}{avg(x*x)}$, which is the average of the squared norm of the
+	training feature vectors. This value was taken from the docs of SVM-Light, a library
+	that implements SVMs in C language. Finally, \textit{sklearn} provides a
+	\textit{class-weight} parameter, that allows to
+	adjust the weight of the $C$ parameter for each class.
+	If not given, all classes are supposed
+	to weight one. This parameter is set to ``balanced'', which adjusts
+	the weights inversely proportional to the class frequencies in the input data.
+	This is particular useful because the number of instances for each class is
+	unbalanced for most of the phones.
+}
 
 Below is shown the
 comparison of the results of the GMM models and
 SVM models obtained in the development set during the experiment
 replication (Fig. \ref{fig:gmmSupervectorsDev}).
-\textcolor{red}{The phones are sorted in descending order} according to their Kappa coefficients.
+The phones are sorted in descending order according to their Kappa coefficients.
 Results show that the SVMs system produced an overall weighted EER relative reduction of 2.5\% with
 respect to the Adapted GMMs, which is in line with the results obtained
 in \cite{main}.
