@@ -20,10 +20,8 @@ then used to test the final model and verify if it generalizes to unseen data.
 Additionally, it allows
 an unbiased estimate for the test error because none of the instances was used in the
 fitting process.
-\textcolor{red}{
-  It is worth noting that in order to keep this condition true, the samples
-  of the hold-out set must come from speakers that are not used in the development set.
-}
+It is worth noting that in order to keep this condition true, the samples
+of the hold-out set must come from speakers that are not used in the development set.
 
 The partitioning is carried out at speaker level. Speakers are randomly split into two groups
 that contain 20\% and 80\% of the total number of speakers. The hold-out set

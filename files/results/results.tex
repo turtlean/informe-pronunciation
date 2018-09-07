@@ -72,7 +72,7 @@ in \ref{subsubsection:supervectors}.
 	mixture component is trained every 15 phone instances
 	in order to keep a similar proportion to what was used in the previous work \cite{main}.
 	With regard to the SVM classifier,
-	different values of the input parameter $C$, that is described in section
+	different values of the input parameter $C$, which is described in section
 	\ref{subsection:soft_margin}, were tested. The best results were obtained when
 	using $C=\frac{1}{avg(x*x)}$, which is the average of the squared norm of the
 	training feature vectors. This value was taken from the docs of SVM-Light, a library
@@ -109,7 +109,7 @@ Among the eight phones with higher Kappa values (K $>$ 0.4, which implies modera
 	\includegraphics[width=0.8\textwidth]{files/figures/results/gmm-vs-supervectors/gmm-vs-supervectors-dev.png}
 	\caption{Comparison of EER between Adapted GMMs
 	and SVM trained on Supervectors for all phones obtained in the development set, sorted
-	\textcolor{red}{in descending order according to} the Kappa values.}
+	in descending order according to their Kappa values.}
 	\label{fig:gmmSupervectorsDev}
 \end{figure}
 
@@ -132,7 +132,7 @@ the degradation is less than 1\% so it is still a reasonable result.
 	\centering
 	\includegraphics[width=0.8\textwidth]{files/figures/results/gmm-vs-supervectors/gmm-vs-supervectors-heldout.png}
 	\caption{Comparison of EER between LLR from Adapted GMMs with K-Means initialization
-	and SVM trained on Supervectors for all phones obtained in the heldout set, sorted \textcolor{red}{in descending order according to} the Kappa values.}
+	and SVM trained on Supervectors for all phones obtained in the heldout set, sorted in descending order according to their Kappa values.}
 	\label{fig:gmmSupervectorsTest}
 \end{figure}
 
@@ -154,7 +154,7 @@ calculated only for the phones with high Kappa coefficients by averaging them.
 Only these phones are considered in the process because they are the most reliable ones.
 
 The most important parameter to be fitted is the number of coefficients to be used
-for both methods. \textcolor{red}{We assume this parameter to be phone-independent},
+for both methods. We assume this parameter to be phone-independent,
 so it is shared
 among all the phones. This helps to keep
 the models simple by reducing the number of phone-dependent configuration parameters.
@@ -162,24 +162,21 @@ the models simple by reducing the number of phone-dependent configuration parame
 \subsection{Legendre Best System}
 
 The objective of the Legendre tunning experiments is to find the optimum degree of the Legendre
-Polynomials along with the best \textcolor{red}{configuration}.
-\textcolor{red}{
-	Tunning the best Legendre features involves the analysis of
-	the following factors:
-}
+Polynomials along with the best configuration.
+Tunning the best Legendre features involves the analysis of
+the following factors:
 
 \begin{itemize}
-	\item \textcolor{red}{Legendre Polynomial degree}
+	\item Legendre Polynomial degree
 	\item Time axis normalization between -1 and 1
 	\item Inclusion of duration
 	\item Lasso-Regression regularization
 \end{itemize}
 
-\textcolor{red}
-{Results are depicted in Fig. \ref{fig:legendreTunning}, which shows the variation of the
+Results are depicted in Fig. \ref{fig:legendreTunning}, which shows the variation of the
 EER average taken over the phones with high Kappa
 as function of the degree of the Legendre Polynomials for different configurations.
-The analysis is restricted to polynomials up to degree 6 because
+\textcolor{red}{The analysis is restricted to polynomials up to degree 6 because
 no further gains are obtained when using polynomials of higher degrees.}
 
 % An initial exploratory experiment showed that no further gains are obtained when using
@@ -391,18 +388,13 @@ than the other one. The three systems to be compared are then:
 An initial experiment is performed in the development set
 followed by a second experiment, where
 the final models are tested against the heldout data.
-% by testing the final models using at first
-% the development data and then testing them against the heldout data.
 The relative gains of the final models
 are calculated using the SVM trained only on supervectors as baseline system.
-
-% with respect to the baseline system: SVM trained on supervectors
-% features only.
 
 Unlike the tunning phase, where the experimentation is driven by the results obtained
 over the phones with higher kappa values, a new criteria is used for the model validation.
 A McNemar test is performed as previous step to scope the analysis
-to a subset of phones with statistically significant \textcolor{red}{gains} in the development
+to a subset of phones with statistically significant gains in the development
 data (\textit{p-value} $<$ 0.05).
 McNemar, which is described in Method Section \ref{subsection:mcnemar},
 is used to estimate the confidence that a final model is different from
@@ -417,13 +409,13 @@ the baseline model by using the paired nominal results of both classifiers.
 
 The comparison of the three systems
 in the development set is carried out using the 4-Fold Cross Validation
-approach. \textcolor{red}{The EER for each of
+approach. The EER for each of
 the systems is computed
-by gathering the scores from all the folds}.
+by gathering the scores from all the folds.
 % obtained in each of the folds.
-In addition, McNemar's test is \textcolor{red}{also computed
-over the scores from all the folds} to determine if the
-results \textcolor{red}{yield statistically significant gains}.
+In addition, McNemar's test is also computed
+over the scores from all the folds to determine if the
+results yield statistically significant gains.
 
 The results for all the phones are included in the tables
 (\ref{section:tables}) and plots (\ref{section:plots})
@@ -438,7 +430,7 @@ phones of interest. Those are:
 
 The relative gains for the phones mentioned above are summarized in
 Fig. \ref{fig:fusionMcnemarDev}.
-It is worth noting that phones \textcolor{red}{that give statistically significant gains} in
+It is worth noting that phones that give statistically significant gains in
 the Score Combination experiment are a superset of the phones that give statistically
 significant gains in the Features Combination experiment.
 Three of the phones (/z/, /rr/, /t/) give statistically significant gains
@@ -453,7 +445,7 @@ included for those phones.
 	between the Features Combination systems
 	and the Score Combination systems
 	computed on the development set.
-	Results are sorted \textcolor{red}{in descending order according to} their McNemar's p-values.}
+	Results are sorted in descending order according to their McNemar's p-values.}
 	\label{fig:fusionMcnemarDev}
 \end{figure}
 
@@ -469,7 +461,7 @@ The plots show that most of the fusion system intervals are shifted downwards wi
 respect to the supervectors-based baseline system, thus lowering the EER and leading
 to a better performance.
 The only exception seems to be /z/, which
-\textcolor{red}{despite having} almost identical intervals for both systems,
+despite having almost identical intervals for both systems,
 it yields a significant difference
 between the results obtained for the baseline system and the Score Combination system.
 A possible explanation for this is that the Score Combination system for the /z/
@@ -489,8 +481,8 @@ phone is favored by the original distribution of the speakers in the development
   \end{subfigure}
   \caption{Comparison of 95\% confidence intervals for the baseline and fusion systems.
   A thousand iterations of Bootstrapping are applied
-  in the development set for the phones \textcolor{red}{that gave statistically significant gains in the
-  McNemar's test.}}
+  in the development set for the phones that gave statistically significant gains in the
+  McNemar's test.}
   \label{fig:bootstrappingDev}
 \end{figure}
 
@@ -523,22 +515,22 @@ set are only included for the Score Combination experiment.
 	between Features Combination systems and Score Combination
 	systems computed on the hold-out set for the phones of interest.
 	Results are sorted
-	\textcolor{red}{in descending order according to} their McNemar's p-values computed on the development set.}
+	in descending order according to their McNemar's p-values computed on the development set.}
 	\label{fig:fusionMcnemarTest}
 \end{figure}
 
-Results show that, for the phones that \textcolor{red}{gave statistically significant gains}
+Results show that, for the phones that gave statistically significant gains
 in the Score Combination
 experiment carried out in the development set, only 'z' degrades its performance compared
 with the baseline system (around a 6\% relative). Among the
 remaining phones, some reduce its gain compared with the development set (such as
 /y/ from 8\% to less than 2\% and /rr/ from almost 6\% to less than 2\%). Others such
-as /m/ improves its \textcolor{red}{gain} from 6\% to more than 8\%.
+as /m/ improves its gain from 6\% to more than 8\%.
 
 On the other hand, results show that
-for the phones that \textcolor{red}{gave statistically significant gains} in the
+for the phones that gave statistically significant gains in the
 Features Combination experiment carried out in the development set, only /o/ degrades
-its performance and \textcolor{red}{only} slightly.
+its performance and only slightly.
 Among the remaining phones, for the Features Combination experiment,
 there are cases where both improvements
 and degradations of the performance are observed.
@@ -551,16 +543,16 @@ with greater detail.
 The most relevant thing to mention is that, unlike in the development set, the overlap
 between the confidence intervals of the three systems is very big, to a point such that
 for some phones it is difficult to determine if the intervals come from different
-distributions. There are\textcolor{red}{, though,} some phones for which the intervals
+distributions. There are, though, some phones for which the intervals
 for the fusion systems seem to be
 shifted downwards with respect to the baseline system. The most representative example
 is /s/, followed in lesser extent by other phones such as /l/, /m/, /t/, /e/ and /y/.
 
-A positive aspect to be considered is that \textcolor{red}{none} of the phones degrade their
-results in a significant manner. \textcolor{red}{In addition,
+A positive aspect to be considered is that none of the phones degrade their
+results in a significant manner. In addition,
 the confidence intervals
 for the two systems for the phone /z/ are very wide and they almost completely overlap,
-which is an evidence that the degradation is not statistically significant.}
+which is an evidence that the degradation is not statistically significant.
 
 % the overlap of the confidence intervals
 % for the two systems for the phone /z/, which are very wide,
