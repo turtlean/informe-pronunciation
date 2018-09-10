@@ -171,7 +171,7 @@ and data labeled as ``correct'' or ``mispronounced'' by experienced human annota
 Results show that SVM based on log-likelihood ratio features outperforms GOP scores (used as baseline), and some
 improvements are obtained when adding PSMs.
 
-Finally, a last example of SVM-based resarch is found in \cite{landmark_svm, landmark_svm_2}.
+A last example of SVM-based resarch is found in \cite{landmark_svm, landmark_svm_2}.
 A landmark-based SVM is introduced and compared with a confidence
 scoring method over 10 phonemes where
 L2 English learners, whose native language is Korean, make frequent errors.
@@ -196,6 +196,25 @@ find the linear combination of features
 which best separates the classes. Selecting the most relevant features turns out to give an
 advantage compared to other classifiers. The two LDA methods yielded the best performing
 scores followed by GOP and Weigelt.
+
+\textcolor{red}{
+  Finally, some pronunciation assessment approaches based on Deep Neural Networks (DNNs),
+  the most popular machine learning technique at this moment, have been developed for the
+  last few years. In \cite{metallinou_2014}, a DNN-HMM System for ASR is explored leading
+  to substantial gains compared with previous GMM-HMM-based approaches for ASR,
+  improving the quality of speaking proficiency features. In \cite{hu_1, hu_2}, a
+  DNN-HMM based approach is taken in order to improve the computation of GOP scores and
+  posterior probabilites of the different phones. Additionally, a Neural Network (NN)
+  based, logistic regression binary classifier is explored to analyse the
+  classification performance and generalization capabilities. Even though DNNs are a very
+  promising area with regard to pronunciation assessment, and where there is still a lot
+  of work to do, the main objective for the current thesis is to explore and test
+  new \textit{features} for pronunciation assessment at phone level. For this reason,
+  in the current work SVM is kept as the main classifier. However, exploring solutions
+  that involve DNNs for refining the acoustic features or reducing
+  the classification errors (to
+  name a few), integrates the list of things to do in future work.
+}
 
 Relying on labeled nonnative speech data usually leads to more flexible models
 with better performance than those trained with native speech
