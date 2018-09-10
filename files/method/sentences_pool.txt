@@ -6,3 +6,6 @@
 - but it attempts to address that method’s drawbacks
 - performing this technique multiple times will always yield the same result
 - the technique consists in...
+
+- The acoustic features, extracted by a 25ms hamming window with a 10ms time shift,
+consist of 13 MFCC and their first and second-order time derivatives.
