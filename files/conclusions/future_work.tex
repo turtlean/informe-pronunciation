@@ -1,0 +1,34 @@
+\subsection{Future Work}
+
+While the current work was being written (after the experiments were carried out)
+the Argentine children's speech database that was previously mentioned in section
+\ref{section:motivation} was finished being collected. The database contains speech
+from Argentine children between 6 and 12 years old, which are currently learning
+english. As \textit{Computer-Assisted Language Learning} (CALL) systems
+for kids should preferably be based on short speech units (phones or words) because
+of the difficulty of children in pronouncing longer segments, the combined features
+explored in the current thesis, which are phone-level features, could be helpful
+in developing the CALL system. For this reason, it would be interesting to test
+the combined features along with the SVM model against the new database, in search
+of potential gains.
+
+Due to the increasing number of highly effective DNN-based solutions that can be found in
+many fields, it would be worthwile to explore DNN solutions to pronunciation assessment
+at phone level. Below are listed some of the systems that would be interesting to be explored
+along with their features:
+
+\begin{itemize}
+  \item Feed Forward DNN trained on supervectors or dynamic features (a set of features per phone utterance)
+  \item Feed Forward DNN trained on the MFCCs of each frame (a set of features per frame)
+  \item Long Short-Term Memory (LSTM) DNN trained on the MFCCs of each frame (a set of features per frame)
+  \item Feed Forward or LSTM trained on more generic features, such as the spectrum of frequencies of a spectrogram
+\end{itemize}
+
+Finally, a different aspect that may lead to improvements and therefore it is worth studying
+is the usage of \textit{Detection Cost Function} (DCF) as the performance measure
+to be used instead of the \textit{Equal Error Rate} (EER). DCT can assign different
+weights to \textit{False Positive Rate} and \textit{False Negative Rate}, thus
+prioritizing one over the other. In the context of pronunciation assessment in
+CALL systems, labeling a correctly pronounced utterance as incorrect should be
+penalized stronger than labeling a mispronounced utterance as correct, in order
+to avoid discouraging the students.
