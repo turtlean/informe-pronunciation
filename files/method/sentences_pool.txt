@@ -9,3 +9,10 @@
 
 - The acoustic features, extracted by a 25ms hamming window with a 10ms time shift,
 consist of 13 MFCC and their first and second-order time derivatives.
+
+- This choice of features is based on previous work, that suggests that
+- For the DNNs, we also concatenate a context of eight feature frames left and right
+of the current frame.
+- In the future, we plan to...
+
+
