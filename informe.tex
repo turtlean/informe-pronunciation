@@ -31,48 +31,61 @@ sorting=none
 
 \begin{document}
 \linespread{1.6}
-\tableofcontents
-\chapter{Introduction}
-	\input{files/intro/problem_description_motivation.tex}
-	\section{Previous work}
-		\input{files/intro/previous_work.tex}
-\chapter{Method}
-	\input{files/method/method.tex}
-	\section{Features}
-		\input{files/method/acoustic_features.tex}
-		\input{files/method/supervector_features.tex}
-		\input{files/method/dynamic_features.tex}
-	\section{Support Vector Machines}
-		\input{files/method/svm.tex}
-	\section{Equal Error Rate}
-		\input{files/method/eer.tex}
-	\section{Statistical Significance Techniques}
-		\input{files/method/bootstrapping.tex}
-		\input{files/method/mcnemar.tex}
+	%%%% CARATULA
+  % Comentar y descomentar según corresponda
+  \def\titulo{Licenciado }
 
-\chapter{Experimental Setup}
-	\input{files/experimental_design/experimental_setup_intro.tex}
-	\section{Database Description}
-		\input{files/experimental_design/database_description.tex}
-	\section{Development Set and Hold-Out Set Definitions}
-		\input{files/experimental_design/development_hold_out_definitions.tex}
-	\section{K-Fold Cross Validation}
-		\input{files/experimental_design/cross_validation.tex}
+  \def\autor{Leandro Ariel Matayoshi}
+  % Sistema de calificación de pronunciación a nivel fono para aprendizaje de idiomas
+  \def\tituloTesis{Pronunciation Scoring at Phone Level for Second Language Learning}
+  \def\runtitulo{Pronunciation Scoring at Phone Level for Second Language Learning}
+  \def\runtitle{Pronunciation Scoring at Phone Level for Second Language Learning}
+  \def\director{Dra. Luciana Ferrer}
+  \def\lugar{Buenos Aires, Octubre 2018}
+	\input{caratula}
 
-\chapter{Experiments and Results}
-	\input{files/results/results.tex}
+	\tableofcontents
+	\chapter{Introduction}
+		\input{files/intro/problem_description_motivation.tex}
+		\section{Previous work}
+			\input{files/intro/previous_work.tex}
+	\chapter{Method}
+		\input{files/method/method.tex}
+		\section{Features}
+			\input{files/method/acoustic_features.tex}
+			\input{files/method/supervector_features.tex}
+			\input{files/method/dynamic_features.tex}
+		\section{Support Vector Machines}
+			\input{files/method/svm.tex}
+		\section{Equal Error Rate}
+			\input{files/method/eer.tex}
+		\section{Statistical Significance Techniques}
+			\input{files/method/bootstrapping.tex}
+			\input{files/method/mcnemar.tex}
 
-\chapter{Conclusions}
-	\input{files/conclusions/conclusions.tex}
-	\input{files/conclusions/future_work.tex}
+	\chapter{Experimental Setup}
+		\input{files/experimental_design/experimental_setup_intro.tex}
+		\section{Database Description}
+			\input{files/experimental_design/database_description.tex}
+		\section{Development Set and Hold-Out Set Definitions}
+			\input{files/experimental_design/development_hold_out_definitions.tex}
+		\section{K-Fold Cross Validation}
+			\input{files/experimental_design/cross_validation.tex}
 
-\chapter{Appendix}
-	\input{files/appendix/intro.tex}
-	\section{Model Validation Results Tables for All Phones} \label{section:tables}
-		\input{files/appendix/table.tex}
-	\section{Model Validation Plots for All Phones} \label{section:plots}
-		\input{files/appendix/results_appendix.tex}
+	\chapter{Experiments and Results}
+		\input{files/results/results.tex}
 
-\printbibliography
+	\chapter{Conclusions}
+		\input{files/conclusions/conclusions.tex}
+		\input{files/conclusions/future_work.tex}
+
+	\chapter{Appendix}
+		\input{files/appendix/intro.tex}
+		\section{Model Validation Results Tables for All Phones} \label{section:tables}
+			\input{files/appendix/table.tex}
+		\section{Model Validation Plots for All Phones} \label{section:plots}
+			\input{files/appendix/results_appendix.tex}
+
+	\printbibliography
 
 \end{document}
