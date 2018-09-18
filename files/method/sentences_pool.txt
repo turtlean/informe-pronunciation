@@ -15,4 +15,12 @@ consist of 13 MFCC and their first and second-order time derivatives.
 of the current frame.
 - In the future, we plan to...
 
+- Computer-aided language instruction has been evolving
+- One aspect of particular interest to us is pronunciation, and speech technologists have worked on detecting specific pronunciation difficulties (e.g. [2,3,4,5]) and overall nonnativeness
+- Recent advances in research on automatic pronunciation scoring, allow us to obtain pronunciation quality ratings for sentences or groups of sentences, with arbitrary text, with grading consistency similar to that of an expert teacher.
+- Computer Assisted Language Learning (CALL) applications, and, more specifically, Computer Assisted Pronunciation Training (CAPT) applications that make use of automatic speech recognition (ASR) have received considerable attention in recent years. Most of the literature on pronunciation assessment has focused on pronunciation grading (or scoring), while less attention has been paid to error detection (or localization).
+- Using computers to help students learn and practice a new language has long been seen as a promising area for the use of automatic speech recognition (ASR) technology.
+- A desirable feature of the use of speech technology for computer-aided language learning (CALL) is the ability to provide meaningful feedback on pronunciation quality.
+- computer-assisted language learning (CALL)
+
 

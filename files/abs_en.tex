@@ -1,0 +1,42 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{\numberline{}Abstract}
+
+\noindent
+Computer-Assisted language learning systems have been evolving for the last few years due to
+technological advances. An important subset of these tools are those which focus in
+automatic pronunciation scoring and pronunciation assesment. Particularly, we
+are interested in systems that provide phone-level feedback on pronunciation quality,
+because they not only can point out specific errors to the students but they also
+can be used by children that are still unable to pronounce whole sentences or paragraphs.
+
+In a previous work in the pronunciation assessment field at phone level, a discriminative
+approach based on \textit{Support Vector Machines} (SVM) trained on special features
+called \textit{supervectors} was explored, leading to slightly better results than
+generative models such as \textit{Gaussian Mixture Models} (GMMs), which are usually
+used in the pronunciation assessment field. Supervectors are derived from
+adapted GMMs that are trained using all the available instances for a given phone.
+
+In this work we use SVM models to explore dynamic features that model
+temporal dependencies in each instance. Two different techiniques are studied:
+\textit{Legendre Polynomials} and \textit{Discrete Cosine Transform} (DCT).
+The objective is to analyse if both supervectors and dynamic features carry
+complementary information, which can be used to improve future models. In order to do
+so, two alternatives are proposed: A Features Combination, where a single classifier
+is trained on the combination of both supervectors and dynamic features, and a
+Score Combination, which is obtained by combining the scores of two SVM classifiers
+trained independently on each set of features.
+
+The dataset for the current work is obtained from a Latin-American Spanish speech database,
+and consists in 2550 utterances adding up to a total of 130,000 phone instances, labeled
+by expert phoneticians. Recordings are uttered by 206 native American English speakers.
+Results showed that for a subset of the phones, the combination of supervectors and
+dynamic features reduce the error compared with using supervectors only, thus supporting
+the hypothesis that both set of features carry complementary information. Both feature-level
+and score-level combinations gave similar results, and therefore it is not possible
+to pick one type of combination as the best.
+
+\bigskip
+
+\noindent\textbf{Keywords:} Computer-Assisted Language Learning, Pronunciation Scoring, Phone Level, Support Vector Machines, Gaussian Mixture Models, Supervectors, Legendre Polynomials, Discrete Cosine Transform, Features Combination, Score Combination
+
+

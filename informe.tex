@@ -30,7 +30,6 @@ sorting=none
 \usepackage[title]{appendix}
 
 \begin{document}
-\linespread{1.6}
 	%%%% CARATULA
   % Comentar y descomentar según corresponda
   \def\titulo{Licenciado }
@@ -45,10 +44,17 @@ sorting=none
 	\input{caratula}
 
 	\frontmatter
+  \small
   \pagestyle{empty}
+    \input{files/abs_en.tex}
     \input{files/abs_es.tex}
 
-	\tableofcontents
+  \normalsize
+  \tableofcontents
+
+  \mainmatter
+  \pagestyle{headings}
+
 	\chapter{Introduction}
 		\input{files/intro/problem_description_motivation.tex}
 		\input{files/intro/previous_work.tex}

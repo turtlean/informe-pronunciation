@@ -2,8 +2,9 @@
 
 Los avances tecnológicos de los últimos años han permitido la mejora de sistemas
 automáticos de asistencia computarizada para el aprendizaje de idiomas.
-Un subgrupo importante de estas herramientas son aquellas que se enfocan en la pronunciación,
-detectando errores y asignando puntajes. Dentro de estas últimas, nos interesan
+Un subgrupo importante de estas herramientas son aquellas que se enfocan en la
+puntuación de la pronunciación y detección de errores.
+Dentro de estas últimas, nos interesan
 aquellas que califican a nivel fono, ya que
 no sólo ponen el foco en errores específicos del estudiante sino que al mismo tiempo
 pueden ser utilizados por niños aún incapaces de pronunciar frases
@@ -17,27 +18,27 @@ demasiado largas.
 
 En un trabajo anterior en el área de calificación de pronunciación a nivel fono,
 se exploró
-un método discriminativo basado en Support Vector Machines (SVM) entrenado
-a partir de features llamados \textit{supervectors},
+un método discriminativo basado en Máquinas de Vectores de Soporte (SVM) entrenado
+a partir de atributos llamados \textit{supervectores},
 que produce resultados ligeramente mejores a los métodos
 generativos comúnmente utilizados en este campo, como el cociente de verosimilitud
-entre mezclas Gaussianas (GMMs). Los \textit{supervectors} se obtienen a partir de
+entre modelos de mezclas Gaussianas (GMMs). Los \textit{supervectores} se obtienen a partir de
 un proceso de adaptación de un GMM global entrenado a partir de la totalidad
 de las muestras de cada fono.
 
 En este trabajo nos basamos en modelos SVM para
-estudiar features dinámicas que modelen las dependencias
+estudiar atributos dinámicos que modelen las dependencias
 temporales de cada muestra. Dos técnicas son analizadas como posibles alternativas:
-Polinomios de Legendre y la Transformada Discreta del Coseno (DCT).
+Polinomios de Legendre y Transformada Discreta del Coseno (DCT).
 El objetivo
-es analizar si tanto supervectors como features dinámicas
+es analizar si tanto los supervectores como atributos dinámicos
 contienen información complementaria,
-a partir de la cual pueda mejorarse la efectividad de los modelos.
+a partir de la cual pueda mejorarse la efectividad de modelos futuros.
 Para ello
-se proponen dos alternativas: combinación a nivel de features,
-para la cual se entrena un único clasificador que discrimine en base a ambos features
+se proponen dos alternativas: combinación a nivel de atributos,
+para la cual se entrena un único clasificador que discrimine en base a ambos atributos
 y combinación a nivel de puntaje,
-para la cual se entrena un clasificador por feature, combinándose ambos puntajes
+para la cual se entrena un clasificador por atributo, combinándose ambos puntajes
 en el momento de la clasificación.
 
 % In this work
@@ -50,15 +51,17 @@ en el momento de la clasificación.
 
 Las grabaciones corresponden a 206 hablantes estadounidenses pronunciando distintas
 frases en español latino. La base de datos está conformada por 2550 grabaciones alcanzando
-un total de 130000 instancias de fonos etiquetadas
+un total de 130.000 instancias de fonos etiquetadas
 por transcriptores profesionales.
-Los resultados muestran que para un subconjunto de fonos, la combinación de supervectors
-con las features dinámicas efectivamente reduce el error durante la clasificación,
+Los resultados muestran que para un subconjunto de fonos, la combinación de supervectores
+con los atributos dinámicos efectivamente reduce los errore s durante la clasificación,
 soportando la
-hipótesis de que ambos tipos de features contienen información complementaria.
-Tanto la combinación a nivel score como a nivel features arrojan resultados similares, por
+hipótesis de que ambos tipos de atributos contienen información complementaria.
+Tanto la combinación a nivel de puntaje como a nivel de atributos
+arrojan resultados similares, por
 lo que no es posible destacar una técnica sobre la otra.
 
 \bigskip
 
-\noindent\textbf{Palabras claves:} Asistencia Computarizada para Aprendizaje de Idiomas,
+\noindent\textbf{Palabras claves:} Asistencia Computarizada para Aprendizaje de Idiomas, Puntuación de la Pronunciación, Fono, Máquinas de Vectores de Soporte, Modelo de Mezclas Gaussianas, Supervectores, Polinomios de Legendre, Transformada Discreta del Coseno, Combinación de Atributos, Combinación de Puntajes
+
