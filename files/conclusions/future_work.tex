@@ -1,39 +1,50 @@
-\color{red}
 \subsection{Future Work}
 
 While the current work was being written (after the experiments were carried out)
 the Argentine children's speech database that was previously mentioned in section
-\ref{section:motivation} was finished being collected. The database contains speech
-from Argentine children between 6 and 12 years old, which are currently learning
-english. As \textit{Computer-Assisted Language Learning} (CALL) systems
-for kids should preferably be based on short speech units (phones or words) because
-of the difficulty of children in pronouncing longer segments, the combined features
-explored in the current thesis, which are phone-level features, could be helpful
-in developing the CALL system. For this reason, it would be interesting to test
-the combined features along with the SVM model against the new database, in search
-of potential gains.
+\ref{section:motivation} was \textcolor{red}{
+  collected and annotated. In the near future we will test the proposed approaches
+  on this new dataset.
+}
 
-Due to the increasing number of highly effective DNN-based solutions that can be found in
-many fields (including pronunciation assessment,
+% The database contains speech
+% from Argentine children between 6 and 12 years old, which are currently learning
+% english. As \textit{Computer-Assisted Language Learning} (CALL) systems
+% for kids should preferably be based on short speech units (phones or words) because
+% of the difficulty of children in pronouncing longer segments, the combined features
+% explored in the current thesis, which are phone-level features, could be helpful
+% in developing the CALL system. For this reason, it would be interesting to test
+% the combined features along with the SVM model against the new database, in search
+% of potential gains.
+
+Due to the increasing number of highly effective DNN-based methods that can be found in
+many fields (including pronunciation scoring,
 as it was described in the Previous Work section \ref{section:prev_work}),
-it would be worthwile to explore DNN solutions to pronunciation assessment
-at phone level. Below are listed some of the systems that would be interesting to be explored
-along with their features:
+it would be worthwile to \textcolor{red}{
+keep exploring DNN-based solutions to phone-based pronunciation scoring, using
+some training algorithms and features that we have predefined as starting point.}
+% pronunciation assessment at phone level.
 
-\begin{itemize}
-  \item Feed Forward DNN trained on supervectors or dynamic features (a set of features per phone utterance)
-  \item Feed Forward DNN trained on the MFCCs of each frame plus context (a set of features per frame)
-  \item Long Short-Term Memory (LSTM) DNN trained on the MFCCs of each frame (a set of features per frame)
-  \item Feed Forward or LSTM trained on more generic features, such as the spectrum of frequencies of a spectrogram
-\end{itemize}
+% Below are listed some of the systems that would be interesting to explore
+% along with their features:
 
-Finally, a different aspect that may lead to improvements and therefore it is worth studying
+% \begin{itemize}
+%   \item Feed Forward DNN trained on supervectors or dynamic features (a set of features per phone utterance)
+%   \item Feed Forward DNN trained on the MFCCs of each frame plus context (a set of features per frame)
+%   \item Long Short-Term Memory (LSTM) DNN trained on the MFCCs of each frame (a set of features per frame)
+%   \item Feed Forward or LSTM trained on more generic features, such as the spectrum of frequencies of a spectrogram
+% \end{itemize}
+Finally, a different approach
+that is worth studying, \textcolor{red}{even though it is not standard in the literature
+on pronunciation assessment, }
 is the usage of \textit{Detection Cost Function} (DCF) as the performance measure
-to be used instead of the \textit{Equal Error Rate} (EER). DCT can assign different
-weights to \textit{False Positive Rate} and \textit{False Negative Rate}, thus
-prioritizing one over the other. In the context of pronunciation assessment in
+instead of the \textit{Equal Error Rate} (EER). \textcolor{red}{
+This metric focuses on a different operating point that we think is more suitable for
+the task.
+DCT combines both \textit{False Positive Rate} and \textit{False Negative Rate}
+according to a given proportion, which is an input parameter. As consequence,
+one measure can be prioritized over the other one.}
+In the context of pronunciation assessment in
 CALL systems, labeling a correctly pronounced utterance as incorrect should be
 penalized stronger than labeling a mispronounced utterance as correct, in order
 to avoid discouraging the students.
-
-\color{black}

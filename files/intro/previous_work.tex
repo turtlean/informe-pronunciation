@@ -218,29 +218,33 @@ scores followed by GOP and Weigelt.
 %   name a few), integrates the list of things to do in future work.
 % }
 
+Finally, some pronunciation assessment approaches based on Deep Neural Networks (DNNs),
+the most popular machine learning technique at this moment, have been developed for the
+last few years. In \cite{metallinou_2014}, the use of context-dependent DNN Hidden
+Markov models (or CD-DNN-HMMs) is studied in order to improve the speech recognition
+performance for a better assessment of children English language learners.
+The experimental results showed that the DNN-based recognition system approach
+achieved a significant error reduction compared to the GMM-HMM approach, leading
+to an improvement in the quality of the extracted features and final spoken English
+proficiency scores.
+In \cite{hu_1, hu_2}, a CD-DNN-HMM acoustic model approach for English language
+is also explored as an alternative to
+conventional GMM-HMM models.
+The acoustic models are then used to generate GOP scores
+at phone level and tested in a language learning corpus with manual grading
+of pronunciation quality. The GOP scores, generated from the DNN-based acoustic
+models, correlate better with human scores than those generated from the
+conventional GMM approaches.
 \textcolor{red}{
-  Finally, some pronunciation assessment approaches based on Deep Neural Networks (DNNs),
-  the most popular machine learning technique at this moment, have been developed for the
-  last few years. In \cite{metallinou_2014}, the use of context-dependent DNN Hidden
-  Markov models (or CD-DNN-HMMs) is studied in order to improve the speech recognition
-  performance for a better assessment of children English language learners.
-  The experimental results showed that the DNN-based recognition system approach
-  achieved a significant error reduction compared to the GMM-HMM approach, leading
-  to an improvement in the quality of the extracted features and final spoken English
-  proficiency scores.
-  In \cite{hu_1, hu_2}, a CD-DNN-HMM acoustic model approach for English language
-  is also explored as an alternative to
-  conventional GMM-HMM models.
-  The acoustic models are then used to generate GOP scores
-  at phone level and tested in a language learning corpus with manual grading
-  of pronunciation quality. The GOP scores, generated from the DNN-based acoustic
-  models, correlate better with human scores than those generated from the
-  conventional GMM approaches.
-  Even though DNNs are very promising
-  solutions to pronunciation assessment and there is still a lot
-  of approaches to be studied, the main focus of the current thesis is to explore
-  new features for pronunciation assessment at phone level based
-  on a well known technique, such as SVM.
+  The main objective of the current thesis is to explore new features for pronunciation
+  assessment at phone level. For this reason, we choose to focus on
+  well-established modeling approaches rather than DNN-based approaches which are
+  still under development.
+  % Even though DNNs are very promising
+  % solutions to pronunciation assessment and there is still a lot
+  % of approaches to be studied, the main focus of the current thesis is to explore
+  % new features for pronunciation assessment at phone level based
+  % on a well known technique, such as SVM.
 }
 
 Relying on labeled nonnative speech data usually leads to more flexible models
@@ -302,7 +306,7 @@ trained with the ``correct'' native-like pronuncations of a phone while the othe
 with the ``mispronounced'' or nonnative pronunciations of the same phone. In the new approach,
 the models for each class for a given phone are obtained by adaptation. The model to which they
 are adapted is trained using all the samples from a given phone, ignoring the class (``correct''
-or ``mispronounced''). Bayesian adaptation \cite{ubm} is used to adapt this class-independent
+or ``mispronounced''). Bayesian adaptation \cite{ubm_adaptation} is used to adapt this class-independent
 GMM to all the ``correctly'' pronounced training examples for a phone and obtain the adapted
 ``correct'' model for that phone. An analogous process is followed to obtain the adapted
 ``mispronounced'' model. For these class-dependent GMMs both the means and the mixture weights
