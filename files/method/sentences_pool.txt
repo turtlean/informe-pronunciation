@@ -23,4 +23,6 @@ of the current frame.
 - A desirable feature of the use of speech technology for computer-aided language learning (CALL) is the ability to provide meaningful feedback on pronunciation quality.
 - computer-assisted language learning (CALL)
 
-
+- /l/r/ -> Alrededor
+- /n/r/ -> Conrado, Sonrisa, Honra
+- /s/r/ -> Israel, Disruptivo, Desraizar
