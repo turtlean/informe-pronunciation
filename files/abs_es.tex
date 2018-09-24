@@ -9,7 +9,8 @@ Actualmente, las estimaciones más confiables de la puntuación de la pronunciac
 son obtenidas a nivel de párrafo u oraciones largas, disminuyendo la precisión
 de los sistemas a medida que se reduce la duración
 (y por lo tanto la cantidad de información) del segmento de habla a considerar.
-Sin embargo, los sistemas ACAI que trabajan a nivel de fono
+Sin embargo, los sistemas ACAI que trabajan con unidades de habla
+más cortas, como por ejemplo el fono,
 permiten poner el foco en errores específicos del estudiante y
 pueden ser utilizados por niños aún incapaces de pronunciar frases
 demasiado largas.
@@ -39,9 +40,22 @@ entre modelos de mezclas Gaussianas (GMMs). Los \textit{supervectores} se obtien
 un proceso de adaptación de un GMM global entrenado a partir de la totalidad
 de las muestras de cada fono.
 
-En este trabajo nos basamos en modelos SVM para
-estudiar atributos dinámicos que modelen las dependencias
-temporales de cada muestra. Dos técnicas son analizadas como posibles alternativas:
+\textcolor{red}{
+En el presente trabajo, tomamos como
+base y punto de referencia el modelo SVM entrenado con
+supervectores para explorar nuevos atributos.
+% En este trabajo nos basamos en modelos SVM para
+En particular, estudiamos atributos dinámicos que modelan las dependencias
+temporales de cada muestra.}
+
+\begin{itemize}
+  \item Qué modelamos? Evolución de los atributos acústicos del habla a lo largo de la pronunciación del fono
+  \item Por qué? Los supervectors están computados en base a los valores de los atributos
+  acústicos del fono. No tienen en cuenta el orden en el eque dichos valores son observados
+  \item Cómo? Cada atributo es modelado de forma independiente y aproximado por una función
+\end{itemize}
+
+Dos técnicas son analizadas como posibles alternativas:
 Polinomios de Legendre y Transformada Discreta del Coseno (DCT).
 El objetivo
 es analizar si tanto los supervectores como atributos dinámicos
@@ -62,8 +76,12 @@ en el momento de la clasificación.
 % phone dependent $\rightarrow$.
 % Phonetically transcribed Spanish database of around...
 
-Las grabaciones corresponden a 206 hablantes estadounidenses pronunciando distintas
-frases en español latino. La base de datos está conformada por 2550 grabaciones alcanzando
+\textcolor{red}{
+Entrenamos y evaluamos los métodos base y los propuestos usando una base de datos no nativa
+de Español Latino, correspondiente a 206 hablantes estadounidenses estudiantes de Español.}
+% Las grabaciones corresponden a 206 hablantes estadounidenses pronunciando distintas
+% frases en español latino.
+La base de datos está conformada por 2550 grabaciones alcanzando
 un total de 130.000 instancias de fonos etiquetadas
 por transcriptores profesionales.
 Los resultados muestran que para un subconjunto de fonos, la combinación de supervectores
