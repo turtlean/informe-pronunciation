@@ -280,7 +280,8 @@ is chosen to determine
 \textcolor{red}{
 the priority, or importance \textit{a priori} of the dynamic features with respect to supervectors}
 within the SVM (the weight for supervectors is implicitly set to 1).
-\textcolor{red}{The higher the value of $w$, the less regularized are the dynamic features.}
+\textcolor{red}{The higher the value of $w$, the less regularized are the dynamic features
+at the beginning.}
 % The higher the value of $w$, the more relevant become the dynamic features.
 The features combination vector for the $i^{th}$ instance is then computed as:
 \begin{equation}
@@ -297,7 +298,8 @@ is chosen to determine the amount of the score of the dynamic-feature-based syst
 in the final score. Let us denote
 \textcolor{red}{
 the score of the SVM trained on supervectors when classifying the $i^{th}$ instance
-as $\text{sup}_{i}$ and the score of the SVM trained on dynamic features as
+as $\text{sup}_{i}$ and the score of the SVM trained on dynamic features
+when classifying the $i^{th}$ instance as
 $\text{dyn}_{i}$.
 }
 % $\text{sup}_{i}$ to the score of the

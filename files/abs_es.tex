@@ -14,7 +14,7 @@ más cortas, como por ejemplo el fono,
 permiten poner el foco en errores específicos del estudiante y
 pueden ser utilizados por niños aún incapaces de pronunciar frases
 demasiado largas.
-En este trabajo nos concentraremos en métodos de puntuación de la pronunciación
+En este trabajo nos concentramos en métodos de puntuación de la pronunciación
 que califican a nivel fono.
 }
 % Sin embargo, una de las ventajas de los sistemas ACAI que trabajan a nivel de fono es que
@@ -44,24 +44,27 @@ de las muestras de cada fono.
 En el presente trabajo, tomamos como
 base y punto de referencia el modelo SVM entrenado con
 supervectores para explorar nuevos atributos.
+Si bien los supervectores contienen información de los atributos acústicos del habla a lo
+largo de toda la pronunciación del fono, no tienen en cuenta el orden en el que se
+producen. Por este motivo, en esta ocasión estudiamos atributos dinámicos
+que modelen las dependencias temporales presentes en cada muestra. Para ello, cada
+atributo es modelado de forma independiente y aproximado por una función.
+}
 % En este trabajo nos basamos en modelos SVM para
-En particular, estudiamos atributos dinámicos que modelan las dependencias
-temporales de cada muestra.}
-
-\begin{itemize}
-  \item Qué modelamos? Evolución de los atributos acústicos del habla a lo largo de la pronunciación del fono
-  \item Por qué? Los supervectors están computados en base a los valores de los atributos
-  acústicos del fono. No tienen en cuenta el orden en el eque dichos valores son observados
-  \item Cómo? Cada atributo es modelado de forma independiente y aproximado por una función
-\end{itemize}
-
-Dos técnicas son analizadas como posibles alternativas:
+% En particular, estudiamos atributos dinámicos que modelan las dependencias
+% temporales de cada muestra.
+% Qué modelamos? Evolución de los atributos acústicos del habla a lo largo de la pronunciación del fono
+% Por qué? Los supervectors están computados en base a los valores de los atributos
+% acústicos del fono. No tienen en cuenta el orden en el eque dichos valores son observados
+% Cómo? Cada atributo es modelado de forma independiente y aproximado por una función
+% Parametrization techniques
+Dos técnicas de aproximación son evaluadas como posibles alternativas:
 Polinomios de Legendre y Transformada Discreta del Coseno (DCT).
 El objetivo
 es analizar si tanto los supervectores como atributos dinámicos
 contienen información complementaria,
 a partir de la cual pueda mejorarse la efectividad de modelos futuros.
-Para ello
+Para este último análisis
 se proponen dos alternativas: combinación a nivel de atributos,
 para la cual se entrena un único clasificador que discrimine en base a ambos atributos
 y combinación a nivel de puntaje,
@@ -78,7 +81,7 @@ en el momento de la clasificación.
 
 \textcolor{red}{
 Entrenamos y evaluamos los métodos base y los propuestos usando una base de datos no nativa
-de Español Latino, correspondiente a 206 hablantes estadounidenses estudiantes de Español.}
+de Español Latino, correspondiente a 206 hablantes estadounidenses, estudiantes de Español.}
 % Las grabaciones corresponden a 206 hablantes estadounidenses pronunciando distintas
 % frases en español latino.
 La base de datos está conformada por 2550 grabaciones alcanzando
