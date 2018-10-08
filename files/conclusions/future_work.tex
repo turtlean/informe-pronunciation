@@ -1,12 +1,19 @@
 \subsection{Future Work}
 
-While the current work was being written (after the experiments were carried out)
-the Argentine children's speech database that was previously mentioned in section
-\ref{section:motivation} was \textcolor{red}{
-  collected and annotated. In the near future we will test the approaches studied
-  in the current thesis
-  on this new dataset.
+\textcolor{red}{
+As it was mentioned in section \ref{section:motivation}, a new dataset of
+argentinian children reading english phrases is currently being collected
+and annotated. In the future, we plan to verify our findings on
+this dataset, which will be significantly bigger than the one used in this work.
 }
+
+% While the current work was being written (after the experiments were carried out)
+% the Argentine children's speech database that was previously mentioned in section
+% \ref{section:motivation} was \textcolor{red}{
+%   collected and annotated. In the near future we plan to verify our findings on
+%   this dataset
+%   .
+% }
 
 % The database contains speech
 % from Argentine children between 6 and 12 years old, which are currently learning
@@ -21,9 +28,9 @@ the Argentine children's speech database that was previously mentioned in sectio
 Due to the increasing number of highly effective DNN-based methods that can be found in
 many fields (including pronunciation scoring,
 as it was described in the Previous Work section \ref{section:prev_work}),
-it would be worthwile to \textcolor{red}{
+it would be worthwile to
 keep exploring DNN-based solutions to phone-based pronunciation scoring, using
-some training algorithms and features that we have predefined as starting point.}
+some training algorithms and features that we have predefined as starting point.
 % pronunciation assessment at phone level.
 
 % Below are listed some of the systems that would be interesting to explore
@@ -36,16 +43,23 @@ some training algorithms and features that we have predefined as starting point.
 %   \item Feed Forward or LSTM trained on more generic features, such as the spectrum of frequencies of a spectrogram
 % \end{itemize}
 Finally, a different approach
-that is worth studying, \textcolor{red}{even though it is not standard in the literature
-on pronunciation assessment, }
-is the usage of \textit{Detection Cost Function} (DCF) as the performance measure
-instead of the \textit{Equal Error Rate} (EER). \textcolor{red}{
-This metric focuses on a different operating point that we think is more suitable for
-the task.
-DCT combines both \textit{False Positive Rate} and \textit{False Negative Rate}
-according to a given proportion, which is an input parameter. As consequence,
-one measure can be prioritized over the other one.}
+that is worth studying, even though it is not standard in the literature
+on pronunciation assessment,
+is the usage of \textit{Detection Cost Function} (DCF) % as the performance measure
+\textcolor{red}{to explore an alternative performance metric
+instead of keeping the \textit{Equal Error Rate} (EER) as the chosen metric.}
+DCF combines both \textit{False Positive Rate} and \textit{False Negative Rate}
+according to a given \textcolor{red}{cost}, which is an input parameter.
+\textcolor{red}{As consequence, the system can focus on different operating points
+by varying the value of the cost parameter and thus prioritizing,
+in different degrees, one measure over the other one}.
+% one measure can be prioritized over the other one.}
 In the context of pronunciation assessment in
 CALL systems, labeling a correctly pronounced utterance as incorrect should be
 penalized stronger than labeling a mispronounced utterance as correct, in order
-to avoid discouraging the students.
+to avoid discouraging the students. \textcolor{red}{Because of those reasons,
+we think that DCF
+would help to find a more suitable metric for this scenario.}
+
+% This metric focuses on a different operating point that we think is more suitable for
+% This metric focuses on a different operating point that we think is more suitable for
