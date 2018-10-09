@@ -10,7 +10,7 @@ particular de asistencia relacionada con el último campo: la puntuación
 de la pronunciación. Este proceso consiste en la generación de un valor
 a partir una frase grabada por un estudiante, que mida cuán bien
 fue pronunciada esa frase,
-o cada palabra o fonema dentro de esa frase.
+o cada palabra o fono dentro de esa frase.
 
 Actualmente, las estimaciones más confiables de la puntuación de la pronunciación
 son obtenidas a nivel de párrafo u oraciones largas, disminuyendo la precisión
@@ -48,19 +48,21 @@ En el presente trabajo, tomamos como
 base y punto de referencia el modelo SVM entrenado con
 supervectores para explorar nuevos atributos en el área de puntuación de la
 pronunciación a nivel fono.
+\textcolor{red}{
 Si bien tanto los métodos generativos basados en GMMs como
-los supervectores modelan características acústicas de bajo nivel,
-no consideran el comportamiento temporal de las mismas.
+los supervectores modelan características acústicas de bajo nivel del segmento
+de habla a considerar,
+no tienen en cuenta el comportamiento temporal de las características acústicas.
 % contienen información de los atributos acústicos del habla a lo
 % largo de toda la pronunciación del fono, no tienen en cuenta el orden en el que se
 % producen.
-\textcolor{red}{Por este motivo, en esta ocasión
+Por este motivo, en esta ocasión
 estudiamos atributos dinámicos
-que modelan \textcolor{red}{de manera directa el comportamiento temporal de dichas
+que modelan de manera directa el comportamiento temporal de dichas
 características}.
 Para ello, cada característica es aproximada
 de manera independiente por una función,
-a partir de la cual se extraen los atributos dinámicos.}
+a partir de la cual se extraen los atributos dinámicos.
 % Para ello, cada
 % característica es modelada de forma independiente y aproximada por una función.
 % modelen las dependencias temporales presentes en cada muestra.
@@ -93,5 +95,5 @@ hipótesis de que ambos tipos de atributos contienen información complementaria
 
 \bigskip
 
-\noindent\textbf{Palabras claves:} Asistencia Computarizada para Aprendizaje de Idiomas, Puntuación de la Pronunciación, Fono, Máquinas de Vectores de Soporte, Modelo de Mezclas Gaussianas, Supervectores, Polinomios de Legendre, Transformada Discreta del Coseno, Combinación de Atributos, Combinación de Puntajes
+\noindent\textbf{Palabras claves:} Asistencia Computarizada para Aprendizaje de Idiomas, Puntuación de la Pronunciación, Fono, Máquinas de Vectores de Soporte, Modelo de Mezclas Gaussianas, Supervectores, Polinomios de Legendre, Transformada Discreta del Coseno
 
