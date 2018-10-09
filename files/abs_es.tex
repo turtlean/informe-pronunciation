@@ -1,30 +1,31 @@
 \chapter*{Resumen}
 
-Los avances tecnológicos de las \textcolor{red}{últimas décadas} han
+Los avances tecnológicos de las últimas décadas han
 posibilitado el desarrollo de sistemas
 automáticos de Asistencia Computarizada para el Aprendizaje de Idiomas (ACAI).
-\textcolor{red}{Estos sistemas brindan ayuda a estudiantes de segundos idiomas
+Estos sistemas brindan ayuda a estudiantes de segundos idiomas
 en diversos campos, entre las cuales se destacan la gramática, el vocabulario
 y la pronunciación. En el presente trabajo nos concentramos en una forma
 particular de asistencia relacionada con el último campo: la puntuación
 de la pronunciación. Este proceso consiste en la generación de un valor
 a partir una frase grabada por un estudiante, que mida cuán bien
 fue pronunciada esa frase,
-o cada palabra o fonema dentro de esa frase.}
+o cada palabra o fonema dentro de esa frase.
 
 Actualmente, las estimaciones más confiables de la puntuación de la pronunciación
 son obtenidas a nivel de párrafo u oraciones largas, disminuyendo la precisión
 de los sistemas a medida que se reduce la duración
 (y por lo tanto la cantidad de información) del segmento de habla a considerar.
-Sin embargo, los sistemas ACAI que trabajan con unidades de habla
+Sin embargo, los sistemas \textcolor{red}{de puntuación de la pronunciación}
+que trabajan con unidades de habla
 más cortas, como por ejemplo el fono,
 permiten poner el foco en errores específicos del estudiante y
 pueden ser utilizados por niños aún incapaces de pronunciar frases
-demasiado largas. \textcolor{red}{Por esta razón,}
+demasiado largas. Por esta razón,
 en este trabajo nos concentramos en métodos de puntuación de la pronunciación
 que califican a nivel fono.
 
-\textcolor{red}{Los métodos tradicionalmente utilizados para calcular
+Los métodos tradicionalmente utilizados para calcular
 puntajes de pronunciación a nivel fono
 están basados en métodos generativos a partir de
 modelos de mezclas Gaussianas (GMMs). Generalmente,
@@ -32,7 +33,7 @@ para cada fono se
 entrena un GMM por clase (pronunciación correcta e incorrecta),
 aplicando luego técnicas tales como el Cociente de
 Verosimilitud (\textit{Likelihood-Ratio} en inglés) entre ambos modelos para
-computar el puntaje.} En un trabajo anterior en
+computar el puntaje. En un trabajo anterior en
 el área de calificación de pronunciación a nivel fono,
 se exploró
 un método discriminativo basado en Máquinas de Vectores de Soporte (SVM) entrenado
@@ -41,27 +42,22 @@ ligeramente mejores a los métodos generativos comúnmente utilizados en el camp
 Los \textit{supervectores} para cada fono se obtienen
 a partir de un proceso de adaptación de un
 GMM global entrenado con la totalidad
-de las muestras de dicho fono. \textcolor{red}{
-Tanto el método generativo basado en GMMs,
-como el discriminativo basado en SVMs y entrenado con \textit{supervectores}
-modelan características acústicas
-de bajo nivel sin considerar sus comportamientos temporales.}
-% que produce resultados ligeramente mejores a los métodos
-% generativos comúnmente utilizados en este campo.
-% Los \textit{supervectores} se obtienen a partir de
-% un proceso de adaptación de un GMM global entrenado a partir de la totalidad
-% de las muestras de cada fono.
+de las muestras de dicho fono.
 
 En el presente trabajo, tomamos como
 base y punto de referencia el modelo SVM entrenado con
 supervectores para explorar nuevos atributos en el área de puntuación de la
 pronunciación a nivel fono.
-Si bien los supervectores contienen información de los atributos acústicos del habla a lo
-largo de toda la pronunciación del fono, no tienen en cuenta el orden en el que se
-producen. \textcolor{red}{Por este motivo, en esta ocasión
+Si bien tanto los métodos generativos basados en GMMs como
+los supervectores modelan características acústicas de bajo nivel,
+no consideran el comportamiento temporal de las mismas.
+% contienen información de los atributos acústicos del habla a lo
+% largo de toda la pronunciación del fono, no tienen en cuenta el orden en el que se
+% producen.
+\textcolor{red}{Por este motivo, en esta ocasión
 estudiamos atributos dinámicos
-que modelen \textcolor{red}{de manera directa el comportamiento temporal de las
-características de corto plazo}.
+que modelan \textcolor{red}{de manera directa el comportamiento temporal de dichas
+características}.
 Para ello, cada característica es aproximada
 de manera independiente por una función,
 a partir de la cual se extraen los atributos dinámicos.}
@@ -80,19 +76,8 @@ Dos técnicas de aproximación son evaluadas como posibles alternativas:
 Polinomios de Legendre y Transformada Discreta del Coseno (DCT).
 El objetivo
 es analizar si
-\textcolor{red}{los atributos dinámicos propuestos tienen información
-complementaria a la provista por los supervectores}.
-% tanto los supervectores como atributos dinámicos
-% contienen información complementaria,
-% a partir de la cual pueda mejorarse la efectividad de modelos futuros.
-
-% In this work
-% Dynamic Features $\rightarrow$
-% Temporal information $\rightarrow$
-% DCT and Legendre Polynomials $\rightarrow$
-% score combination - features combination $\rightarrow$
-% phone dependent $\rightarrow$.
-% Phonetically transcribed Spanish database of around...
+los atributos dinámicos propuestos tienen información
+complementaria a la provista por los supervectores.
 
 Entrenamos y evaluamos los métodos base y los propuestos usando una base de datos no nativa
 de Español Latino, correspondiente a 206 hablantes estadounidenses, estudiantes de Español.
