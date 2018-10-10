@@ -16,8 +16,8 @@ summarized as follows:
 
 % \section{Models' Parameters}
 
-% \textcolor{red}{In this section we briefly describe some relevant configuration parameters that
-% are used when training the models.}
+% In this section we briefly describe some relevant configuration parameters that
+% are used when training the models.
 
 % The first parameter to be described is the number of mixtures components
 % to be computed when training the GMM for each phone. As it is described in Method Section
@@ -28,7 +28,7 @@ summarized as follows:
 % mixture component is trained every 15 phone instances
 % in order to keep a similar proportion to what was used in the previous work \cite{main} .
 
-% Regarding to the SVM classifiers, two relevant parameters are \textcolor{red}{tuned}.
+% Regarding to the SVM classifiers, two relevant parameters are tuned.
 % The first one is
 % the value of the $C$ parameter, which is described in Section
 % \ref{subsection:soft_margin}.
@@ -74,16 +74,17 @@ With regard to the SVM classifier,
 different values of the input parameter $C$, which is described in section
 \ref{subsection:soft_margin}, were tested. The best results were obtained when
 using $C=\frac{1}{avg(x*x)}$, which is the average of the squared norm of the
-training feature vectors. This value was taken from the \textcolor{red}{documentation} of SVM-Light, a library
+training feature vectors. This value was taken from
+the documentation of SVM-Light, a library
 that implements SVMs in C language. Finally, \textit{sklearn} provides a
 \textit{class-weight} parameter, that allows to
 adjust the weight of the $C$ parameter for each class.
-If not given, all \textcolor{red}{samples are assumed to have the same weight.}
+If not given, all samples are assumed to have the same weight.
 %classes are supposed
 %to weight one.
 This parameter is set to ``balanced'', which adjusts
 the weights inversely proportional to the class frequencies in the input data.
-This is \textcolor{red}{particularly} useful because the number of instances
+This is particularly useful because the number of instances
 for each class is
 unbalanced for most of the phones.
 
@@ -277,11 +278,10 @@ in order to compensate the difference in
 the number of features between supervectors and dynamic features.
 Additionally, a weight factor $w \in \mathbb{R}$ that also multiplies the dynamic features
 is chosen to determine
-\textcolor{red}{
-the priority, or importance \textit{a priori} of the dynamic features with respect to supervectors}
+the priority, or importance \textit{a priori} of the dynamic features with respect to supervectors
 within the SVM (the weight for supervectors is implicitly set to 1).
-\textcolor{red}{The higher the value of $w$, the less regularized are the dynamic features
-at the beginning.}
+The higher the value of $w$, the less regularized are the dynamic features
+at the beginning.
 % The higher the value of $w$, the more relevant become the dynamic features.
 The features combination vector for the $i^{th}$ instance is then computed as:
 \begin{equation}
@@ -289,19 +289,17 @@ The features combination vector for the $i^{th}$ instance is then computed as:
 	\label{eq:featuresCombination}
 \end{equation}
 
-\textcolor{red}{where symbol ``$\circ$'' represents concatenation.}
+where symbol ``$\circ$'' represents concatenation.
 
 Score Combination, on the other hand, is computed by combining the scores
 of the SVM classifiers trained independently on both supervectors and dynamic features.
 Again, a weight $w \in \mathbb{R}$
 is chosen to determine the amount of the score of the dynamic-feature-based system to be considered
 in the final score. Let us denote
-\textcolor{red}{
 the score of the SVM trained on supervectors when classifying the $i^{th}$ instance
 as $\text{sup}_{i}$ and the score of the SVM trained on dynamic features
 when classifying the $i^{th}$ instance as
 $\text{dyn}_{i}$.
-}
 % $\text{sup}_{i}$ to the score of the
 % SVM trained on supervectors when classifing the $i^{th}$ instance,
 % and $\text{dyn}_{i}$ to the score of the SVM trained on the dynamic features.
@@ -325,11 +323,9 @@ one for the features combinations and the other one for the score combination.
 % are varied between 0 and 1 with steps of 0.1.
 % In other words, the explored interval is
 % \mbox{[0.0, 0.1, 0.2 \ldots 1.0]}.
-% \textcolor{red}{
 % 	An initial exploratory experiment showed that no further gains are obtained when using
 % 	proportions higher than 1.0 for the dynamic features in neither features combination nor score combination
 % 	experiments.
-% }
 % It is worth noting that choosing
 % a proportion of 0.0 of the dynamic
 % features with respect to supervectors leads to not considering the dynamic features at all.
