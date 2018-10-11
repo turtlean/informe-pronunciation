@@ -29,17 +29,23 @@ been widely used in numerous areas since then.
 
 Supposing that it were possible to draw repeated samples
 of the same size from the population of interest a large number of times, then
-a fairly good idea about the sampling distribution of a particular statistic from
-the collection of its values arising from these repeated samples could be obtained.
+a fairly good idea about the sampling distribution
+of a particular statistic could be obtained from the collection of the
+values arising from these repeated samples.
+% of a particular statistic from the collection of its
+% values arising from these repeated samples could be obtained.
 This method, however, does not make sense in practice since it assumes one has access to the
 underlying distribution.
 The idea behind \textit{Bootstrapping} is to use the data of a sample study at hand as a
 ``surrogate population'' for the purpose of approximating the sampling distribution of
 a statistic. This is achieved by resampling with replacement from the sample data
 at hand, creating a large number of alternative or duplicated sample sets known as
-bootstrap samples. The performance metric (EER in our case)
-is then computed on each of the bootstrap
-samples (usually between 1-10 thousand). A histogram of these computed
+bootstrap samples. The process is usually repeated between 1 and 10 thousand
+times, and the performance metric, EER in our case,
+is computed on each of the bootstrap
+samples.
+% (usually between 1-10 thousand iterations).
+A histogram of these computed
 values is referred to as the bootstrap distribution of the statistic.
 
 In the current work, resampling is performed at speaker level.
@@ -50,16 +56,16 @@ original set $S$. The sample set is then obtained by gathering the instances of 
 in $S\textprime$, which will include repeated samples for the speakers that appears more than once
 in $S\textprime$.
 \textit{Bootstrapping} technique is used along with Confidence
-Intervals in order to determine if the \textit{SVM} trained with the combined features
-performs better than the one trained only with features derived from the \textit{GMM} adaptation.
-The first step is to generate a distribution of $EER$ for both types of classifiers.
+Intervals in order to determine if the SVM trained with the combined features
+performs better than the one trained only with features derived from the GMM adaptation.
+The first step is to generate a distribution of EER for both types of classifiers.
 After that,
 a 95\% confidence interval is computed for each distribution by finding the interval
 [$\hat{\theta}_{B1}, \hat{\theta}_{B2}$] that enclose the 95\% of the samples
 composing each distribution.
-If it is true that the \textit{SVM} trained with
+If it is true that the SVM trained with
 the combined features performs better than the
-\textit{SVM} trained with a single feature source, then its confidence
+SVM trained with a single feature source, then its confidence
 interval should be shifted with respect to the confidence interval
 of the latter system.
 The bigger the overlap between both intervals, the
