@@ -12,7 +12,7 @@ which are obtained from an adaptation process of
 a Gaussian Mixture Model trained on the MFCCs and the \textit{Dynamic Features},
 which are
 the coefficients obtained from different parameterization methods of the MFCCs values through time.
-One of the main objectives of this work is to find out whether or not there is a gain in performance
+The main objective of this work is to find out whether or not there is a gain in performance
 when combining the Supervectors with the Dynamic Features.
 
 In the following subsections a detailed description of each of the aforementioned features is
@@ -29,7 +29,7 @@ In this work we base our features in the standard and widely used Mel Frecuency
 Cepstral Coefficients (MFCCs). They were introduced by Davis and Mermelstein in 1980 and
 have been state-of-the-art ever since \cite{mfcc_foundational}.
 MFCC coefficients represent the spectral envelope of the speech signal on the Mel-frequency scale,
-which relates the perceived frequency of a pure tune to its actual measured frequency inspired
+which relates the perceived frequency of a pure tone to its actual measured frequency inspired
 by the human hearing.
 
 The process to compute the MFCCs coefficients can be summarized by the following steps:
@@ -54,7 +54,7 @@ The process to compute the MFCCs coefficients can be summarized by the following
   frames is also captured in the middle of another frame.
   % http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/
 
-  \item Discrete Fourier Transform: This is the first and main step in regard to spectral
+  \item \label{item:dft} Discrete Fourier Transform: This is the first and main step in regard to spectral
   analysis. Frequency domain approaches are proven to be
   among the best options in speech classification tasks.
   The \textit{spectral density}, which is the distribution of power
@@ -71,7 +71,8 @@ The process to compute the MFCCs coefficients can be summarized by the following
     M(f)=1125*ln(1 + \frac{f}{700})
   \end{equation}
 
-  The spectrum obtained in (3) is passed through a series of traingular filters
+  The spectrum obtained in the third step (\ref{item:dft})
+  is passed through a series of traingular filters
   uniformly spaced on the Mel scale to produce the so called filter-bank energies.
   The original values of these energies are replaced by their natural logarithm values,
   also motivated by human hearing, because loudness is not perceived according to
