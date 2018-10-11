@@ -66,7 +66,7 @@ A very similar approach to log-posterior probabilities named \textit{Goodness of
 is investigated in some works \cite{gop_1, gop_2, gop_3}. The quality of
 pronunciation for any phone $p$ is defined to be the duration-normalized log of the posterior
 probability that the speaker uttered phone $p$ given the corresponding vector of observations
-$y=\{y_{t_{0}}, \dotsc y_{t_{0}+d-1} \}$
+$y=\{y_{t_{0}}, \dotsc y_{t_{0}+d-1} \}$:
 
 \begin{equation}
 \label{eq:gopScore}
@@ -85,7 +85,7 @@ A different technique is explored in \cite{phonological_rules}, which
 studies the relationship between phonetic mispronunciations that occur in a word
 and the actual word rating. The research is based on a set of phonological rules
 representing phonetic mispronunciations between L1 (native language of the students)
-and L2 (the target language). In this case, the corpus is obtained from Chinese Learners
+and L2 (the target language). In this case, the corpus is obtained from chinese learners
 of English and all the speech data of the corpus is phonetically transcribed by trained linguists.
 In addition, crowdsourcing is used to collect perceptual gradations of word-level
 mispronunciations and the WorkerRank algorithm is used to conduct quality control to filter
@@ -152,8 +152,8 @@ where $q$ is the canonical label of the observation being pronounced, {$q_{1}, q
 $LLR(y|q,q_{i})=log \ p(y|q_{i}) - log \ p(y|q)$, where likelihood is computed at segment
 level as in Equation \ref{eq:gopScore} for GOP scores. The reason for choosing these features is
 that $q$ can be mispronounced as any other phone and the likelihood ratio is a powerful
-method to detect this kind of mispronunciation. Classifiers trained with this kind of features, however,
-can only effectively deal with a phone mispronounced as another phone. This kind of acoustic models is
+method to detect this kind of mispronunciation. Classifiers trained with these features, however,
+can only effectively deal with a phone mispronounced as another phone. This type of acoustic models is
 less effective for partially changed mispronunciations, that are the most frequent mispronunciations
 in practice. In order to detect all kinds of mispronunciation, a technique called
 \textit{Pronunciation Space Models} (PSMs) is introduced. The idea is to represent pronunciation variations
@@ -166,7 +166,8 @@ given phone $q$, all the instances are sorted according to their
 posterior probabilities obtained from the original acoustic model for $q$, and
 then uniformly split into $K$ group of the same size. Finally, an individual new acoustic
 model is trained with the observation from each group via maximum likelihood estimation.
-The feature vector dimension of \ref{eq:psm} is therefore increased from $Q$ to $Q*K$.
+The feature vector dimension of Equation
+\ref{eq:psm} is therefore increased from $Q$ to $Q*K$.
 Experiments are carried out on the
 Mandarin mispronunciation detection task for native Chinese speakers with various dialect accents,
 and data labeled as ``correct'' or ``mispronounced'' by experienced human annotators is used to train and test the models.
@@ -272,7 +273,7 @@ is applied using models trained on native
 data and is used as baseline and compared with a proposed technique
 based on log-likelihood ratio (LLR).
 To compute LLRs, the phonetically labeled nonnative
-database is used to train two different \textit{Gaussian mixture models} (GMMs) for each phone
+database is used to train two different \textit{Gaussian Mixture Models} (GMMs) for each phone
 class: one model is trained with the ``correct'' native-like pronunciations of a phone, while the
 other model is trained with the ``mispronounced'' or nonnative pronunciations of the same phone.
 In the evaluation phase, for each phone segment $q_{i}$, a length-normalized log-likelihood ratio
@@ -283,10 +284,11 @@ pronunciation models $\lambda_{M}$ and $\lambda_{C}$ respectively:
 LLR(q_{i}) = \frac{1}{d}\sum_{t=t_{0}}^{t_{0}+d-1} [log \ p(y_{t}|q_{i}, \lambda_{M}) - log \ p(y_{t}|q_{i}, \lambda_{C})]
 \end{equation}
 The normalization by $d$ allows the definition of unique thresholds for each phone class,
-independent of the length of the segments. A mispronunciation is detected when the LLR is above that threshold.
+independent of the length of the segments. A mispronunciation is detected when the LLR is above the threshold.
 The LLR method performed better than the posterior-based method for almost all phone classes,
 specially for those with the highest consistency across transcribers. These results are in
-line with the fact that models trained on nonnative speech data have better results than
+line with the fact that models trained on nonnative speech data
+produce better results than
 those trained on native speech, as it was previously mentioned.
 
 Finally, the most recent work of the series \cite{main} extends the research
@@ -298,7 +300,7 @@ the new modeling techniques.
 The first proposed method also uses LLR based on GMMs trained
 on nonnative data (Equation \ref{eq:logLikelihoodRatio}). The difference resides in the way these GMMs are obtained.
 In the baseline approach, for each phone class two different GMMs are trained: one model is
-trained with the ``correct'' native-like pronuncations of a phone while the other is trained
+trained with the ``correct'' native-like pronunciations of a phone while the other is trained
 with the ``mispronounced'' or nonnative pronunciations of the same phone. In the new approach,
 the models for each class for a given phone are obtained by adaptation. The model to which they
 are adapted is trained using all the samples from a given phone, ignoring the class (``correct''
@@ -320,7 +322,7 @@ hyperplane is taken as the score for the phone.
 The two methods presented in \cite{main} show better results than the mispronunciation
 detection system based on LLR of independently trained GMMs developed in
 \cite{detection_phone_level_mispronunciation_learning}, which at the same time
-outperforms the standard method that uses phone log posteriors
+outperforms the standard method that uses phone log-posteriors
 as scores \cite{pronunciation_scoring_phone_segments_instruction}.
 This is one of the most important lines of research in pronunciation assessment
 at phone level, positioning the methods described in \cite{main} among the best
