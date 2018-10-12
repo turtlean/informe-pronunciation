@@ -412,10 +412,10 @@ are calculated using the SVM trained only on supervectors as baseline system.
 
 Unlike the tunning phase, where the experimentation is driven by the results obtained
 over the phones with higher kappa values, a new criteria is used for the model validation.
-A McNemar test is performed as previous step to scope the analysis
+A McNemar's test is performed as previous step to scope the analysis
 to a subset of phones with statistically significant gains in the development
 data (\textit{p-value} $<$ 0.05).
-McNemar, which is described in Method Section \ref{subsection:mcnemar},
+McNemar's, which is described in Method Section \ref{subsection:mcnemar},
 is used to estimate the confidence that a final model is different from
 the baseline model by using the paired nominal results of both classifiers.
 
@@ -529,7 +529,7 @@ significant results in the development set.
 The results for all the phones, however, are included in the tables
 (\ref{section:tables}) and plots (\ref{section:plots})
 of the Appendix.
-Even though a new McNemar test is computed on the
+Even though a new McNemar's test is computed on the
 results obtained in the hold-out data, in many cases it does not yield statistically significant gains
 for the phones of interest. This can be explained by the fact that hold-out data
 has around 1/4 of the instances of the

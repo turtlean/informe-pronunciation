@@ -5,10 +5,12 @@ The tables include information of the results
 for all phones, and they are split in two: the left side
 contains the results obtained in the development set, while the right side contains
 the results obtained in the hold-out set. Along with the EER values obtained in each
-dataset,
+dataset and the p-values obtained in the McNemar's test,
 the number of instances
-for each class and each phone are included, in addition to the p-value of the McNemar
-test. The table is sort by decreasing Kappa values of the phones.
+for each class and each phone are included.
+% in addition to the p-value of the McNemar
+% P-value obtained in the McNemar test is also included.
+The table is sort by decreasing Kappa values of the phones.
 
 Rows with grey background corresponds to the phones for which
 the McNemar's test gives significant results in the development set, which are the
@@ -110,7 +112,7 @@ N & 0.217 & 0.203 & \%6.5 & 0.303 & 911 & 443 & 0.203 & 0.215 & -\%5.9 & 0.015 &
 
 }
 \caption{Results of the Score Combination between the SVM system trained on supervectors
-and the SVM system trained on DCT coefficients, for both development and test sets,
+and the SVM system trained on DCT coefficients, for both development and hold-out sets,
 compared to the SVM trained on supervectors only (baseline system). S.C stands for
 Score Combination.}
 \label{tab:scoreCombinationAppendixTable}
