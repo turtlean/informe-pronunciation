@@ -28,3 +28,5 @@ of the current frame.
 - /l/r/ -> Alrededor
 - /n/r/ -> Conrado, Sonrisa, Honra
 - /s/r/ -> Israel, Disruptivo, Desraizar
+
+- we motivated the Gaussian mixture model as a simple linear super- position of Gaussian components, aimed at providing a richer class of density mod- els than the single Gaussian.
