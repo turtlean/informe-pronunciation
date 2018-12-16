@@ -388,6 +388,15 @@ At this point, the DCT features are chosen as the Dynamic Features to be combine
 supervectors when training the final models, and for each of the remaining phones with
 low Kappa values the phone-dependent weights are computed.
 
+\textcolor{red}{
+Even though training a system with a combination of the three types of features:
+supervectors, legendre and DCT was possible, it would have required the tunning of
+an additional parameter for each phone, which is costly to mantain. Moreover, this
+could have lead to overfitting the final model. Because of these reasons, and the fact
+that we weren't expecting significant gains in combining both types of dynamic features
+that already model the same aspects, the idea of combining the three features was discarded.
+}
+
 \section{Final Models Validation} \label{subsection:modelValidation}
 
 The final experiments are carried out in order
