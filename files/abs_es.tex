@@ -6,35 +6,39 @@ automáticos de Asistencia Computarizada para el Aprendizaje de Idiomas (ACAI).
 Estos sistemas brindan ayuda a estudiantes de segundos idiomas
 en diversos campos, entre las cuales se destacan la gramática, el vocabulario
 y la pronunciación. En el presente trabajo nos concentramos en una forma
-particular de asistencia relacionada con el último campo: la puntuación
-de la pronunciación. Este proceso consiste en la generación de un valor
-a partir una frase grabada por un estudiante, que mida cuán bien
-fue pronunciada esa frase,
-o cada palabra o fono dentro de esa frase.
+particular de asistencia relacionada con el último campo: la evaluación
+de la pronunciación, que consiste en decidir si los segmentos de habla presentes
+en una determinada
+grabación fueron pronunciados de forma correcta o incorrecta. Dicho análisis
+puede realizarse a distintos niveles tales como oración, palabra o fono.
+%Este proceso consiste en la generación de un valor
+%a partir una frase grabada por un estudiante, que mida cuán bien
+%fue pronunciada esa frase,
+%o cada palabra o fono dentro de esa frase.
 
-Actualmente, las estimaciones más confiables de la puntuación de la pronunciación
+Actualmente, las estimaciones más confiables de la evaluación de la pronunciación
 son obtenidas a nivel de párrafo u oraciones largas, disminuyendo la precisión
 de los sistemas a medida que se reduce la duración
 (y por lo tanto la cantidad de información) del segmento de habla a considerar.
-Sin embargo, los sistemas de puntuación de la pronunciación
+Sin embargo, los sistemas de evaluación de la pronunciación
 que trabajan con unidades de habla
 más cortas, como por ejemplo el fono,
 permiten poner el foco en errores específicos del estudiante y
 pueden ser utilizados por niños aún incapaces de pronunciar frases
 demasiado largas. Por esta razón,
-en este trabajo nos concentramos en métodos de puntuación de la pronunciación
-que califican a nivel fono.
+en este trabajo nos concentramos en métodos de evaluación de la pronunciación
+a nivel fono.
 
-Los métodos tradicionalmente utilizados para calcular
-puntajes de pronunciación a nivel fono
+Los métodos tradicionalmente utilizados para evaluar
+la pronunciación a nivel fono
 están basados en métodos generativos a partir de
 modelos de mezclas Gaussianas (GMMs). Generalmente,
 para cada fono se
 entrena un GMM por clase (pronunciación correcta e incorrecta),
 aplicando luego técnicas tales como el Cociente de
-Verosimilitud (\textit{Likelihood-Ratio} en inglés) entre ambos modelos para
-computar el puntaje. En un trabajo anterior en
-el área de calificación de pronunciación a nivel fono,
+Verosimilitud (\textit{Likelihood-Ratio} en inglés) entre ambos modelos realizar
+la evaluación. En un trabajo anterior en
+el área de evaluación de la pronunciación a nivel fono,
 se exploró
 un método discriminativo basado en Máquinas de Vectores de Soporte (SVM) entrenado
 con atributos llamados \textit{supervectores}, que produce resultados
@@ -46,7 +50,7 @@ de las muestras de dicho fono.
 
 En el presente trabajo, tomamos como
 base y punto de referencia el modelo SVM entrenado con
-supervectores para explorar nuevos atributos en el área de puntuación de la
+supervectores para explorar nuevos atributos en el área de evaluación de la
 pronunciación a nivel fono.
 Si bien tanto GMMs como
 supervectores modelan las características acústicas de
@@ -95,5 +99,5 @@ hipótesis de que ambos tipos de atributos contienen información complementaria
 
 \bigskip
 
-\noindent\textbf{Palabras claves:} Asistencia Computarizada para Aprendizaje de Idiomas, Puntuación de la Pronunciación, Fono, Máquinas de Vectores de Soporte, Modelo de Mezclas Gaussianas, Supervectores, Polinomios de Legendre, Transformada Discreta del Coseno
+\noindent\textbf{Palabras claves:} Asistencia Computarizada para Aprendizaje de Idiomas, Evaluación de la Pronunciación, Fono, Máquinas de Vectores de Soporte, Modelo de Mezclas Gaussianas, Supervectores, Polinomios de Legendre, Transformada Discreta del Coseno
 

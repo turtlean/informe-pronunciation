@@ -3,8 +3,8 @@
 In this section we will be reviewing representative works in pronunciation assessment
 at phone level, which is the topic of interest in this thesis.
 
-One of the simplest ways of scoring a phone pronunciation found in the literature
-is to use segment duration scores (\cite{pronunciation_scoring_instruction, pronunciation_scoring_phone_segments_instruction}), which are obtained through the following
+One of the simplest ways of assessing phone utterances found in the literature
+is to use segment durations (\cite{pronunciation_scoring_instruction, pronunciation_scoring_phone_segments_instruction}), which are obtained through the following
 procedure. First, a duration distribution is generated for each phone
 using the native training data.
 Then, phone durations in frames for nonnative utterances are obtained
@@ -12,8 +12,9 @@ and its value is normalized to compensate for rate of speech.
 Finally, phone-segment-duration scores are computed as
 the log-probability of the normalized duration, using the duration
 distributions previously mentioned. Phone durations are obtained from Viterbi alignments.
-In the same works, other two methods that use \textit{Hidden Markov Models} (HMMs) to obtain
-spectral matches and compute pronunciation scores are tested.
+
+In the same works other two methods, which use \textit{Hidden Markov Models} (HMMs) to obtain
+spectral matches, are tested.
 Phonetic time alignments for
 nonnative utterances are generated from an HMM-based speech recognition system trained
 with native instances. In order to do that, the text pronounced by the student
@@ -174,7 +175,7 @@ and data labeled as ``correct'' or ``mispronounced'' by experienced human annota
 Results show that SVM based on log-likelihood ratio features outperforms GOP scores (used as baseline), and some
 improvements are obtained when adding PSMs.
 
-A last example of SVM-based resarch is found in \cite{landmark_svm, landmark_svm_2}.
+A last example of SVM-based research is found in \cite{landmark_svm, landmark_svm_2}.
 A landmark-based SVM is introduced and compared with a confidence
 scoring method over 10 phonemes where
 L2 English learners, whose native language is Korean, make frequent errors.

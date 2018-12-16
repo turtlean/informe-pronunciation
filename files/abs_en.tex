@@ -5,40 +5,35 @@
 Technological advances of last decades have allowed the development and expansion
 of Computer-Assisted language learning (CALL) systems. These systems assist
 second language learners in different tasks regarding grammar, vocabulary and
-pronunciation. In the current work, we focus on \textit{Pronunciation Scoring},
-a particular subfield of pronunciation. Pronunciation Scoring consist in
-assigning scores to recorded speech at a predefined
-level (such as sentence, word or phone level), according to how well or bad
-the speech segment was pronounced.
-% have been
-% evolving for the last decades due to
-% technological advances.
-% An important subset of these tools are those which focus in
-% automatic pronunciation scoring and pronunciation assesment.
+pronunciation. In the current work, we focus on \textit{Pronunciation Assessment},
+a particular subfield of pronunciation.
+Pronunciation Assessment consists in
+determining whether a recorded speech was correctly or incorrectly pronounced.
+The analysis is performed at a predefined level, such as sentence, word or
+phone level.
+
+%assigning scores to recorded speech at a predefined
+%level (such as sentence, word or phone level), according to how well or bad
+%the speech segment was pronounced.
 
 Currently, whenever performing pronunciation assessment, the most reliable estimates are
 obtained from paragraphs or long sentences. On the other hand, the smaller the unit
 (and therefore the smaller the amount of information in the speech segment),
 the less precise is
 the estimate of the assessment.
-However, pronunciation scoring systems that operate at shorter levels, such
+However, pronunciation assessment systems that operate at shorter levels, such
 as phone level,
 not only can point out specific errors produced by the students but also
 can be used by children that still have difficulties in pronouncing long sentences.
 For these reasons,
-in the current work we will focus on phone-level pronunciation scoring methods.
+in the current work we will focus on phone-level pronunciation assessment methods.
 
-% Particularly, we
-% are interested in systems that provide phone-level feedback on pronunciation quality,
-% because they not only can point out specific errors to the students but they also
-% can be used by children that are still unable to pronounce whole sentences or paragraphs.
-
-The more standard methods in the literature for pronunciation scoring at
+The more standard methods in the literature for pronunciation assessment at
 phone level usually involve using generative approaches
 based on Gaussian Mixture Models.
 Usually, for each phone two individual GMMs are trained: one using the correctly
 pronounced instances of that phone and the other one using the incorrect instances.
-A standard way to obtain the score is to compute the
+A standard way to make the assessment is to compute the
 Likelihood-Ratio between the two models.
 In a previous work in the pronunciation assessment field at phone level, a discriminative
 approach based on \textit{Support Vector Machines} (SVM) trained on special features
@@ -49,7 +44,7 @@ instances for a given phone.
 
 In the current work, we use as reference and baseline system the SVM model
 trained on supervectors in order to explore new features in the
-phone-level pronunciation scoring field.
+phone-level pronunciation assessment field.
 Even though both GMMs and supervectors
 summarize the low level acoustic information of the speech segment,
 they don't provide information about the temporal dependencies of the features.
@@ -78,4 +73,4 @@ the hypothesis that both set of features carry complementary information.
 
 \bigskip
 
-\noindent\textbf{Keywords:} Computer-Assisted Language Learning, Pronunciation Scoring, Phone, Support Vector Machines, Gaussian Mixture Models, Supervectors, Legendre Polynomials, Discrete Cosine Transform
+\noindent\textbf{Keywords:} Computer-Assisted Language Learning, Pronunciation Assessment, Phone, Support Vector Machines, Gaussian Mixture Models, Supervectors, Legendre Polynomials, Discrete Cosine Transform
