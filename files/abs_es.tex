@@ -1,72 +1,75 @@
 \chapter*{Resumen}
 
-Los avances tecnológicos de las últimas décadas han
+Los avances tecnol\'{o}gicos de las \'{u}ltimas d\'{e}cadas han
 posibilitado el desarrollo de sistemas
-automáticos de Asistencia Computarizada para el Aprendizaje de Idiomas (ACAI).
+autom\'{a}ticos de Asistencia Computarizada para el Aprendizaje de Idiomas (ACAI).
 Estos sistemas brindan ayuda a estudiantes de segundos idiomas
-en diversos campos, entre las cuales se destacan la gramática, el vocabulario
-y la pronunciación. En el presente trabajo nos concentramos en una forma
-particular de asistencia relacionada con el último campo: la evaluación
-de la pronunciación, que consiste en decidir si los segmentos de habla presentes
+en diversos campos, entre las cuales se destacan la gram\'{a}tica, el vocabulario
+y la pronunciaci\'{o}n. En el presente trabajo nos concentramos en una forma
+particular de asistencia relacionada con el \'{u}ltimo campo:
+\textcolor{red}{
+la evaluaci\'{o}n
+de la pronunciaci\'{o}n, que consiste en decidir si los segmentos de habla presentes
 en una determinada
-grabación fueron pronunciados de forma correcta o incorrecta. Dicho análisis
-puede realizarse a distintos niveles tales como oración, palabra o fono.
+grabaci\'{o}n fueron pronunciados de forma correcta o incorrecta. Dicho an\'{a}lisis
+puede realizarse a distintos niveles tales como oraci\'{o}n, palabra o fono.
+}
 %Este proceso consiste en la generación de un valor
 %a partir una frase grabada por un estudiante, que mida cuán bien
 %fue pronunciada esa frase,
 %o cada palabra o fono dentro de esa frase.
 
-Actualmente, las estimaciones más confiables de la evaluación de la pronunciación
-son obtenidas a nivel de párrafo u oraciones largas, disminuyendo la precisión
-de los sistemas a medida que se reduce la duración
-(y por lo tanto la cantidad de información) del segmento de habla a considerar.
-Sin embargo, los sistemas de evaluación de la pronunciación
+Actualmente, las estimaciones m\'{a}s confiables de la evaluaci\'{o}n de la pronunciaci\'{o}n
+son obtenidas a nivel de p\'{a}rrafo u oraciones largas, disminuyendo la precisi\'{o}n
+de los sistemas a medida que se reduce la duraci\'{o}n
+(y por lo tanto la cantidad de informaci\'{o}n) del segmento de habla a considerar.
+Sin embargo, los sistemas de evaluaci\'{o}n de la pronunciaci\'{o}n
 que trabajan con unidades de habla
-más cortas, como por ejemplo el fono,
-permiten poner el foco en errores específicos del estudiante y
-pueden ser utilizados por niños aún incapaces de pronunciar frases
-demasiado largas. Por esta razón,
-en este trabajo nos concentramos en métodos de evaluación de la pronunciación
+m\'{a}s cortas, como por ejemplo el fono,
+permiten poner el foco en errores espec\'{i}ficos del estudiante y
+pueden ser utilizados por ni\~nos a\'{u}n incapaces de pronunciar frases
+demasiado largas. Por esta raz\'{o}n,
+en este trabajo nos concentramos en m\'{e}todos de evaluaci\'{o}n de la pronunciaci\'{o}n
 a nivel fono.
 
-Los métodos tradicionalmente utilizados para evaluar
-la pronunciación a nivel fono
-están basados en métodos generativos a partir de
+Los m\'{e}todos tradicionalmente utilizados para evaluar
+la pronunciaci\'{o}n a nivel fono
+est\'{a}n basados en m\'{e}todos generativos a partir de
 modelos de mezclas Gaussianas (GMMs). Generalmente,
 para cada fono se
-entrena un GMM por clase (pronunciación correcta e incorrecta),
-aplicando luego técnicas tales como el Cociente de
-Verosimilitud (\textit{Likelihood-Ratio} en inglés) entre ambos modelos realizar
-la evaluación. En un trabajo anterior en
-el área de evaluación de la pronunciación a nivel fono,
-se exploró
-un método discriminativo basado en Máquinas de Vectores de Soporte (SVM) entrenado
+entrena un GMM por clase (pronunciaci\'{o}n correcta e incorrecta),
+aplicando luego t\'{e}cnicas tales como el Cociente de
+Verosimilitud (\textit{Likelihood-Ratio} en ingl\'{e}s) entre ambos modelos realizar
+la evaluaci\'{o}n. En un trabajo anterior en
+el \'{a}rea de evaluaci\'{o}n de la pronunciaci\'{o}n a nivel fono,
+se explor\'{o}
+un m\'{e}todo discriminativo basado en M\'{a}quinas de Vectores de Soporte (SVM) entrenado
 con atributos llamados \textit{supervectores}, que produce resultados
-ligeramente mejores a los métodos generativos comúnmente utilizados en el campo.
+ligeramente mejores a los m\'{e}todos generativos com\'{u}nmente utilizados en el campo.
 Los \textit{supervectores} para cada fono se obtienen
-a partir de un proceso de adaptación de un
+a partir de un proceso de adaptaci\'{o}n de un
 GMM global entrenado con la totalidad
 de las muestras de dicho fono.
 
 En el presente trabajo, tomamos como
 base y punto de referencia el modelo SVM entrenado con
-supervectores para explorar nuevos atributos en el área de evaluación de la
-pronunciación a nivel fono.
+supervectores para explorar nuevos atributos en el \'{a}rea de evaluaci\'{o}n de la
+pronunciaci\'{o}n a nivel fono.
 Si bien tanto GMMs como
-supervectores modelan las características acústicas de
+supervectores modelan las caracter\'{i}sticas ac\'{u}sticas de
 bajo nivel del segmento
 de habla a considerar,
 no tienen en cuenta el comportamiento temporal de las mismas.
 % contienen información de los atributos acústicos del habla a lo
 % largo de toda la pronunciación del fono, no tienen en cuenta el orden en el que se
 % producen.
-Por este motivo, en esta ocasión
-estudiamos atributos dinámicos
+Por este motivo, en esta ocasi\'{o}n
+estudiamos atributos din\'{a}micos
 que modelan de manera directa el comportamiento temporal de dichas
-características acústicas.
+caracter\'{i}sticas ac\'{u}sticas.
 Para ello, cada una es aproximada
-de manera independiente por una función,
-a partir de la cual se extraen los atributos dinámicos.
+de manera independiente por una funci\'{o}n,
+a partir de la cual se extraen los atributos din\'{a}micos.
 % Para ello, cada
 % característica es modelada de forma independiente y aproximada por una función.
 % modelen las dependencias temporales presentes en cada muestra.
@@ -78,26 +81,26 @@ a partir de la cual se extraen los atributos dinámicos.
 % acústicos del fono. No tienen en cuenta el orden en el eque dichos valores son observados
 % Cómo? Cada atributo es modelado de forma independiente y aproximado por una función
 % Parametrization techniques
-Dos técnicas de aproximación son evaluadas como posibles alternativas:
+Dos t\'{e}cnicas de aproximaci\'{o}n son evaluadas como posibles alternativas:
 Polinomios de Legendre y Transformada Discreta del Coseno (DCT).
 El objetivo
 es analizar si
-los atributos dinámicos propuestos tienen información
+los atributos din\'{a}micos propuestos tienen informaci\'{o}n
 complementaria a la provista por los supervectores.
 
-Entrenamos y evaluamos los métodos base y los propuestos usando una base de datos no nativa
-de Español Latino, correspondiente a 206 hablantes estadounidenses, estudiantes de Español.
+Entrenamos y evaluamos los m\'{e}todos base y los propuestos usando una base de datos no nativa
+de Espa\~nol Latino, correspondiente a 206 hablantes estadounidenses, estudiantes de Espa\~nol.
 % Las grabaciones corresponden a 206 hablantes estadounidenses pronunciando distintas
 % frases en español latino.
-La base de datos está conformada por 2550 grabaciones alcanzando
+La base de datos est\'{a} conformada por 2550 grabaciones alcanzando
 un total de 130.000 instancias de fonos etiquetadas
 por transcriptores profesionales.
-Los resultados muestran que para un subconjunto de fonos, la combinación de supervectores
-con los atributos dinámicos efectivamente reduce los errores durante la clasificación,
+Los resultados muestran que para un subconjunto de fonos, la combinaci\'{o}n de supervectores
+con los atributos din\'{a}micos efectivamente reduce los errores durante la clasificaci\'{o}n,
 soportando la
-hipótesis de que ambos tipos de atributos contienen información complementaria.
+hip\'{o}tesis de que ambos tipos de atributos contienen informaci\'{o}n complementaria.
 
 \bigskip
 
-\noindent\textbf{Palabras claves:} Asistencia Computarizada para Aprendizaje de Idiomas, Evaluación de la Pronunciación, Fono, Máquinas de Vectores de Soporte, Modelo de Mezclas Gaussianas, Supervectores, Polinomios de Legendre, Transformada Discreta del Coseno
+\noindent\textbf{Palabras claves:} Asistencia Computarizada para Aprendizaje de Idiomas, Evaluaci\'{o}n de la Pronunciaci\'{o}n, Fono, M\'{a}quinas de Vectores de Soporte, Modelo de Mezclas Gaussianas, Supervectores, Polinomios de Legendre, Transformada Discreta del Coseno
 
