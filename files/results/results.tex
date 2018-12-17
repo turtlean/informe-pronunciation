@@ -90,7 +90,23 @@ This is particularly useful because the number of instances
 for each class is
 unbalanced for most of the phones.
 
-In all the experiments, features are standardized
+%%% Polynomial or Radial
+\textcolor{red}{
+Only SVMs with linear kernels are used throughout the experiments, i.e,
+solutions involving other types of kernels such as polynomial or radial
+are not explored. This is because of two reasons: In the first place, the
+dimension of the features space is relatively high compared with the number of
+instances for each phone, and SVMs with linear kernels usually perform better
+on this scenarios. Secondly, as it was mentioned before,
+the current work is based on a previous work \cite{main}, which uses a linear
+kernel. The strategy used in the current thesis is to keep the
+initial configuration for the SVM classifier while focusing on
+exploring the new set of dynamic
+features.
+}
+
+%In all the experiments, features are standardized
+Additionally, features are standardized
 by removing the mean and scaling to unit variance
 before training the models to avoid the dominance of certain
 features over other ones.
