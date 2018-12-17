@@ -239,7 +239,7 @@ duration to the DCT coefficients.
 
 As in the Legendre optimal configuration, DCT tunning experiments also shows that appending the
 duration to the coefficients produces a slight reduction in the averaged EER (around 1\%
-relative).
+relative), \textcolor{red}{so the duration is appended to the DCT coefficients.}
 
 A comparative plot between the variation of the EER as function of the number of coefficients
 for both dynamic features is shown below in Fig. \ref{fig:legendreVsDCT}.
@@ -594,6 +594,24 @@ its performance and only slightly.
 Among the remaining phones, for the Features Combination experiment
 there are cases where both improvements
 and degradations of the performance are observed.
+
+\textcolor{red}{
+	At the very beginning, when restricting our analysis to
+	this particular subset of the phones,
+	we picked out some of them such as 'rr' and 'm'
+	and inspected their instances in order to figure out why those instances would benefit
+	from the dynamic features. However, what we found for example
+	when analysing the utterances of
+	the 'rr', is that many of the instances labeled as correct did not sound thrilled, and the
+	other way around too. Many of the instances that sounded thrilled for us,
+	were labeled as incorrect.
+	In other words, it seems to be a mismatch between our criteria and annotators' criteria.
+	A similar thing happend when analysing the utterances of the 'm'.
+	After these findings, we abandon the initiative of trying to explain the reasons why
+	some of the phones benefits from the dynamic features.
+	Also, there exists the possibility that for some of the phones the boundaries of
+	performance imposed by the annotation errors have already been reached.
+}
 
 A Bootstrapping test is again performed in the hold-out set to provide a complementary analysis,
 and the results are summarized in Fig. \ref{fig:bootstrappingHoldOut}.
