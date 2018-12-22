@@ -91,7 +91,6 @@ for each class is
 unbalanced for most of the phones.
 
 %%% Polynomial or Radial
-\textcolor{red}{
 Only SVMs with linear kernels are used throughout the experiments, i.e,
 solutions involving other types of kernels such as polynomial or radial
 are not explored. This is because of two reasons: In the first place, the
@@ -103,7 +102,6 @@ kernel. The strategy used in the current thesis is to keep the
 initial configuration for the SVM classifier while focusing on
 exploring the new set of dynamic
 features.
-}
 
 %In all the experiments, features are standardized
 Additionally, features are standardized
@@ -239,7 +237,7 @@ duration to the DCT coefficients.
 
 As in the Legendre optimal configuration, DCT tunning experiments also shows that appending the
 duration to the coefficients produces a slight reduction in the averaged EER (around 1\%
-relative), \textcolor{red}{so the duration is appended to the DCT coefficients.}
+relative), so the duration is appended to the DCT coefficients.
 
 A comparative plot between the variation of the EER as function of the number of coefficients
 for both dynamic features is shown below in Fig. \ref{fig:legendreVsDCT}.
@@ -404,7 +402,6 @@ At this point, the DCT features are chosen as the Dynamic Features to be combine
 supervectors when training the final models, and for each of the remaining phones with
 low Kappa values the phone-dependent weights are computed.
 
-\textcolor{red}{
 Even though training a system from the combination of the three features
 (Supervectors, Legendre and DCT) was possible, it would have required the tunning of
 an additional parameter for each phone, which is costly to mantain. Moreover, this
@@ -412,8 +409,6 @@ could have lead to overfitting the model. Because of these reasons, and the fact
 that we weren't expecting significant gains in combining both types of dynamic features
 because they model the same temporal characteristics,
 we didn't explore a combination of the three features as a solution.
-%the idea of combining the three features was discarded.
-}
 
 \section{Final Models Validation} \label{subsection:modelValidation}
 
@@ -595,23 +590,21 @@ Among the remaining phones, for the Features Combination experiment
 there are cases where both improvements
 and degradations of the performance are observed.
 
-\textcolor{red}{
-	At the very beginning, when restricting our analysis to
-	this particular subset of the phones,
-	we picked out some of them such as 'rr' and 'm'
-	and inspected their instances in order to figure out why those instances would benefit
-	from the dynamic features. However, what we found for example
-	when analysing the utterances of
-	the 'rr', is that many of the instances labeled as correct did not sound thrilled, and the
-	other way around too. Many of the instances that sounded thrilled for us,
-	were labeled as incorrect.
-	In other words, it seems to be a mismatch between our criteria and annotators' criteria.
-	A similar thing happend when analysing the utterances of the 'm'.
-	After these findings, we abandon the initiative of trying to explain the reasons why
-	some of the phones benefits from the dynamic features.
-	Also, there exists the possibility that for some of the phones the boundaries of
-	performance imposed by the annotation errors have already been reached.
-}
+At the very beginning, when restricting our analysis to
+this particular subset of the phones,
+we picked out some of them such as 'rr' and 'm'
+and inspected their instances in order to figure out why those instances would benefit
+from the dynamic features. However, what we found for example
+when analysing the utterances of
+the 'rr', is that many of the instances labeled as correct did not sound thrilled, and the
+other way around too. Many of the instances that sounded thrilled for us,
+were labeled as incorrect.
+In other words, it seems to be a mismatch between our criteria and annotators' criteria.
+A similar thing happend when analysing the utterances of the 'm'.
+After these findings, we abandon the initiative of trying to explain the reasons why
+some of the phones benefits from the dynamic features.
+Also, there exists the possibility that for some of the phones the boundaries of
+performance imposed by the annotation errors have already been reached.
 
 A Bootstrapping test is again performed in the hold-out set to provide a complementary analysis,
 and the results are summarized in Fig. \ref{fig:bootstrappingHoldOut}.
